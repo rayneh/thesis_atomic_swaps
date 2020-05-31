@@ -1,0 +1,44 @@
+=============== May 31, 2020 (CEST) ===============
+09:47:23.890997 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+09:47:23.896982 db@open opening
+09:47:23.897979 version@stat F·[] S·0B[] Sc·[]
+09:47:23.900971 db@janitor F·2 G·0
+09:47:23.900971 db@open done T·3.9894ms
+09:47:23.900971 db@close closing
+09:47:23.901968 db@close done T·997.4µs
+=============== May 31, 2020 (CEST) ===============
+10:13:07.424214 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+10:13:07.424214 version@stat F·[] S·0B[] Sc·[]
+10:13:07.424214 db@open opening
+10:13:07.424214 journal@recovery F·1
+10:13:07.426208 journal@recovery recovering @1
+10:13:07.434187 memdb@flush created L0@2 N·10 S·565B "HW\x04..\x9bŰ,v3":"r\x00\x00..\x9bŰ,v5"
+10:13:07.434187 version@stat F·[1] S·565B[565B] Sc·[0.25]
+10:13:07.443164 db@janitor F·3 G·0
+10:13:07.443164 db@open done T·18.9501ms
+10:13:07.443164 db@close closing
+10:13:07.444188 db@close done T·1.0239ms
+=============== May 31, 2020 (CEST) ===============
+10:13:12.066813 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+10:13:12.066813 version@stat F·[1] S·565B[565B] Sc·[0.25]
+10:13:12.066813 db@open opening
+10:13:12.066813 journal@recovery F·1
+10:13:12.067810 journal@recovery recovering @3
+10:13:12.089343 memdb@flush created L0@5 N·1 S·303B "eth..\x9bŰ,v12":"eth..\x9bŰ,v12"
+10:13:12.090341 version@stat F·[2] S·868B[868B] Sc·[0.50]
+10:13:12.097349 db@janitor F·4 G·0
+10:13:12.098319 db@open done T·31.5062ms
+10:13:12.098319 db@close closing
+10:13:12.099316 db@close done T·996.8µs
+=============== May 31, 2020 (CEST) ===============
+10:13:19.648613 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+10:13:19.648613 version@stat F·[2] S·868B[868B] Sc·[0.50]
+10:13:19.648613 db@open opening
+10:13:19.648613 journal@recovery F·1
+10:13:19.650608 journal@recovery recovering @6
+10:13:19.673929 memdb@flush created L0@8 N·1 S·303B "eth..\x9bŰ,v14":"eth..\x9bŰ,v14"
+10:13:19.675924 version@stat F·[3] S·1KiB[1KiB] Sc·[0.75]
+10:13:19.687892 db@janitor F·5 G·0
+10:13:19.687892 db@open done T·39.2791ms
+10:17:23.646673 db@close closing
+10:17:23.651659 db@close done T·4.986ms

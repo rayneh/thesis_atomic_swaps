@@ -1,0 +1,32 @@
+=============== May 31, 2020 (CEST) ===============
+09:47:23.906955 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+09:47:23.911942 db@open opening
+09:47:23.911942 version@stat F·[] S·0B[] Sc·[]
+09:47:23.915933 db@janitor F·2 G·0
+09:47:23.915933 db@open done T·3.9915ms
+09:47:23.915933 db@close closing
+09:47:23.916940 db@close done T·1.0071ms
+=============== May 31, 2020 (CEST) ===============
+10:13:07.449147 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+10:13:07.449147 version@stat F·[] S·0B[] Sc·[]
+10:13:07.449147 db@open opening
+10:13:07.449147 journal@recovery F·1
+10:13:07.449147 journal@recovery recovering @1
+10:13:07.453169 memdb@flush created L0@2 N·10 S·565B "HW\x04..\x9bŰ,v3":"r\x00\x00..\x9bŰ,v5"
+10:13:07.455159 version@stat F·[1] S·565B[565B] Sc·[0.25]
+10:13:07.463110 db@janitor F·3 G·0
+10:13:07.463110 db@open done T·13.9623ms
+10:13:07.463110 db@close closing
+10:13:07.464107 db@close done T·997.5µs
+=============== May 31, 2020 (CEST) ===============
+10:13:12.103335 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+10:13:12.104303 version@stat F·[1] S·565B[565B] Sc·[0.25]
+10:13:12.104303 db@open opening
+10:13:12.104303 journal@recovery F·1
+10:13:12.104303 journal@recovery recovering @3
+10:13:12.108316 memdb@flush created L0@5 N·1 S·303B "eth..\x9bŰ,v12":"eth..\x9bŰ,v12"
+10:13:12.110315 version@stat F·[2] S·868B[868B] Sc·[0.50]
+10:13:12.118265 db@janitor F·4 G·0
+10:13:12.118265 db@open done T·13.962ms
+10:13:12.118265 db@close closing
+10:13:12.119262 db@close done T·997.2µs

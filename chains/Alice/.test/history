@@ -1,0 +1,4 @@
+
+eth.accounts
+miner.setEtherbase(eth.accounts[0])
+eth.coinbase
