@@ -1,0 +1,43 @@
+%
+% Chapter: Introduction
+%
+\chapter{Introduction}
+\label{ch:intro}
+This Chapter will discuss the motivation and several historic information which led to the research objective covered by this thesis. Next chapter will discuss the model and general principles serving as foundation to address the research objective. Finally the implementation of atomic cross-chain swaps on Ethereum blockchains will be presented. Followed by an outlook into the future of blockchain interoperability research will be an own chapter.
+The last chapter will be a conclusion of this work, to reflect the whole thesis.
+
+
+%
+% Section: Motivation
+%
+\section{Motivation}
+\label{sec:intro:motivation}
+\graffito{Note: The Cryptocurreny ecosystem is very large. https://coinmarketcap.com/}
+Decentralization and scaling of blockchains is a widely addressed topic by
+many researchers. Bitcoin \cite{nakamoto2008peer} was the first successful blockchain application
+which decentralizes money, combining the well-known concepts of \ac{PoW} algorithms and the distributed ledger concept. Based on previous work
+by Wood \cite{wood2014ethereum}, Buterin described the next-generation Smart Contract and decentralized
+application platform known as Ethereum \cite{buterin2013ethereum} \cite{buterin2014ethereum}. While most present
+blockchains still remain unconnected, pegged sidechains are formally defined
+by \cite{back2014enabling} and serve as foundation for many proposals towards blockchain
+interoperabilty. Herlihy proposed the concept of atomic cross-chain
+swaps to exchange tokens and assets between blockchains safely \cite{herlihy2018atomic}
+to enable communication between two blockchains without intermediaries. This will raise security for the end-user.
+To address the blockchain ecosystem further and underline how diverse it is in terms of technology and architecture, this chapter will also give a quick introduction to two different Cryptocurrencies.
+Originally known as BitMonero, the Monero cryptocurrency was created in April 2014 \cite{alonso2020zero} as a proof-of-concept currency of the CryptoNote \cite{van2013cryptonote} technology.
+Cryptocurrencies dont just exist with different consesus algortithms and architecures, they also aim to serve a specific purpose. Monero addresses privacy and utilitizes borromean ring signatures
+\cite{maxwell2015borromean} to implement ring \ac{CT} \cite{noether2016ring} in order to improve untraceability.
+Another good example to show how diverse the blockchain ecosystem is, is Cardano which is a decentralised public blockchain and cryptocurrency project. Cardano uses a research-first driven approach to develop a smart contract platform which seeks to deliver more advanced features than any protocol previously developed. For example the initiators developed their own Ouroboros \ac{PoS} protocol \cite{kiayias2017ouroboros}. These few examples already point out the diversity of the blockchain ecosystem and underline why it is so important to address interoperability between blockchains in the future.
+
+
+
+
+%
+% Section: Ziele
+%
+\section{Research Objectives}
+\label{sec:intro:goal}
+This work covers three research objectives in general, which are equally weighted in importance. The chapter model and general principles will explain the basics like the ethereum blockchain and smart contracts to build the foundation to understand the implementation of atomic cross-chain swaps. Besides the \ac{EVM} and smart contacts digraphs will also be discussed, since they are crucial to execute a secure swap between two blockchains. The second part will introduce the implementation of atomic cross-chain swaps between two blockchains and will discuss the reference architecture and the implementation of the smart contracts in detail. The last part will be all about future research and an outlook about current blockchain research to show the direction and possible outcome of an blockchain ecosystem which we might see in the future. Since there is a vast amount of blockchains with different consensus algorithms and software architectures there seems to be a need for interoperability between these chains. Some researchers are do even propose whole frameworks in order to remove the intermediate party and swap information, token or assets back and forth between these chains. In the end this work will provide an implementation of atomic cross-chain swaps between two ethereum blockchains enabling end users to trade information, assets or token between two chains without an intermediate party and discuss an overview about current blockchain research addressing interoperability.
+
+
+
