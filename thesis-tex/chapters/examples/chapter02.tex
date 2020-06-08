@@ -1,25 +1,40 @@
 \chapter{Model and General Principles}
 \label{ch:background}
 
-This chapter will discuss the model and general principles, which serve the foundation to understand the implementation reports of the following chapter. Its important to understand every subsection of this chapter, such as the ethereum blockchain, the \ac{EVM} and more. 
+This chapter will discuss the model and general principles, which serve the foundation to understand the implementation reports of the following chapter. Its important to understand every subsection of this chapter, such as the ethereum blockchain, \ac{PoW}, the \ac{EVM} and all topics needed for atmoic cross-chain swaps. 
+
+% MB NOT HERE - - write about bitcoin and what changes it brought - buterin eth paper
 
 %
 % Section: Der erste Abschnitt
 %
 \section{Ethereum Blockchain}
 \label{sec:background:first_section}
-EXPLAIN ETHEREUM BLOCKCHAIN HERE
+The Ethereum blockchain was introduced in Vitalik Buterin’s paper in 2013 \cite{buterin2013ethereum} and addressed several limitations of the Bitcoin’s scripting language. The main contributions are full Turing-completeness and saving all states of computations in between \cite{dannen2017introducing}.
+Through its own programming language Solidity, it provides an abstract layer enabling anyone to create their own rules for ownership, formats of transactions, and state transition functions \cite{vujivcic2018blockchain}. Development was funded by an online crowdsale that took place between July and August 2014 \cite{tapscott2016blockchain}. The system then went live on 30 July 2015 \footfullcite{Foundation, Ethereum "Ethereum Launches" - https://blog.ethereum.org/2015/07/30/ethereum-launches/. Retrieved 30 July 2015} and is called the public blockchain.
 
-there is a public etehreum chain running since Erstveröffentlichungsdatum: 30. Juli 2015  Blockchain size: 337 GB
+
+
+- ADD AS FOOTNOTE 
+
+In general we have to distinguish between private and public blockchains. The public one 
+
 wood proposed the model anf buterin the implementation
 the implementation will use three custom chains not related to the public chain 
+
+- explain difference between public and private blockchain
 
 
 \subsection{Proof-of-Work Consensus Algorithm}
 \label{subsec:background:first_section:second_subsection}
 EXPLAIN POW HERE
+
+
 %Xiao-Weng Fang: Encyclopedia of Cryptography and Security, Band 1: Computational Puzzles. 2. Auflage. Springer, 2011, ISBN 978-1-4419-5905-8, S. 244 f.
-\cite{van2014encyclopedia}
+\cite{van2014encyclopedia} sha-256
+
+\cite{isoSHA-256} iso sha became standard 2003 %https://www.iso.org/standard/67116.html
+\cite{coron2005merkle} all sha functions start by padding the mnessage according to the so called merkle darmgard strenthenign technique
 %https://bitcoin.org/bitcoin.pdf
 \cite{nakamoto2008peer}
 %http://www.hashcash.org/papers/hashcash.pdf
@@ -29,14 +44,16 @@ EXPLAIN POW HERE
 \label{subsec:background:first_section:ethereum}
 EXPLAIN ETHEREUM \ac{EVM}
 
-\cite{dannen2017introducing}	%read the evm page 47
+\cite{dannen2017introducing}
+	%read the evm page 47
 %ref to eth paper
 \cite{wood2014ethereum}
 
 \subsection{Smart Contracts}
 \label{subsec:background:first_section:first_subsection}
 EXPLAIN SMART CONTRACTS HERE 
-in ethereum context by wood known simpler as contracts
+in ethereum context by wood known simple as contracts
+buterin first introduced the term smart contracts
 % https://cryptorating.eu/whitepapers/Ethereum/Ethereum_white_paper.pdf
 \cite{buterin2013ethereum}
 % https://files.gitter.im/ethereum/yellowpaper/VIyt/Paper.pdf
