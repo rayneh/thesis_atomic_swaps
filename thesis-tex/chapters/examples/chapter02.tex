@@ -26,7 +26,11 @@ Through its own programming language Solidity, it provides an abstract layer ena
 
 \subsection{Proof-of-Work Consensus Algorithm}
 \label{subsec:background:first_section:second_subsection}
-EXPLAIN POW HERE
+
+The \ac{PoW} system of bitcoin and etheruem is similar to Adam Back's Hashcash \cite{back2002hashcash}, but instead of a newspaper or Usenet post the \ac{PoW} involves scanning for a value, which is hashed wish \ac{SHA-256} to begin with a number of zero bits. the average work required is exponential, which means the more leading zeros, the more work. the work can be later verified by executing a single hash. the pow is implemented by incrementing a nonce in the block until a value is found that gives the block's hash the required zero bits. The majority decision is represented by the longest chain, which has the greatest \ac{PoW} effort invested in it. Because later blocks are chained after the premature block, he work to change the block would include redoing all the blocks after it. To modify a past block, an attacker would need to redo all the past work until the specific block he wants to change \cite{nakamoto2008peer}. 
+
+\includegraphics[height=4cm]{blocks}
+%ABBILDUNG chapter 4. proof-of-work bitcoin papper nachbauen!!!
 
 
 %Xiao-Weng Fang: Encyclopedia of Cryptography and Security, Band 1: Computational Puzzles. 2. Auflage. Springer, 2011, ISBN 978-1-4419-5905-8, S. 244 f.
@@ -34,10 +38,7 @@ EXPLAIN POW HERE
 
 \cite{isoSHA-256} iso sha became standard 2003 %https://www.iso.org/standard/67116.html
 \cite{coron2005merkle} all sha functions start by padding the mnessage according to the so called merkle darmgard strenthenign technique
-%https://bitcoin.org/bitcoin.pdf
-\cite{nakamoto2008peer}
-%http://www.hashcash.org/papers/hashcash.pdf
-\cite{back2002hashcash}
+
 
 \subsection{Ethereum Virtual Machine}
 \label{subsec:background:first_section:ethereum}
