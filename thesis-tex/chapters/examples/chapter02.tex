@@ -10,20 +10,19 @@ This chapter will discuss the model and general principles, which serve the foun
 %
 \section{Ethereum Blockchain}
 \label{sec:background:first_section}
-The Ethereum blockchain was introduced in Vitalik Buterin’s paper in 2013 \cite{buterin2013ethereum} and addressed several limitations of the Bitcoin’s scripting language. The main contributions are full Turing-completeness and saving all states of computations in between \cite{dannen2017introducing}.
-Through its own programming language Solidity, it provides an abstract layer enabling anyone to create their own rules for ownership, formats of transactions, and state transition functions \cite{vujivcic2018blockchain}. Development was funded by an online crowdsale that took place between July and August 2014 \cite{tapscott2016blockchain}. The system then went live on 30 July 2015 \footfullcite{Foundation, Ethereum "Ethereum Launches" - https://blog.ethereum.org/2015/07/30/ethereum-launches/. Retrieved 30 July 2015} and is called the public blockchain.
+The Ethereum blockchain was introduced in Vitalik Buterin’s paper in 2013, which addressed several limitations of the Bitcoin’s scripting language \cite{buterin2013ethereum} based on Buterin's white paper Wood released the yellow paper one year later \cite{wood2014ethereum}. The main contributions are full Turing-completeness and saving all states of computations in between the states \cite{dannen2017introducing}.
+Through its own programming language Solidity, it provides an abstract layer enabling anyone to create their own rules for ownership, formats of transactions, and state transition functions \cite{vujivcic2018blockchain}. Development was funded by an online crowdsale that took place between July and August 2014 \cite{tapscott2016blockchain}. The system then went live on 30 July 2015 \footfullcite{"Ethereum Launches" - https://blog.ethereum.org/2015/07/30/ethereum-launches/. Retrieved 30 July 2015} and is called the ethereum public blockchain. Which means its accessible to everyone who wants to send Ether token or execute smart contracts. In general we have to distinguish between private and public blockchains. The public one is described above. Since everybody can go to github and fork e.g the geth client its possible to start an own private blockchain. In an enterprise software context, where corporate stakeholders are given certain rights and privileges to read and write to the company chain, the deployment is known as a permissioned blockchain. Nevertheless for both the private (permissioned) and the public blockchain its possible to do the following \cite{dannen2017introducing}:
 
+\begin{itemize}
+	\item Send and receive Ether
+	\item Write smart contracts
+	\item Create provably fair applications
+	\item Launch your own token based on Ether
+\end{itemize}
 
+% ADD LINEBREAK TO FOOTNOTE AND ADD THIS AT THE BEGINNING   Foundation, Ethereum 
 
-- ADD AS FOOTNOTE 
-
-In general we have to distinguish between private and public blockchains. The public one 
-
-wood proposed the model anf buterin the implementation
-the implementation will use three custom chains not related to the public chain 
-
-- explain difference between public and private blockchain
-
+\clearpage
 
 \subsection{Proof-of-Work Consensus Algorithm}
 \label{subsec:background:first_section:second_subsection}
