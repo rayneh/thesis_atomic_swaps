@@ -27,18 +27,22 @@ Through its own programming language Solidity, it provides an abstract layer ena
 \subsection{Proof-of-Work Consensus Algorithm}
 \label{subsec:background:first_section:second_subsection}
 
-The \ac{PoW} system of bitcoin and etheruem is similar to Adam Back's Hashcash \cite{back2002hashcash}, but instead of a newspaper or Usenet post the \ac{PoW} involves scanning for a value, which is hashed wish \ac{SHA-256} to begin with a number of zero bits. the average work required is exponential, which means the more leading zeros, the more work. the work can be later verified by executing a single hash. the pow is implemented by incrementing a nonce in the block until a value is found that gives the block's hash the required zero bits. The majority decision is represented by the longest chain, which has the greatest \ac{PoW} effort invested in it. Because later blocks are chained after the premature block, he work to change the block would include redoing all the blocks after it. To modify a past block, an attacker would need to redo all the past work until the specific block he wants to change \cite{nakamoto2008peer}. 
+The \ac{PoW} system of bitcoin and ethereum is similar to Adam Back's Hashcash \cite{back2002hashcash}, but instead of a newspaper or Usenet post the \ac{PoW} involves scanning for a value, which is hashed with the \ac{SHA-256} to begin with a number of zero bits. The average work required is exponential. Which means the more leading zeros, the more work. In the end the work can be later verified by executing a single hash. The \ac{PoW} is implemented by incrementing a nonce in the block until a value is found that gives the block's hash the required zero bits. The majority decision is represented by the longest chain, which has the greatest \ac{PoW} effort invested in it. Because later blocks are chained after the premature block, the work to change the block would include redoing all the blocks after it. To modify a past block, an attacker would need to redo all the past work until the specific block he wants to change \cite{nakamoto2008peer}. 
 
-\includegraphics[height=4cm]{blocks}
-%ABBILDUNG chapter 4. proof-of-work bitcoin papper nachbauen!!!
+%\includegraphics[height=4cm]{blocks}
+%\includegraphics[height=4cm]{../gfx/blocks.pdf}
+\begin{figure}[h]
+	\includegraphics[height=4cm]{blocks}
+	\caption{Blocks}
+	\label{fig:blocks}
+\end{figure}
 
+Beginning with the genesis block, each single block is chained to the previous block by including the the previous hashes. The \ac{SHA-256} takes a 256 bit length of input
+messages and hash them to fixed-length outputs \cite{van2014encyclopedia}. So the \ac{SHA-256} function starts by padding the message according to the so-called Merkle-Damg{\aa}rd strengthening technique. Further the message is processed block by block with the the underlying compression function, which initializes an appropriate number of chaining variables to a fixed value to hash the genesis block and also the current hash value for the following blocks \cite{coron2005merkle}. In the year 2003 the \ac{SHA} was published by the \ac{ISO} making \ac{SHA} a standard for most countries in the world \cite{isoSHA-256}. Five years later Satoshi Nakamoto proposed the first concept of a \ac{PoW} based blockchain to allow for public agreement on the order of transactions. The public ethereum blockchain uses \ac{PoW} to this day. There are several other consensus algorithms today suitable for a blockchain and some are considered an improvement to \ac{PoW}, which will be discussed later in this work.
 
-%Xiao-Weng Fang: Encyclopedia of Cryptography and Security, Band 1: Computational Puzzles. 2. Auflage. Springer, 2011, ISBN 978-1-4419-5905-8, S. 244 f.
-\cite{van2014encyclopedia} sha-256
+%https://www.iso.org/standard/67116.html
 
-\cite{isoSHA-256} iso sha became standard 2003 %https://www.iso.org/standard/67116.html
-\cite{coron2005merkle} all sha functions start by padding the mnessage according to the so called merkle darmgard strenthenign technique
-
+\clearpage
 
 \subsection{Ethereum Virtual Machine}
 \label{subsec:background:first_section:ethereum}
@@ -72,6 +76,7 @@ buterin first introduced the term smart contracts
 %\label{subsec:background:first_section:fourth_subsection}
 %EXPLAIN PUBLIC AND PRIVATE KEYS HERE
 
+\clearpage
 %
 % Section: Der Zweite Abschnitt
 %
