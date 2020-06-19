@@ -46,19 +46,25 @@ messages and hash them to fixed-length outputs \cite{van2014encyclopedia}. So th
 
 \subsection{Ethereum Virtual Machine}
 \label{subsec:background:first_section:ethereum}
-EXPLAIN ETHEREUM \ac{EVM}
+This chapter will cover basics of the \ac{EVM} and discuss the transaction execution to reach a general understanding what the \ac{EVM} is and how it works. The \ac{EVM} is a simple stack-based architecture. The word size of the machine is 256-bit and the stack has a maximum size of 1024 elements, meaning that the \ac{EVM} can store a total of 1024 stack items with each 256-bit. The machine does not follow the standard von Neumann architecture. Rather than storing program code in generally-accessible memory or storage, it is stored separately in a virtual ROM. The \ac{EVM} is different from the von Neumann architecure, because it can have exceptional execution thus as the out-of-gas exception. \cite{wood2014ethereum} The ethereum network can be seen as one single computational device, where the point of turning the machine on is the creation of the genesis block. All blocks of a blockchain hold information about state changes of the \ac{EVM}, the ethereum public blockchain holds all state transitions of the \ac{EVM} since it was initially turned on. Since every state transition of the \ac{EVM} is modelled as a transaction, a blockchain holds the whole history of states of the specific machine \cite{dannen2017introducing}. Before it will be put into a block each transaction is verified and validated before the next canonical block can be placed on the last one. Through the transaction validation, nodes on the network do not need to individually evaluate the trustworthiness of every single block in the network to compute the present balances of the accounts on the network. The client simply has to verify the hash of the parent block and see if the new block contains the correct hash its parent’s transactions and state \cite{dannen2017introducing}. The current valid block in an ethereum network is known as world state (state), which is a mapping between addresses (160-bit identifiers) and account states. Thus being the current executional state of the \ac{EVM} \cite{wood2014ethereum}.
 
-WORLD STATE:
-\\
-World State. The world state (state), is a mapping
-between addresses (160-bit identiers) and account
-states (a data structure serialised as RLP, see Appendix
-B). Though not stored on the blockchain, it is assumed
-that the implementation will maintain this mapping in a
-modied Merkle Patricia tree (trie, see Appendix D). The
-trie requires a simple database backend that maintains a
-mapping of bytearrays to bytearrays; we name this underlying
-database the state database. \cite{wood2014ethereum}
+
+- ETHEREUM STATE TRANSITION ABBILDUNG + STEPS PAGE 15	\cite{buterin2013ethereum} 
+
+
+
+quasi -touring completeness reference:
+
+The execution model species how the system state is
+altered given a series of bytecode instructions and a small
+tuple of environmental data. This is specied through a
+formal model of a virtual state machine, known as the
+Ethereum Virtual Machine (EVM). It is a quasi-Turingcomplete
+machine; the quasi qualication comes from the
+fact that the computation is intrinsically bounded through
+a parameter, gas, which limits the total amount of computation
+done. \cite{wood2014ethereum}
+
 
 
 - explain how code execution works on a distributed system
@@ -66,17 +72,13 @@ database the state database. \cite{wood2014ethereum}
 - explain, that the network can be seen as one comutational resource
 - buterin check ethereum code execution \cite{buterin2013ethereum}
 
-%eth vm architecture figure?
 
-\cite{dannen2017introducing}
-	%read the evm page 47
-%ref to eth paper
 
 
 \subsection{Smart Contracts}
 \label{subsec:background:first_section:first_subsection}
 EXPLAIN SMART CONTRACTS HERE 
-in ethereum context by wood known simple as contracts
+in ethereum context by wood known simple known as contracts
 buterin first introduced the term smart contracts
 % https://cryptorating.eu/whitepapers/Ethereum/Ethereum_white_paper.pdf
 \cite{buterin2013ethereum}
