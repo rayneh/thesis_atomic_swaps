@@ -66,7 +66,7 @@ The ethereum state transition function, APPLY(S, TX) -> S' is defined by Buterin
 
 The Figure above shows all calculations applying the function APPLY(S, TX) -> S' to an example state (figure \ref{fig:ethereum_state_transition_function}). Due to the distributed nature of the \ac{EVM} and the fact its built of many nodes around the world. Meaning to ensure distributed security, it must be purpose-built to solve the diffmatching problem that can occur, when there are many near-simultaneous changes to the same database from many actors in the system all around the world \footfullcite{Google Code "Diff-Match Patch" - https://code.google.com/p/google-diff-match-patch/ 2016}. Solving this problem in a verifiable and trustworthy way is basically what the \ac{EVM} does. It's resilience and security does increase with the amount of machines in the network and is implemented and backed by the gas fee system. The opportunity to earn gas as a miner is one reason for many nodes to participate in the network and at the same time raises security \cite{dannen2017introducing}.
 
-
+% MB add that there are opcodes and stuff, like any other machine has, but not covered here(would go too deep)
 %- explain how code execution works on a distributed system
 
 %ueberleitung von execution model erledigt zur smart contract 
@@ -76,31 +76,60 @@ The Figure above shows all calculations applying the function APPLY(S, TX) -> S'
 
 \subsection{Smart Contracts}
 \label{subsec:background:first_section:first_subsection}
-EXPLAIN SMART CONTRACTS HERE 
-in ethereum context by wood known simple known as contracts
-buterin first introduced the term smart contracts
-% https://cryptorating.eu/whitepapers/Ethereum/Ethereum_white_paper.pdf
-\cite{buterin2013ethereum}
-% https://files.gitter.im/ethereum/yellowpaper/VIyt/Paper.pdf
-\cite{wood2014ethereum}
-% https://solidity.readthedocs.io/en/v0.4.24/introduction-to-smart-contracts.html
-% https://link.springer.com/content/pdf/bfm%253A978-1-4842-2535-6%252F1.pdf
-\cite{dannen2017introducing}
+
+Mark Miller. The Future of Law. In paper
+delivered at the Extro 3 Conference (August 9),
+1997. URL https://drive.google.com/file/d/0Bw0V
+XJKBgYPMS0J2VGIyWWlocms/edit?usp=sharing.
+
+Nick Szabo. Formalizing and securing relationships on
+public networks. First Monday, 2(9), 1997. URL
+http://firstmonday.org/ojs/index.php/fm/art
+icle/view/548. https://web.archive.org/web/
+20170810042659/http://firstmonday.org/ojs/inde
+x.php/fm/article/view/548.
+
+Early work on smart contracts has been done by Szabo
+[1997] and Miller [1997]. Around the 1990s it became clear
+that algorithmic enforcement of agreements could become
+a signicant force in human cooperation. Though no speci
+c system was proposed to implement such a system,
+it was proposed that the future of law would be heavily
+%5aected by such systems. In this light, Ethereum may
+be seen as a general implementation of such a crypto-law
+system.
+in ethereum context by wood known simple known as contracts \cite{wood2014ethereum}
+
+buterin first introduced the term smart contracts \cite{buterin2013ethereum}
+
+The Name “Smart Contracts”
+Rather than bore you with the etymology of this word, let’s clear up one thing: in this
+context, contract refers to a specific kind of contract: a financial contract, also known
+more colloquially as a derivative, or option. Financial contracts are agreements to buy
+and sell at some point in the future, usually at a specified price. In the Ethereum context,
+smart contracts are agreements between accounts, to render a transfer of ether (that is, a
+payment) when certain conditions are met.
+The reason these contracts are “smart” is that they’re executed by machine, and
+the assets (ether or other tokens) are moved automatically. These contracts could be
+enforced even hundreds of years after they’ve been written, assuming the network is
+still running then—and even if a lot of bad actors try to interfere. The EVM is totally
+sandboxed and free from interference, and isolated from other networks too, making it
+impossible for a party to back out of a smart contract. In practical terms, this is because
+smart contracts are empowered to hold assets (ether or other tokens) in escrow and move
+them when the terms of the contract are met.
+The EVM Runs Bytecode
+The EVM has its own language, the EVM bytecode, to which your smart contracts compile.
+Solidity, which is a high-level language, is compiled into bytecode and uploaded onto the
+Ethereum blockchain by using a client application such as the Mist browser or a full node.\cite{dannen2017introducing}
 
 
 
-%\subsection{Assets / Cryptocurrencies (Terminology!!)}
-%\label{subsec:background:first_section:third_subsection}
-%EXPLAIN ASSETS/CRYPTOS HERE
+- important! solidity is a high level programming language, code execution on the evm directly is known as bytecode
 
-%\subsection{Public and Private Key (Terminology!!)}
-%\label{subsec:background:first_section:fourth_subsection}
-%EXPLAIN PUBLIC AND PRIVATE KEYS HERE
 
 \clearpage
-%
-% Section: Der Zweite Abschnitt
-%
+
+
 \section{Digraphs}
 \label{sec:background:second_section}
 EXPLAIN DIGRAPHS HERE
@@ -110,9 +139,6 @@ EXPLAIN DIGRAPHS HERE
 \label{sec:background:third_section}
 EXPLAIN HASH AND TIMELOCKS HERE
 
-%\section{Atomic Transactions (Terminology!!)}
-%\label{sec:background:fourth_section}
-%EXPLAIN ATOMIC TRANSACTIONS HERE
 
 \section{Atomic Cross-Chain Swaps}
 \label{sec:background:fifth_section}
