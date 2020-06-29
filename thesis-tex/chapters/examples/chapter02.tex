@@ -76,55 +76,14 @@ The Figure above shows all calculations applying the function APPLY(S, TX) -> S'
 
 \subsection{Smart Contracts}
 \label{subsec:background:first_section:first_subsection}
+Around the 1990s it became clear that algorithmic enforcement of agreements could become common in the way humans cooperate. Early work towards smart contracts was done by Szabo \cite{szabo1997formalizing} and Mark Miller \cite{miller1997future}. Even though no specific system was proposed by them, they proposed that the future of law would be driven by such systems. Ethereum can be seen as such a system, it delivers a general implementation to execute financial contracts by a machine. The term smart contract was first introduced by Buterin \cite{buterin2013ethereum}, in scientific context they are simply called contracts by Wood \cite{wood2014ethereum}. In this context, contract refers to a specific kind of contract: a financial contract, also known as derivative or option. These contracts are agreements between two parties to buy or sell a specific asset at some point in the future or when certain conditions are met, like a specified price. In ethereum context a contract does basically the same thing as a financial contract. The contract is written as code and is an agreement between accounts, to send a payment to a specified address, when certain conditions are met. The reason these contracts are called smart contracts, is because they are executed by a machine, also known as the \ac{EVM}. When certain conditions are met, the assets (ether or token) will be moved automatically by the machine. Assuming the system is still running, these smart contracts can also take effect hundreds of years after being deployed. As long as the \ac{EVM} is running, deployed contract maintain their validity. Its basically impossible for a party to back out of these contracts, because the smart contracts are empowered to move or hold assets and move them to specific accounts when the implemented conditions are met \cite{dannen2017introducing}. While smart contract are often written in the high level programming language solidity, the code the \ac{EVM} understands and executes is written in a low-level, stack based bytecode language, referred to as \ac{EVM Code}. In general the bytecode consists of a series of bytes, where each byte represents an operation to be executed by the \ac{EVM} and code execution is an infinite loop executing code and storing data to the following operations until an error or STOP or RETURN is reached \cite{buterin2013ethereum}:
 
-Mark Miller. The Future of Law. In paper
-delivered at the Extro 3 Conference (August 9),
-1997. URL https://drive.google.com/file/d/0Bw0V
-XJKBgYPMS0J2VGIyWWlocms/edit?usp=sharing.
+\begin{itemize}
+	\item Stack (last-in-first-out container to which 32-byte values are pushed or popped)
+	\item Memory (infinitely expandable byte array)
+	\item Storage (of a contract, changes here don't reset after computation ends they are persistent)
+\end{itemize}
 
-Nick Szabo. Formalizing and securing relationships on
-public networks. First Monday, 2(9), 1997. URL
-http://firstmonday.org/ojs/index.php/fm/art
-icle/view/548. https://web.archive.org/web/
-20170810042659/http://firstmonday.org/ojs/inde
-x.php/fm/article/view/548.
-
-Early work on smart contracts has been done by Szabo
-[1997] and Miller [1997]. Around the 1990s it became clear
-that algorithmic enforcement of agreements could become
-a signicant force in human cooperation. Though no speci
-c system was proposed to implement such a system,
-it was proposed that the future of law would be heavily
-%5aected by such systems. In this light, Ethereum may
-be seen as a general implementation of such a crypto-law
-system.
-in ethereum context by wood known simple known as contracts \cite{wood2014ethereum}
-
-buterin first introduced the term smart contracts \cite{buterin2013ethereum}
-
-The Name “Smart Contracts”
-Rather than bore you with the etymology of this word, let’s clear up one thing: in this
-context, contract refers to a specific kind of contract: a financial contract, also known
-more colloquially as a derivative, or option. Financial contracts are agreements to buy
-and sell at some point in the future, usually at a specified price. In the Ethereum context,
-smart contracts are agreements between accounts, to render a transfer of ether (that is, a
-payment) when certain conditions are met.
-The reason these contracts are “smart” is that they’re executed by machine, and
-the assets (ether or other tokens) are moved automatically. These contracts could be
-enforced even hundreds of years after they’ve been written, assuming the network is
-still running then—and even if a lot of bad actors try to interfere. The EVM is totally
-sandboxed and free from interference, and isolated from other networks too, making it
-impossible for a party to back out of a smart contract. In practical terms, this is because
-smart contracts are empowered to hold assets (ether or other tokens) in escrow and move
-them when the terms of the contract are met.
-The EVM Runs Bytecode
-The EVM has its own language, the EVM bytecode, to which your smart contracts compile.
-Solidity, which is a high-level language, is compiled into bytecode and uploaded onto the
-Ethereum blockchain by using a client application such as the Mist browser or a full node.\cite{dannen2017introducing}
-
-
-
-- important! solidity is a high level programming language, code execution on the evm directly is known as bytecode
 
 
 \clearpage
