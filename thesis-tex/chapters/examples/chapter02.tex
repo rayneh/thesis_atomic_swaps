@@ -91,17 +91,22 @@ Around the 1990s it became clear that algorithmic enforcement of agreements coul
 
 \section{Digraphs}
 \label{sec:background:second_section}
-EXPLAIN DIGRAPHS HERE
-\cite{bang2007theory}
+A \ac{digraph} D (figure \ref{fig:a_digraph_d}) in the example consists of a finite nonempty set of objects called vertices. So the vertex set of the example \ref{fig:a_digraph_d} is V(D) = \{u, v, w, x, y, z\}. It also has a finite set of A(D) of ordered pairs of distinct vertices called arcs (or directed edges according to \cite{chartrand2010graphs}), in this example \ref{fig:a_digraph_d} A(D) = \{(u, v), (u, w), (w, u), (z, u), (x, z), (y, z)\}. So the \ac{digraph} D consists of V(D) the vertex set and A(D) the arc set of D, which can also be expressed as D = (A, V). \newline
 
-\cite{chartrand2010graphs}
+
 
 \begin{figure}[h]
-	\includegraphics[height=8cm]{adigraphd}	%16cm
+	\includegraphics[height=7cm]{adigraphd}	%16cm
 	\caption{A Digraph D}
 	\label{fig:a_digraph_d}
 \end{figure}
 
+
+The order (size) is sometimes denoted as |D|, so the size of the \ac{digraph} D in the example \ref{fig:a_digraph_d} is |D| = 6. For an arc (u, v) the first vertex u is its tail and the second vertex v is its head, we can also day that the arc (u, v) leaves u and enters v. Another expression is, assuming (u, v) is an arc, one can say that u dominates v (or v is dominated by u) and can be denoted by u -> v \cite{bang2007theory}. The example in this chapter and its figure \ref{fig:a_digraph_d} is important to understand and know the basic terminology, since the processes of atomic cross-chain swaps itself is a \ac{digraph}.
+
+
+% The head and tail of an arc are its end-vertices; we say that the end-vertices are adjacent, i.e. u is adjacent to1 v and v is adjacent to u.
+% MB needs more explanation and terminology.
 \clearpage
 
 \section{Hashlocks and Timelocks}
