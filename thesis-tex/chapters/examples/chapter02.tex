@@ -102,8 +102,21 @@ A \ac{digraph} D (figure \ref{fig:a_digraph_d}) in the example consists of a fin
 \end{figure}
 
 
-The order (size) is sometimes denoted as |D|, so the size of the \ac{digraph} D in the example \ref{fig:a_digraph_d} is |D| = 6. For an arc (u, v) the first vertex u is its tail and the second vertex v is its head, we can also day that the arc (u, v) leaves u and enters v. Another expression is, assuming (u, v) is an arc, one can say that u dominates v (or v is dominated by u) and can be denoted by u -> v \cite{bang2007theory}. The example in this chapter and its figure \ref{fig:a_digraph_d} is important to understand and know the basic terminology, since the processes of atomic cross-chain swaps itself is are a combination of two digraphs.
+The order (size) is sometimes denoted as |D|, so th e size of the \ac{digraph} D in the example \ref{fig:a_digraph_d} is |D| = 6. For an arc (u, v) the first vertex u is its tail and the second vertex v is its head, we can also day that the arc (u, v) leaves u and enters v. Another expression is, assuming (u, v) is an arc, one can say that u dominates v (or v is dominated by u) and can be denoted by u -> v \cite{bang2007theory}. The example in this chapter and its figure \ref{fig:a_digraph_d} is important to understand and know the basic terminology, since the processes of atomic cross-chain swaps itself is are a combination of two digraphs.
 
+%TODO: explain aclyclic digraph and strongly connected and feedback vertex
+
+%TODO: strongly connected: A digraph D
+%is strongly connected (or, just, strong) if, for every pair x; y of distinct
+%vertices in D, there exists an (x; y)-walk and a (y; x)-walk. In other words,
+%D is strong if every vertex of D is reachable from every other vertex of D.
+
+%TODO: acyclic
+%A digraph D is acyclic if it has no cycle(doesnt loop). -> ref to \cite{bang2007theory}
+
+%TODO: feedback vertex
+%In a digraph D, a set S of vertices (arcs) is a feedback ver-
+%tex set (an feedback arc set) if D ¡ S is acyclic.
 
 % The head and tail of an arc are its end-vertices; we say that the end-vertices are adjacent, i.e. u is adjacent to1 v and v is adjacent to u.
 % MB needs more explanation and terminology.
@@ -116,19 +129,22 @@ The order (size) is sometimes denoted as |D|, so the size of the \ac{digraph} D 
 
 \section{Atomic Cross-Chain Swaps}
 \label{sec:background:fifth_section}
-
+An atomic cross-chain swap is a distributed coordination task where
+multiple parties exchange assets across multiple blockchains, for
+example, trading bitcoin for ether. \cite{weikum2001transactional}
 
 next subsections explain the idea of cross chain swaps,
 concept is well known to blockchain community 
 implementation will follow the concept of herlihy.
 
-%from cross.chain swaps paper 
-CROSS CHAIN SWAPS ARE WELL KNOWN CONCEPT IN BLOCKCHAIN COMMUNITY [4,6,9,20,21,27] -> explain further in related work tho!!
+
 
 \cite{herlihy2018atomic}
 
 \subsection{Hashlocks and Timelocks}
 \label{subsec:background:second_section:hashlock_timelock}
+
+\cite{li2019research}
 
 \subsection{The Protocol}
 \label{subsec:background:second_section:protocol}
