@@ -127,6 +127,7 @@ The order (size) is sometimes denoted as |D|, so th e size of the \ac{digraph} D
 %implementation later on will follow the concept of herlihy.
 An atomic cross-chain swap is like the name indicates an atomic transaction to swap assets, which is also across multiple blockchains. Altough ethereum can be seen as one system, its still a distributed ledger, so the atomic cross-chain swap is a distributed coordination task (special case of distributed atomic transaction) \cite{weikum2001transactional}. Since the swap is atomic it either finishes the protocol or initiate refunds in case any party doesn't follow through the whole protocol. The concept of atomic cross-chain swaps is well known to the blockchain community and will be discussed later on in \autoref{ch:chapter03} (Related Work). All following concepts and models discussed are based on Herlihy's work \cite{herlihy2018atomic}. A cross-chain swap is modeled as a directed graph D, the vertexes of the digraph represent the parties and its arcs are proposed asset transfers. For any pair(D,L), where D = (V,A) is a strongly-connected directed graph and L (subset) V a feedback vertex set for D. The three-way swap in specific has to be an acyclic and utilitizes a slightly modified form of a digraph introducing followers and leaders and using a form of hashed timelock contracts, read more in \autoref{subsec:background:second_section:hashlock_timelock}. The concept of atomic cross-chain swaps removes the intermediate party, which is usually an exchange marketplace for cryptocurrencies to trade assets or tokens. This chapter starts with an example of a three-way swap (\autoref{subsec:background:second_section:example}), discussing the model of hashlocks and hashkeys (\autoref{subsec:background:second_section:hashlock_timelock}) and at last propose a general protocol (\autoref{subsec:background:second_section:protocol}) for three-way swaps.
 
+%!!! MB trash that the swap has to be acyclic, leader and followers are introduced to get to figure 2.7
 %TODO insert subset symbol to (subset)
 
 \subsection{Example}
@@ -153,8 +154,10 @@ Let H(. / replace with other dot!) be a cryptographic hash function. Alice could
 	\label{fig:deploying_contracts}
 \end{figure}
 
+\clearpage
+
 \begin{figure}[h]
-	\includegraphics[width=16cm]{triggering_arcs}	%16cm
+	\includegraphics[height=5.5cm]{triggering_arcs}	%16cm
 	\caption{Atomic cross-chain swap: triggering arcs}
 	\label{fig:triggering_arcs}
 \end{figure}
@@ -173,9 +176,9 @@ So what could possibly go wrong in this three-way swap? If any party fails to pu
 \cite{li2019research}
 
 \begin{figure}[h]
-	\includegraphics[height=9cm]{acyclic_timeouts}	%16cm
-	\caption{Acyclic subdigraph with assigned timeouts (A is the leader, B and C followers)}
-	\label{fig:acyclic_timeouts}
+	\includegraphics[height=6.5cm]{timeouts_subdigraph}	%16cm
+	\caption{A is the leader, B and C followers. Timeouts can be assigned when the follower subdigraph is acyclic (left) but not when it is cyclic (right)}
+	\label{fig:timeouts_subdigraph}
 \end{figure}
 
 
@@ -185,7 +188,7 @@ So what could possibly go wrong in this three-way swap? If any party fails to pu
 
 
 \begin{figure}[h]
-	\includegraphics[height=8cm]{hashkey_paths}	%16cm
+	\includegraphics[height=10cm]{hashkey_paths}	%16cm
 	\caption{Hashkey paths for arcs of two-leader digraph}
 	\label{fig:hashkey_paths}
 \end{figure}

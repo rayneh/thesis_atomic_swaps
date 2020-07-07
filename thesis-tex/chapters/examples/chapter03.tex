@@ -50,6 +50,28 @@ COSMOS \cite{kwon2018network} and tendermint \cite{kwon2014tendermint} buchmann 
 
 pick some current research and make MB different chapters
 
+%FROM \cite{li2019research}
+Table 1. Cross-chain technology comparison
+Cross-chain technology Algorithmic principle Shortcoming
+Notary Transfer of assets to notary accounts Weak centralization
+Side chain Read the data in the side chain Verification difficulties
+Relay chain Establishing relay chain Data redundancy
+
+Notary or multi-signature scheme is a weak centralized solution, transfer digital
+assets by locking assets in the main chain to multiple specific addresses and requiring
+signatures from multiple notaries. Ripple of Interledger protocol [2] enables assets of
+different blockchains to be transferred across chains through trusted third parties. Notary
+or multi-signature scheme is the simplest way to realize cross-chain asset transfer, but
+the security of asset transfer depends on the honesty of notaries.
+Side chain technology transfers digital assets by reading the data in the main chain
+to verify the authenticity of transaction payments. BTC Relay project is to realize crosschain
+payment by verifying Bitcoin SPV payment path to trigger the execution of ETH
+smart contract [3].
+Relay technology is to link existing blockchain projects by building a relay chain to
+realize asset transfer of different blockchains. COSMOS [4] and Polkadot [5] projects
+are to build cross-chain platform of blockchain through the combination of notary and
+relay technology.
+
 \chapter{Conclusion}
 \label{ch:chapter07}
 WRITE THE CONCLUSION HERE
