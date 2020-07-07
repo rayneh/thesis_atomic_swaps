@@ -122,22 +122,60 @@ The order (size) is sometimes denoted as |D|, so th e size of the \ac{digraph} D
 % MB needs more explanation and terminology.
 \clearpage
 
-%\section{Hashlocks and Timelocks}
-%\label{sec:background:third_section}
-%EXPLAIN HASH AND TIMELOCKS HERE
-%EXPLAIN WITHIN ATOMIC CROSS CHAIN SWAPS
-
 \section{Atomic Cross-Chain Swaps}
 \label{sec:background:fifth_section}
 An atomic cross-chain swap is a distributed coordination task where
 multiple parties exchange assets across multiple blockchains, for
 example, trading bitcoin for ether. \cite{weikum2001transactional}
 
+
 next subsections explain the idea of cross chain swaps,
 concept is well known to blockchain community 
 implementation will follow the concept of herlihy.
 
 
+%example here!
+\subsection{Example}
+\label{subsec:background:second_section:example}
+%next subchaptes will discuss the underlying model, which allows the three parties in the following example to exchange their assets or funds across three blockchains. Since its an atomic transaction no party will end up bad, if one party doesnt apply to the protocol or something goes wrong. The swap will either be completed or all funds will be returned after a certain amount of time.
+
+Lets assume Carol lifes in a state where car titles are managed on a blockchain and wants to sell her car for bitcoins. Alice is interested in Carol's car, but wants to pay in another cryptocurreny(following called alt-coin). Lucky for both that Bob is willing to trade his alt-coins for bitcoins. Since none of the parties trust each other, they can arrange a three way swap to assure their transaction is atomic across the different blockchains. To complete the transaction Alice has to send her alt-coins to Bob, so he can transfer his bitcoin to Carol who will finally give the car to Alice. If all parties stick to the deal then everything will be fine, to assure that no one looses their funds due to a malicious actor who behaves irrationally this chapter and the following will discuss the protocol of atomic cross-chain swaps by the example of Alice, Bob and Carol's transaction. Today many blockchains come with smart contracts to execute a transfer of funds if certain conditions are met.
+Let H(. / replace with other dot!) be a cryptographic hash function. Alice could transfer her alt-coins to a smart contract which acts as escrow on the alt-coin blockchain, the contract also holds the information of hashlock h and timelock t. The hashlock h is determined by a contract value s, called a secret and let h = H(s). If Alice sends the secret to Bob it allows him to claim the funds sitting in the smart contract's escrow using hashlock h. Timelock t means that Bob also needs to produce a secret before the time t elapsed, if he doesnt manage to prduce the secret in time, then the funds on the alt-coin blockchain are transfered back to Alice by the smart contract. Let (triangle) be enough time for the parties to publish their smart contracts or detect changes. Since Alice, Bob and Carol need to execute a three-way swap illustrated in figures \ref{fig:deploying_contracts} and \ref{fig:triggering_arcs} they need to apply to the following simple protocol: \newline
+%TODO insert Delta Δ
+\begin{itemize}
+	\item Alice publishes a smart contract on the alt-coin blockchain including a secret s, h = H(s) she created. The contract also holds the information of hashlock h and timelock 6(triangle) in the future, to send her alt-coins to Bob.
+	\item 
+	\item 
+	\item 
+	\item 
+	\item 
+\end{itemize}
+
+
+\begin{figure}[h]
+	\includegraphics[height=7cm]{deploying_contracts}	%16cm
+	\caption{Atomic cross-chain swap: deploying contracts}
+	\label{fig:deploying_contracts}
+\end{figure}
+
+\begin{figure}[h]
+	\includegraphics[height=7cm]{triggering_arcs}	%16cm
+	\caption{Atomic cross-chain swap: triggering arcs}
+	\label{fig:triggering_arcs}
+\end{figure}
+
+\begin{figure}[h]
+	\includegraphics[height=7cm]{acyclic_timeouts}	%16cm
+	\caption{Acyclic subdigraph with assigned timeouts (A is the leader, B and C followers)}
+	\label{fig:acyclic_timeouts}
+\end{figure}
+
+
+\begin{figure}[h]
+	\includegraphics[height=7cm]{hashkey_paths}	%16cm
+	\caption{Hashkey paths for arcs of two-leader digraph}
+	\label{fig:hashkey_paths}
+\end{figure}
 
 \cite{herlihy2018atomic}
 
@@ -149,5 +187,3 @@ implementation will follow the concept of herlihy.
 \subsection{The Protocol}
 \label{subsec:background:second_section:protocol}
 
-\subsection{Example}
-\label{subsec:background:second_section:example}
