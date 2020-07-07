@@ -124,17 +124,11 @@ The order (size) is sometimes denoted as |D|, so th e size of the \ac{digraph} D
 
 \section{Atomic Cross-Chain Swaps}
 \label{sec:background:fifth_section}
-An atomic cross-chain swap is a distributed coordination task where
-multiple parties exchange assets across multiple blockchains, for
-example, trading bitcoin for ether. \cite{weikum2001transactional}
+%implementation later on will follow the concept of herlihy.
+An atomic cross-chain swap is like the name indicates an atomic transaction to swap assets, which is also across multiple blockchains. Altough ethereum can be seen as one system, its still a distributed ledger, so the atomic cross-chain swap is a distributed coordination task (special case of distributed atomic transaction) \cite{weikum2001transactional}. Since the swap is atomic it either finishes the protocol or initiate refunds in case any party doesn't follow through the whole protocol. The concept of atomic cross-chain swaps is well known to the blockchain community and will be discussed later on in \autoref{ch:chapter03} (Related Work). All following concepts and models discussed are based on Herlihy's work \cite{herlihy2018atomic}. A cross-chain swap is modeled as a directed graph D, the vertexes of the digraph represent the parties and its arcs are proposed asset transfers. For any pair(D,L), where D = (V,A) is a strongly-connected directed graph and L (subset) V a feedback vertex set for D. The three-way swap in specific has to be an acyclic and utilitizes a slightly modified form of a digraph introducing followers and leaders and using a form of hashed timelock contracts, read more in \autoref{subsec:background:second_section:hashlock_timelock}. The concept of atomic cross-chain swaps removes the intermediate party, which is usually an exchange marketplace for cryptocurrencies to trade assets or tokens. This chapter starts with an example of a three-way swap (\autoref{subsec:background:second_section:example}), discussing the model of hashlocks and hashkeys (\autoref{subsec:background:second_section:hashlock_timelock}) and at last propose a general protocol (\autoref{subsec:background:second_section:protocol}) for three-way swaps.
 
+%TODO insert subset symbol to (subset)
 
-next subsections explain the idea of cross chain swaps,
-concept is well known to blockchain community 
-implementation will follow the concept of herlihy.
-
-
-%example here!
 \subsection{Example}
 \label{subsec:background:second_section:example}
 %next subchaptes will discuss the underlying model, which allows the three parties in the following example to exchange their assets or funds across three blockchains. Since its an atomic transaction no party will end up bad, if one party doesnt apply to the protocol or something goes wrong. The swap will either be completed or all funds will be returned after a certain amount of time.
@@ -169,6 +163,15 @@ Let H(. / replace with other dot!) be a cryptographic hash function. Alice could
 So what could possibly go wrong in this three-way swap? If any party fails to publish their contract during deployment phase, then all contracts will timeout and trigger refunds of the assets. If any party fails while triggering arcs, then only that party will end off worse. For example, if Carol halts execution of the swap without triggering her contract, then Alice gets the car and Bob gets a refund. So in that case Carol would only harm herself. Also the order of contract's deployment matters. Because if Carol posts her contract with Alice, before Bob posts his contract with Carol, then Alice could claim the car title without paying Carol. The timelock values are also important. For example, if Carol's contract with Bob and Bob's contract with Alice would expire at the same time, then Carol would reveal s to collect Bob's bitcoin at the very last moment, leaving Bob no time to claim his alt-coins from Alice. If parties behave irrationally, then Alice might end up not getting her car. This would be the case if Alice (irrationally) reveals s before phase completion, then Bob can take Alice's alt-coin and Carol might be able to take Bob's bitcoin.
 %TODO: lookup refs in swaps paper and add one or two sentences why this is an active research field.
 
+
+\subsection{Hashlocks and Hashkeys}
+\label{subsec:background:second_section:hashlock_timelock}
+
+%add as footnote:
+%[5] bitcoinwiki. Hashed timelock contracts. hps://en.bitcoin.it/wiki/HashedTimelock Contracts. As of 8 January 2018.
+
+\cite{li2019research}
+
 \begin{figure}[h]
 	\includegraphics[height=9cm]{acyclic_timeouts}	%16cm
 	\caption{Acyclic subdigraph with assigned timeouts (A is the leader, B and C followers)}
@@ -176,19 +179,13 @@ So what could possibly go wrong in this three-way swap? If any party fails to pu
 \end{figure}
 
 
+
+\subsection{The Protocol}
+\label{subsec:background:second_section:protocol}
+
+
 \begin{figure}[h]
 	\includegraphics[height=8cm]{hashkey_paths}	%16cm
 	\caption{Hashkey paths for arcs of two-leader digraph}
 	\label{fig:hashkey_paths}
 \end{figure}
-
-\cite{herlihy2018atomic}
-
-\subsection{Hashlocks and Timelocks}
-\label{subsec:background:second_section:hashlock_timelock}
-
-\cite{li2019research}
-
-\subsection{The Protocol}
-\label{subsec:background:second_section:protocol}
-
