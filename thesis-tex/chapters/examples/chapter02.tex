@@ -141,38 +141,43 @@ implementation will follow the concept of herlihy.
 
 Lets assume Carol lifes in a state where car titles are managed on a blockchain and wants to sell her car for bitcoins. Alice is interested in Carol's car, but wants to pay in another cryptocurreny(following called alt-coin). Lucky for both that Bob is willing to trade his alt-coins for bitcoins. Since none of the parties trust each other, they can arrange a three way swap to assure their transaction is atomic across the different blockchains. To complete the transaction Alice has to send her alt-coins to Bob, so he can transfer his bitcoin to Carol who will finally give the car to Alice. If all parties stick to the deal then everything will be fine, to assure that no one looses their funds due to a malicious actor who behaves irrationally this chapter and the following will discuss the protocol of atomic cross-chain swaps by the example of Alice, Bob and Carol's transaction. Today many blockchains come with smart contracts to execute a transfer of funds if certain conditions are met.
 Let H(. / replace with other dot!) be a cryptographic hash function. Alice could transfer her alt-coins to a smart contract which acts as escrow on the alt-coin blockchain, the contract also holds the information of hashlock h and timelock t. The hashlock h is determined by a contract value s, called a secret and let h = H(s). If Alice sends the secret to Bob it allows him to claim the funds sitting in the smart contract's escrow using hashlock h. Timelock t means that Bob also needs to produce a secret before the time t elapsed, if he doesnt manage to prduce the secret in time, then the funds on the alt-coin blockchain are transfered back to Alice by the smart contract. Let (triangle) be enough time for the parties to publish their smart contracts or detect changes. Since Alice, Bob and Carol need to execute a three-way swap illustrated in figures \ref{fig:deploying_contracts} and \ref{fig:triggering_arcs} they need to apply to the following simple protocol: \newline
+
 %TODO insert Delta Δ
+
 \begin{itemize}
 	\item Alice publishes a smart contract on the alt-coin blockchain including a secret s, h = H(s) she created. The contract also holds the information of hashlock h and timelock 6(triangle) in the future, to send her alt-coins to Bob.
-	\item 
-	\item 
-	\item 
-	\item 
-	\item 
+	\item As soon as Alice's contract is confirmed on the alt-coin blockchain and detected by Bob, he deploys a smart contract on the bitcoin blockchain to transfer his funds to Alice. Bob adds the same hashlock h value to the contract like Alice and a timelock 5(triangle) in the future.
+	\item When Carol detects Bob's confirmed smart contract on the bitcoin blockchain, she publishes a smart contract on the car title blockchain in order to transfer the title of her car to Alice. Again with same hashlock h, but timelock 4(triangle) in the future
+	\item After Alice confirms Bob's mined contract on the title blockchain, she sends s to Carol's contract. Alice aquires the title and reveals s to Carol.
+	\item Carol then sends s to Bob's contract, she aquires the bitcoin and reveals s to Bob.
+	\item Bob completes the swap by sending s to Alice's contract and claiming the alt-coins.
 \end{itemize}
 
-
 \begin{figure}[h]
-	\includegraphics[height=7cm]{deploying_contracts}	%16cm
+	\includegraphics[width=16cm]{deploying_contracts}	%16cm
 	\caption{Atomic cross-chain swap: deploying contracts}
 	\label{fig:deploying_contracts}
 \end{figure}
 
 \begin{figure}[h]
-	\includegraphics[height=7cm]{triggering_arcs}	%16cm
+	\includegraphics[width=16cm]{triggering_arcs}	%16cm
 	\caption{Atomic cross-chain swap: triggering arcs}
 	\label{fig:triggering_arcs}
 \end{figure}
 
+
+So what could possibly go wrong in this three-way swap? If any party fails to publish their contract during deployment phase, then all contracts will timeout and trigger refunds of the assets. If any party fails while triggering arcs, then only that party will end off worse. For example, if Carol halts execution of the swap without triggering her contract, then Alice gets the car and Bob gets a refund. So in that case Carol would only harm herself. Also the order of contract's deployment matters. Because if Carol posts her contract with Alice, before Bob posts his contract with Carol, then Alice could claim the car title without paying Carol. The timelock values are also important. For example, if Carol's contract with Bob and Bob's contract with Alice would expire at the same time, then Carol would reveal s to collect Bob's bitcoin at the very last moment, leaving Bob no time to claim his alt-coins from Alice. If parties behave irrationally, then Alice might end up not getting her car. This would be the case if Alice (irrationally) reveals s before phase completion, then Bob can take Alice's alt-coin and Carol might be able to take Bob's bitcoin.
+%TODO: lookup refs in swaps paper and add one or two sentences why this is an active research field.
+
 \begin{figure}[h]
-	\includegraphics[height=7cm]{acyclic_timeouts}	%16cm
+	\includegraphics[height=9cm]{acyclic_timeouts}	%16cm
 	\caption{Acyclic subdigraph with assigned timeouts (A is the leader, B and C followers)}
 	\label{fig:acyclic_timeouts}
 \end{figure}
 
 
 \begin{figure}[h]
-	\includegraphics[height=7cm]{hashkey_paths}	%16cm
+	\includegraphics[height=8cm]{hashkey_paths}	%16cm
 	\caption{Hashkey paths for arcs of two-leader digraph}
 	\label{fig:hashkey_paths}
 \end{figure}
