@@ -118,8 +118,14 @@ The order (size) is sometimes denoted as |D|, so th e size of the \ac{digraph} D
 %In a digraph D, a set S of vertices (arcs) is a feedback ver-
 %tex set (an feedback arc set) if D ¡ S is acyclic.
 
+%TODO: subdigraph
 % The head and tail of an arc are its end-vertices; we say that the end-vertices are adjacent, i.e. u is adjacent to1 v and v is adjacent to u.
 % MB needs more explanation and terminology.
+
+%TODO diam()and MB dist() function
+%page 47 hashlock paper
+%
+
 \clearpage
 
 \section{Atomic Cross-Chain Swaps}
@@ -169,11 +175,10 @@ So what could possibly go wrong in this three-way swap? If any party fails to pu
 
 \subsection{Hashlocks and Hashkeys}
 \label{subsec:background:second_section:hashlock_timelock}
+In a simple two-party swap each participating party publishes a contract that assumes temporary control of the assets. This hashed timelock contract \footfullcite{bitcoinwiki "Hashed timelock contracts" - https://en.bitcoin.it/wiki/Hash_Time_Locked_Contracts. 2020} stores a pair (h, t) and holds a secret s. This contract triggers and releases funds if h = H(s) is available before time t has elapsed. If the contract doesnt receive the secret before time t is elapsed, then the assets are refunded and the trade is cancelled. The example discussed earlier and is a three-way swap, where each arc holds a single hashlock h and timelock t. Timeouts are assigned in a way that each entering arc of a follower v ensures that the timeout for the leaving arc is at least (triangle) ahead of the arc entering v. This gap ensures that if any of the digraph's arcs leaving vs is triggered so v has enough time to trigger every entering arc.
 
-%add as footnote:
-%[5] bitcoinwiki. Hashed timelock contracts. hps://en.bitcoin.it/wiki/HashedTimelock Contracts. As of 8 January 2018.
 
-\cite{li2019research}
+% MB also add some stuff about research from \cite{li2019research}
 
 \begin{figure}[h]
 	\includegraphics[height=6.5cm]{timeouts_subdigraph}	%16cm
@@ -181,14 +186,14 @@ So what could possibly go wrong in this three-way swap? If any party fails to pu
 	\label{fig:timeouts_subdigraph}
 \end{figure}
 
+\begin{figure}[h]
+	\includegraphics[height=10cm]{hashkey_paths}	%16cm
+	\caption{Hashkey paths for arcs of two-leader digraph}
+	\label{fig:hashkey_paths}
+\end{figure}
 
 
 \subsection{The Protocol}
 \label{subsec:background:second_section:protocol}
 
 
-\begin{figure}[h]
-	\includegraphics[height=10cm]{hashkey_paths}	%16cm
-	\caption{Hashkey paths for arcs of two-leader digraph}
-	\label{fig:hashkey_paths}
-\end{figure}
