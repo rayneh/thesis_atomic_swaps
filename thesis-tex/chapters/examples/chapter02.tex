@@ -175,9 +175,10 @@ So what could possibly go wrong in this three-way swap? If any party fails to pu
 
 \subsection{Hashlocks and Hashkeys}
 \label{subsec:background:second_section:hashlock_timelock}
-In a simple two-party swap each participating party publishes a contract that assumes temporary control of the assets. This hashed timelock contract \footfullcite{bitcoinwiki "Hashed timelock contracts" - https://en.bitcoin.it/wiki/Hash_Time_Locked_Contracts. 2020} stores a pair (h, t) and holds a secret s. This contract triggers and releases funds if h = H(s) is available before time t has elapsed. If the contract doesnt receive the secret before time t is elapsed, then the assets are refunded and the trade is cancelled. The example discussed earlier and is a three-way swap, where each arc holds a single hashlock h and timelock t. Timeouts are assigned in a way that each entering arc of a follower v ensures that the timeout for the leaving arc is at least (triangle) ahead of the arc entering v. This gap ensures that if any of the digraph's arcs leaving vs is triggered so v has enough time to trigger every entering arc.
+In a simple two-party swap each participating party publishes a contract that assumes temporary control of the assets. This hashed timelock contract \footfullcite{bitcoinwiki "Hashed timelock contracts" - https://en.bitcoin.it/wiki/Hash_Time_Locked_Contracts. 2020} stores a pair (h, t) and holds a secret s. This contract triggers and releases funds if h = H(s) is available before time t has elapsed. If the contract doesnt receive the secret before time t is elapsed, then the assets are refunded and the trade is cancelled. The example discussed earlier and is a three-way swap, where each arc holds a single hashlock h and timelock t. Timeouts are assigned in a way that each entering arc of a follower v ensures that the timeout for the leaving arc is at least (triangle) ahead of the arc entering v. This gap ensures that if any of the digraph's arcs leaving vs is triggered so v has enough time to trigger every entering arc. For example, if a cross-chain swap digraph has only one leader v(hat), then the follower's subdigraph is acyclic. In the case of a three-way swap, the one that was discussed earlier in the example subsection, the timeout on arc(u, v) can be (diam(D) + D(v, v(hat)) + 1) * (triangle). The lefthand side of figure \ref{fig:timeouts_subdigraph} illustrates the length of the longest path D(v, v(hat)) from v to the unique leader v(hat).
 
 
+%TODO add v (hat) where needed and other math symbols
 % MB also add some stuff about research from \cite{li2019research}
 
 \begin{figure}[h]
@@ -185,6 +186,8 @@ In a simple two-party swap each participating party publishes a contract that as
 	\caption{A is the leader, B and C followers. Timeouts can be assigned when the follower subdigraph is acyclic (left) but not when it is cyclic (right)}
 	\label{fig:timeouts_subdigraph}
 \end{figure}
+
+Unfortunately we have to assign timeouts across a cycle that guarantees a gap of at least (triangle) between entering and leaving arc, due to the fact that there is more than one leader this formular does not work in this case. This is because the subdigraph of any leader's follower has a cycle (see righhand of figure \ref{timeouts_subdigraph}).
 
 \begin{figure}[h]
 	\includegraphics[height=10cm]{hashkey_paths}	%16cm
