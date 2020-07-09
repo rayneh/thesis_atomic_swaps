@@ -122,7 +122,7 @@ The order (size) is sometimes denoted as |$\mathcal{D}$|, so th e size of the di
 % The head and tail of an arc are its end-vertices; we say that the end-vertices are adjacent, i.e. u is adjacent to1 v and v is adjacent to u.
 % MB needs more explanation and terminology.
 
-%TODO diam()and MB dist() function
+%TODO diam()and MB dist() function    $diam$
 %page 47 hashlock paper
 %
 
@@ -141,7 +141,7 @@ An atomic cross-chain swap is like the name indicates an atomic transaction to s
 %next subchaptes will discuss the underlying model, which allows the three parties in the following example to exchange their assets or funds across three blockchains. Since its an atomic transaction no party will end up bad, if one party doesnt apply to the protocol or something goes wrong. The swap will either be completed or all funds will be returned after a certain amount of time.
 
 Lets assume Carol lifes in a state where car titles are managed on a blockchain and wants to sell her car for bitcoins. Alice is interested in Carol's car, but wants to pay in another cryptocurreny(following called alt-coin). Lucky for both that Bob is willing to trade his alt-coins for bitcoins. Since none of the parties trust each other, they can arrange a three way swap to assure their transaction is atomic across the different blockchains. To complete the transaction Alice has to send her alt-coins to Bob, so he can transfer his bitcoin to Carol who will finally give the car to Alice. If all parties stick to the deal then everything will be fine, to assure that no one looses their funds due to a malicious actor who behaves irrationally this chapter and the following will discuss the protocol of atomic cross-chain swaps by the example of Alice, Bob and Carol's transaction. Today many blockchains come with smart contracts to execute a transfer of funds if certain conditions are met.
-Let $H$(. / replace with other dot!) be a cryptographic hash function. Alice could transfer her alt-coins to a smart contract which acts as escrow on the alt-coin blockchain, the contract also holds the information of hashlock $h$ and timelock $t$. The hashlock $h$ is determined by a contract value $s$, called a secret and let $h$ = $H$($s$). If Alice sends the secret to Bob it allows him to claim the funds sitting in the smart contract's escrow using hashlock $h$. Timelock $t$ means that Bob also needs to produce a secret before the time $t$ elapsed, if he doesnt manage to prduce the secret in time, then the funds on the alt-coin blockchain are transfered back to Alice by the smart contract. Let $\Delta$ be enough time for the parties to publish their smart contracts or detect changes. Since Alice, Bob and Carol need to execute a three-way swap illustrated in figures \ref{fig:deploying_contracts} and \ref{fig:triggering_arcs} they need to apply to the following simple protocol: \newline
+Let $H$($\cdot$) be a cryptographic hash function. Alice could transfer her alt-coins to a smart contract which acts as escrow on the alt-coin blockchain, the contract also holds the information of hashlock $h$ and timelock $t$. The hashlock $h$ is determined by a contract value $s$, called a secret and let $h$ = $H$($s$). If Alice sends the secret to Bob it allows him to claim the funds sitting in the smart contract's escrow using hashlock $h$. Timelock $t$ means that Bob also needs to produce a secret before the time $t$ elapsed, if he doesnt manage to prduce the secret in time, then the funds on the alt-coin blockchain are transfered back to Alice by the smart contract. Let $\Delta$ be enough time for the parties to publish their smart contracts or detect changes. Since Alice, Bob and Carol need to execute a three-way swap illustrated in figures \ref{fig:deploying_contracts} and \ref{fig:triggering_arcs} they need to apply to the following simple protocol: \newline
 
 
 \begin{itemize}
@@ -174,7 +174,7 @@ So what could possibly go wrong in this three-way swap? If any party fails to pu
 
 \subsection{Hashlocks and Hashkeys}
 \label{subsec:background:second_section:hashlock_timelock}
-In a simple two-party swap each participating party publishes a contract that assumes temporary control of the assets. This hashed timelock contract \footfullcite{bitcoinwiki "Hashed timelock contracts" - https://en.bitcoin.it/wiki/Hash_Time_Locked_Contracts. 2020} stores a pair ($h$, $t$) and holds a secret $s$. This contract triggers and releases funds if $h$ = $H$($s$) is available before time $t$ has elapsed. If the contract doesnt receive the secret before time t is elapsed, then the assets are refunded and the trade is cancelled. The example discussed earlier and is a three-way swap, where each arc holds a single hashlock $h$ and timelock $t$. Timeouts are assigned in a way that each entering arc of a follower $v$ ensures that the timeout for the leaving arc is at least $\Delta$ ahead of the arc entering $v$. This gap ensures that if any of the digraph's arcs leaving $v$ is triggered so $v$ has enough time to trigger every entering arc. For example, if a cross-chain swap digraph has only one leader $\hat{v}$, then the follower's subdigraph is acyclic. In the case of a three-way swap, the one that was discussed earlier in the example subsection, the timeout on arc($u$, $v$) can be (diam($\mathcal{D}$) + $D$($v$, $\hat{v}$) + 1) * $\Delta$. The lefthand side of figure \ref{fig:timeouts_subdigraph} illustrates the length of the longest path $D$($v$, $\hat{v}$) from $v$ to the unique leader $\hat{v}$.
+In a simple two-party swap each participating party publishes a contract that assumes temporary control of the assets. This hashed timelock contract \footfullcite{bitcoinwiki "Hashed timelock contracts" - https://en.bitcoin.it/wiki/Hash_Time_Locked_Contracts. 2020} stores a pair ($h$, $t$) and holds a secret $s$. This contract triggers and releases funds if $h$ = $H$($s$) is available before time $t$ has elapsed. If the contract doesnt receive the secret before time t is elapsed, then the assets are refunded and the trade is cancelled. The example discussed earlier and is a three-way swap, where each arc holds a single hashlock $h$ and timelock $t$. Timeouts are assigned in a way that each entering arc of a follower $v$ ensures that the timeout for the leaving arc is at least $\Delta$ ahead of the arc entering $v$. This gap ensures that if any of the digraph's arcs leaving $v$ is triggered so $v$ has enough time to trigger every entering arc. For example, if a cross-chain swap digraph has only one leader $\hat{v}$, then the follower's subdigraph is acyclic. In the case of a three-way swap, the one that was discussed earlier in the example subsection, the timeout on arc($u$, $v$) can be ($diam$($\mathcal{D}$) + $D$($v$, $\hat{v}$) + 1) $\cdot$ $\Delta$. The lefthand side of figure \ref{fig:timeouts_subdigraph} illustrates the length of the longest path $D$($v$, $\hat{v}$) from $v$ to the unique leader $\hat{v}$.
 
 
 % MB also add some stuff about research from \cite{li2019research}
@@ -185,17 +185,38 @@ In a simple two-party swap each participating party publishes a contract that as
 	\label{fig:timeouts_subdigraph}
 \end{figure}
 
-Unfortunately we have to assign timeouts across a cycle that guarantees a gap of at least $\Delta$ between entering and leaving arc, due to the fact that there is more than one leader this formular does not work in this case. This is because the subdigraph of any leader's follower has a cycle (see righthand side of figure \ref{fig:timeouts_subdigraph}). The general timed hashlock digraph can be replaced with a slight different version including leaders and followers to get a mechanism that allows us to assign different timeouts to different paths tho. The modified version of the digraph that we need to include the leaders and followers model will be described next. Let $L$ = \{$v_0$, ..., $v_n$\} be the feedback vertex set for digraph $\mathcal{D}$, called the leaders. Each leader $v_i$ creates a contract with secret $s$ and a hashlock value $h_i$ = $H$($s_i$), yielding a hashlock vector ($h_0$, ..., $h_n$) with values assigned to each arc. A hashkey for $h$ on arc($u$, $v$) is a triple($s$, $\rho$, $\sigma$) with $s$ called the secret $h$ = $H$($s$), $\rho$ is a path ($u_0$, ..., $u_k$) in digraph $\mathcal{D}$ where $u_0$ = $v$ and $u_k$ is the leader who initially created the secret $s$.
-
-
+Unfortunately we have to assign timeouts across a cycle that guarantees a gap of at least $\Delta$ between entering and leaving arc, due to the fact that there is more than one leader this formular does not work in this case. This is because the subdigraph of any leader's follower has a cycle (see righthand side of figure \ref{fig:timeouts_subdigraph}). The general timed hashlock digraph can be replaced with a slight different version including leaders and followers to get a mechanism that allows us to assign different timeouts to different paths tho. The modified version of the digraph that we need to include the leaders and followers model will be described next. Let $L$ = \{$v_0$, ..., $v_n$\} be the feedback vertex set for digraph $\mathcal{D}$, called the leaders. Each leader $v_i$ creates a contract with secret $s$ and a hashlock value $h_i$ = $H$($s_i$), yielding a hashlock vector ($h_0$, $\dots$, $h_n$) with values assigned to each arc. A hashkey for $h$ on arc($u$, $v$) is a triple($s$, $\rho$, $\sigma$) with $s$ called the secret $h$ = $H$($s$), $\rho$ is a path ($u_0$, $\dots$, $u_k$) in digraph $\mathcal{D}$ where $u_0$ = $v$ and $u_k$ is the leader who initially created the secret $s$, and $\sigma$ = $sig$($\cdots$$sig$($s$, $u_k$), $\dots$, $u_0$) is the result, in case all parties have successfully signed $s$ in their path. After the start of the protocol hashkey ($s$, $\rho$, $\sigma$) will time out at ($diam$($\mathcal{D}$) + |$\rho$|) $\cdot$ $\Delta$ and it will unlock $h$ on ($u$, $v$) as long its available before it times out. Each arc triggers, when all needed hashlocks are unlocked. The hashlock itself times out on an arc, when all hashkeys on the current arc have timed out. Figure \ref{fig:hashkey_paths} illustrates the partial hashkeys for a two leader digraph.
 
 \begin{figure}[h]
-	\includegraphics[height=10cm]{hashkey_paths}	%16cm
+	\includegraphics[height=8cm]{hashkey_paths}	%16cm
 	\caption{Hashkey paths for arcs of two-leader digraph}
 	\label{fig:hashkey_paths}
 \end{figure}
 
+%TODO fix fig:hashkey_paths alignment
 \subsection{The Protocol}
 \label{subsec:background:second_section:protocol}
+The protocol for atomic cross-chain swaps has two phases. In phase one the instances of the swap contract are propagated through the digraph $\mathcal{D}$, starting with the leaders. The implementation and its code are discussed later in chapter \ref{ch:chapter05}. As soon as a party observes a published contract the current party verifies the contract for correctness of the swap, if verification fails the party abandons the contract and cancels the deal. Below the phase one protocol for leaders and followers is shown: \newline
 
+Protocol for the leaders:
+\begin{enumerate}
+	\item Publish a contract on every arc that leaves the leader party, then
+	\item wait until contracts have been published and mined on all arcs entering the leader.
+\end{enumerate}
+
+Protocol for the followers:
+\begin{enumerate}
+	\item Wait until correct contracts are published and mined on all arcs entering the vertex, then
+	\item publish the contracts on all arcs leaving the vertex.
+\end{enumerate}
+
+For an example refer to figure \ref{fig:hashkey_paths}, which shows how contracts are propagated in a two leader swap digraph. \newline \newline
+In phase two secrets are disseminated via hashkeys between the participating parties of the swap, while the contracts are propagated from party to counterparty in the direction of the arcs, hashkeys propagate in the opposite direction from counterparty to party. To acquire the assets held by the contracts, each party is motivated to trigger the contracts on entering arcs. In order to complete a swap and come to an understanding how the secret $s_i$ generated by leader $v_i$ is propagated we can trace it through the phase. At the start of phase two $v_i$ calls unlock($s_i$, $v_i$, $sig$($s_i$, $v_i$)) on each contract of an entering arc. In this case the function's arguments are the hashkeys and $v_i$ is a degenerate path. If any other party $v$ observes that hashlock $h_i$ has been unlocked by a call to unlock($s_i$, $\rho$, $\sigma$) on a leaving arc's contract fro the first time, then is calls unlock($s_i$, $v$ + $\rho$, $sig$($\sigma$, $v$)) at each entering arc's contract. The propagation of $s_i$ i complete, when $h_i$ has been unlocked on all arcs or if $h_i$ has timed out. Herlihy has formally proven that the following statements apply to the atomic cross-chain swap protocol \cite{herlihy2018atomic}:
+
+\begin{itemize}
+	\item Assuming that all parties stick to the protocol, the time for triggering every contract from when the protocol started is 2 $\cdot$ $diam$($\mathcal{D}$) $\cdot$ $\Delta$.
+	\item None of the conforming parties ends up UNDERWATER (loosing assets).
+	\item The space complexity is $O$(|$A$|$^{2}$), measured as the number of bits stored on all blockchains for $\mathcal{D}$ = ($V$, $A$) with leaders $L$ $\subset$ $V$.
+	\item The set $L$ of leaders is a feedback vertex set in $\mathcal{D}$ for any uniform swap protocol based on hashed timelocks.
+\end{itemize}
 
