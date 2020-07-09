@@ -84,7 +84,7 @@ Around the 1990s it became clear that algorithmic enforcement of agreements coul
 	\item Storage (of a contract, changes here don't reset after computation ends they are persistent)
 \end{itemize}
 
-%MB add further information about code execution!!
+%TODO MB add further information about code execution!!
 
 \clearpage
 
@@ -102,29 +102,7 @@ A directed graph (digraph) $\mathcal{D}$ (figure \ref{fig:a_digraph_d}) in the e
 \end{figure}
 
 
-The order (size) is sometimes denoted as |$\mathcal{D}$|, so th e size of the digraph $\mathcal{D}$ in the example \ref{fig:a_digraph_d} is |$\mathcal{D}$| = 6. For an arc ($u$, $v$) the first vertex $u$ is its tail and the second vertex $v$ is its head, we can also day that the arc ($u$, $v$) leaves $u$ and enters $v$. Another expression is, assuming ($u$, $v$) is an arc, one can say that $u$ dominates $v$ (or $v$ is dominated by $u$) and can be denoted by $u$ $\rightarrow$ $v$ \cite{bang2007theory}. The example in this chapter and its figure \ref{fig:a_digraph_d} is important to understand and to know the basic terminology, since the processes of atomic cross-chain swaps itself is based on digraphs.
-
-%TODO: explain aclyclic digraph and strongly connected and feedback vertex
-
-%TODO: strongly connected: A digraph D
-%is strongly connected (or, just, strong) if, for every pair x; y of distinct
-%vertices in D, there exists an (x; y)-walk and a (y; x)-walk. In other words,
-%D is strong if every vertex of D is reachable from every other vertex of D.
-
-%TODO: acyclic
-%A digraph D is acyclic if it has no cycle(doesnt loop). -> ref to \cite{bang2007theory}
-
-%TODO: feedback vertex
-%In a digraph D, a set S of vertices (arcs) is a feedback ver-
-%tex set (an feedback arc set) if D ¡ S is acyclic.
-
-%TODO: subdigraph
-% The head and tail of an arc are its end-vertices; we say that the end-vertices are adjacent, i.e. u is adjacent to1 v and v is adjacent to u.
-% MB needs more explanation and terminology.
-
-%TODO diam()and MB dist() function    $diam$
-%page 47 hashlock paper
-%
+The order (size) is sometimes denoted as |$\mathcal{D}$|, so the size of the digraph $\mathcal{D}$ in the example \ref{fig:a_digraph_d} is |$\mathcal{D}$| = 6. For an arc ($u$, $v$) the first vertex $u$ is its tail and the second vertex $v$ is its head, we can also say that the arc ($u$, $v$) leaves $u$ and enters $v$. Another expression is, assuming ($u$, $v$) is an arc, one can say that $u$ dominates $v$ (or $v$ is dominated by $u$) and can be denoted by $u$ $\rightarrow$ $v$. A digraph $\mathcal{D}$ is strongly connected (or just strong) if each vertex of $\mathcal{D}$ is reachable from every other of $\mathcal{D}$'s vertices.  If its not possible to loop through a digraph $\mathcal{D}$, then it has no cycle and the digraph $\mathcal{D}$ is acyclic. The set $S$ of vertices (arcs) is called a feedback vertex set or an feedback arc set, if $\mathcal{D}$ happens to be acyclic. Let $\mathcal{H}$ be another digraph, if $V$($\mathcal{H}$) $\subseteq$ $V$($D$), $A$($\mathcal{H}$) $\subseteq$ $A$($D$) and every arc in $A$($\mathcal{H}$) has both end-vertices in $V$($\mathcal{H}$), then $H$ is a subdigraph of digraph $\mathcal{D}$. The distance from $x$ to $z$ is the minimum length of a ($x$, $y$)-walk and is denoted as $dist$($x$, $y$) of the given digraph $\mathcal{D}$ in figure \ref{fig:a_digraph_d}. If a digraph $\mathcal{D}$ is strongly connected and only if $\mathcal{D}$ is strong, then the diameter of $\mathcal{D}$ is $diam$($\mathcal{D}$) = $dist$($V$, $V$) \cite{bang2007theory}. The example in this chapter and its figure \ref{fig:a_digraph_d} is important to understand and to know the basic terminology, since the processes of atomic cross-chain swaps itself is based on digraphs.
 
 \clearpage
 
