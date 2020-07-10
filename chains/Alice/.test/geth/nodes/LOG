@@ -42,3 +42,47 @@
 10:21:49.986925 db@open done T·17.9522ms
 14:14:59.918030 db@close closing
 14:14:59.918030 db@close done T·0s
+=============== Jul 10, 2020 (CEST) ===============
+01:28:21.424738 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+01:28:21.428756 version@stat F·[3] S·494B[494B] Sc·[0.75]
+01:28:21.428756 db@open opening
+01:28:21.428756 journal@recovery F·1
+01:28:21.429754 journal@recovery recovering @9
+01:28:21.436705 memdb@flush created L0@11 N·1 S·159B "loc..seq,v8":"loc..seq,v8"
+01:28:21.437703 version@stat F·[4] S·653B[653B] Sc·[1.00]
+01:28:21.445682 db@janitor F·6 G·0
+01:28:21.445682 db@open done T·16.9267ms
+01:28:21.445682 table@compaction L0·4 -> L1·0 S·653B Q·9
+01:28:21.462639 table@build created L1@14 N·2 S·176B "loc..seq,v8":"version,v1"
+01:28:21.462639 version@stat F·[0 1] S·176B[0B 176B] Sc·[0.00 0.00]
+01:28:21.464443 table@compaction committed F-3 S-477B Ke·0 D·3 T·15.7693ms
+01:28:21.464443 table@remove removed @8
+01:28:21.465439 table@remove removed @5
+01:28:21.465439 table@remove removed @2
+13:01:49.398475 db@close closing
+13:01:49.398475 db@close done T·0s
+=============== Jul 10, 2020 (CEST) ===============
+13:02:36.855633 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+13:02:36.860620 version@stat F·[0 1] S·176B[0B 176B] Sc·[0.00 0.00]
+13:02:36.860620 db@open opening
+13:02:36.860620 journal@recovery F·1
+13:02:36.862615 journal@recovery recovering @12
+13:02:36.871591 memdb@flush created L0@15 N·1 S·159B "loc..seq,v10":"loc..seq,v10"
+13:02:36.872588 version@stat F·[1 1] S·335B[159B 176B] Sc·[0.25 0.00]
+13:02:36.893532 db@janitor F·5 G·1
+13:02:36.894529 db@janitor removing table-11
+13:02:36.894529 db@open done T·33.9094ms
+18:49:58.956826 db@close closing
+18:49:58.956826 db@close done T·0s
+=============== Jul 10, 2020 (CEST) ===============
+18:50:37.875723 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+18:50:37.881708 version@stat F·[1 1] S·335B[159B 176B] Sc·[0.25 0.00]
+18:50:37.881708 db@open opening
+18:50:37.881708 journal@recovery F·1
+18:50:37.883702 journal@recovery recovering @16
+18:50:37.889686 memdb@flush created L0@18 N·1 S·159B "loc..seq,v12":"loc..seq,v12"
+18:50:37.891682 version@stat F·[2 1] S·494B[318B 176B] Sc·[0.50 0.00]
+18:50:37.902651 db@janitor F·5 G·0
+18:50:37.902651 db@open done T·20.9434ms
+23:13:48.378092 db@close closing
+23:13:48.378092 db@close done T·0s

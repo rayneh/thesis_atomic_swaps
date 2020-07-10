@@ -41,3 +41,44 @@
 10:21:48.173299 db@open done T·12.9668ms
 14:15:00.750967 db@close closing
 14:15:00.750967 db@close done T·0s
+=============== Jul 10, 2020 (CEST) ===============
+01:28:20.156114 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+01:28:20.165418 version@stat F·[2] S·757B[757B] Sc·[0.50]
+01:28:20.165418 db@open opening
+01:28:20.165418 journal@recovery F·1
+01:28:20.168410 journal@recovery recovering @8
+01:28:20.170404 version@stat F·[2] S·757B[757B] Sc·[0.50]
+01:28:20.180042 db@janitor F·4 G·0
+01:28:20.180042 db@open done T·14.6238ms
+13:02:55.665602 db@close closing
+13:02:55.833660 db@close done T·168.0582ms
+=============== Jul 10, 2020 (CEST) ===============
+16:31:53.796383 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+16:31:53.801370 version@stat F·[2] S·757B[757B] Sc·[0.50]
+16:31:53.801370 db@open opening
+16:31:53.801370 journal@recovery F·1
+16:31:53.802369 journal@recovery recovering @10
+16:31:53.809348 memdb@flush created L0@12 N·67 S·2KiB "H\x00\x86..\xae\xb8;,v35":"y\x92\xe8..s\x17\x97,v80"
+16:31:53.811343 version@stat F·[3] S·3KiB[3KiB] Sc·[0.75]
+16:31:53.823313 db@janitor F·5 G·0
+16:31:53.823313 db@open done T·21.9438ms
+16:38:31.240732 db@close closing
+16:38:31.353430 db@close done T·112.6984ms
+=============== Jul 10, 2020 (CEST) ===============
+16:38:39.135987 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+16:38:39.135987 version@stat F·[3] S·3KiB[3KiB] Sc·[0.75]
+16:38:39.135987 db@open opening
+16:38:39.135987 journal@recovery F·1
+16:38:39.171891 journal@recovery recovering @13
+16:38:39.258214 memdb@flush created L0@15 N·1002 S·51KiB "H\x02\xaa..\x87\x88\xe5,v273":"\xb3\x18[..\xaa\xc5t,v1082"
+16:38:39.454199 version@stat F·[4] S·54KiB[54KiB] Sc·[1.00]
+16:38:39.479132 db@janitor F·6 G·0
+16:38:39.479132 db@open done T·343.1445ms
+16:38:39.480128 table@compaction L0·3 -> L1·0 S·54KiB Q·1084
+16:38:39.485115 table@build created L1@18 N·724 S·40KiB "H\x00\x86..\xae\xb8;,v35":"\xb3\x18[..\xaa\xc5t,v1082"
+16:38:39.485115 version@stat F·[1 1] S·40KiB[192B 40KiB] Sc·[0.25 0.00]
+16:38:39.488107 table@compaction committed F-2 S-13KiB Ke·0 D·355 T·7.9784ms
+16:38:39.489106 table@remove removed @12
+16:38:39.489106 table@remove removed @2
+23:13:49.240799 db@close closing
+23:13:49.240799 db@close done T·0s

@@ -52,3 +52,37 @@
 10:21:49.958002 db@open done T·30.0572ms
 14:14:59.913043 db@close closing
 14:14:59.913043 db@close done T·0s
+=============== Jul 10, 2020 (CEST) ===============
+01:28:21.390828 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+01:28:21.394817 version@stat F·[2] S·757B[757B] Sc·[0.50]
+01:28:21.394817 db@open opening
+01:28:21.394817 journal@recovery F·1
+01:28:21.396812 journal@recovery recovering @10
+01:28:21.397809 version@stat F·[2] S·757B[757B] Sc·[0.50]
+01:28:21.406786 db@janitor F·4 G·0
+01:28:21.406786 db@open done T·11.9682ms
+13:01:49.175058 db@close closing
+13:01:49.233409 db@close done T·58.351ms
+=============== Jul 10, 2020 (CEST) ===============
+13:02:36.809250 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+13:02:36.813745 version@stat F·[2] S·757B[757B] Sc·[0.50]
+13:02:36.813745 db@open opening
+13:02:36.813745 journal@recovery F·1
+13:02:36.815740 journal@recovery recovering @12
+13:02:36.829702 memdb@flush created L0@14 N·274 S·11KiB "\x11Շ..\x01\xb1',v287":"\xf7A\xa9..\xc3u\x95,v286"
+13:02:36.831700 version@stat F·[3] S·12KiB[12KiB] Sc·[0.75]
+13:02:36.848653 db@janitor F·5 G·0
+13:02:36.848653 db@open done T·34.9082ms
+18:49:58.952837 db@close closing
+18:49:58.952837 db@close done T·0s
+=============== Jul 10, 2020 (CEST) ===============
+18:50:37.837825 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+18:50:37.843809 version@stat F·[3] S·12KiB[12KiB] Sc·[0.75]
+18:50:37.843809 db@open opening
+18:50:37.843809 journal@recovery F·1
+18:50:37.845804 journal@recovery recovering @15
+18:50:37.847798 version@stat F·[3] S·12KiB[12KiB] Sc·[0.75]
+18:50:37.859766 db@janitor F·5 G·0
+18:50:37.859766 db@open done T·15.9572ms
+23:13:48.373105 db@close closing
+23:13:48.373105 db@close done T·0s

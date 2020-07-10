@@ -2,3 +2,6 @@
 eth.accounts
 miner.setEtherbase(eth.accounts[0])
 eth.coinbase
+miner.start();
+eth.getBalance()[D"0x6ec4922fcffd90b36aa7104c506064b4a9988a90");
+perosnal.newAccount();
