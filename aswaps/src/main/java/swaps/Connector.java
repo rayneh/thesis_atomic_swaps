@@ -12,9 +12,9 @@ public class Connector {
     }
 
     void init() {
-        this.alice = new EthNode("Alice", "http://127.0.0.1", "8081");
-        this.bob = new EthNode("Bob", "http://localhost", "8082");
-        this.carol = new EthNode("Carol", "http://localhost", "8083");
+        this.alice = new EthNode("BTC(Alice) - Chain", "http://127.0.0.1", "8081");
+        this.bob = new EthNode("ALT-COIN(Bob) - Chain", "http://localhost", "8082");
+        this.carol = new EthNode("CAR-TITLE(Carol) - Chain", "http://localhost", "8083");
     }
 
     EthNode getAlice() {
