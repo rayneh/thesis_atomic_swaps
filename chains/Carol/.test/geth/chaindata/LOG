@@ -99,3 +99,39 @@
 =============== Jul 13, 2020 (CEST) ===============
 15:02:37.292843 db@close closing
 15:02:37.292843 db@close done T·0s
+=============== Jul 13, 2020 (CEST) ===============
+15:08:15.062180 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+15:08:15.068164 version@stat F·[0 2] S·5KiB[0B 5KiB] Sc·[0.00 0.00]
+15:08:15.068164 db@open opening
+15:08:15.069161 journal@recovery F·1
+15:08:15.070159 journal@recovery recovering @20
+15:08:15.073151 version@stat F·[0 2] S·5KiB[0B 5KiB] Sc·[0.00 0.00]
+15:08:15.081130 db@janitor F·4 G·0
+15:08:15.081130 db@open done T·12.9659ms
+22:40:09.079622 db@close closing
+22:40:09.079622 db@close done T·0s
+=============== Jul 13, 2020 (CEST) ===============
+22:40:10.998537 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+22:40:11.005518 version@stat F·[0 2] S·5KiB[0B 5KiB] Sc·[0.00 0.00]
+22:40:11.006489 db@open opening
+22:40:11.006489 journal@recovery F·1
+22:40:11.007513 journal@recovery recovering @22
+22:40:11.012472 memdb@flush created L0@24 N·1624 S·83KiB "8\xf4N..#F\x85,v1788":"\x88\xe7\xad..I\xb6\x97,v1789"
+22:40:11.014466 version@stat F·[1 2] S·89KiB[83KiB 5KiB] Sc·[0.25 0.00]
+22:40:11.024468 db@janitor F·5 G·0
+22:40:11.024468 db@open done T·17.9792ms
+22:43:08.290065 db@close closing
+22:43:08.325967 db@close done T·35.9027ms
+=============== Jul 13, 2020 (CEST) ===============
+22:43:11.588628 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+22:43:11.589625 version@stat F·[1 2] S·89KiB[83KiB 5KiB] Sc·[0.25 0.00]
+22:43:11.589625 db@open opening
+22:43:11.589625 journal@recovery F·1
+22:43:11.590623 journal@recovery recovering @25
+22:43:11.597147 memdb@flush created L0@27 N·1101 S·55KiB "1\x80\xeb..\xa0\xb0\xca,v2892":"sec..E\x10\t,v2890"
+22:43:11.599144 version@stat F·[2 2] S·145KiB[139KiB 5KiB] Sc·[0.50 0.00]
+22:43:11.610113 db@janitor F·6 G·0
+22:43:11.610113 db@open done T·20.488ms
+=============== Jul 14, 2020 (CEST) ===============
+20:44:21.232826 db@close closing
+20:44:21.232826 db@close done T·0s

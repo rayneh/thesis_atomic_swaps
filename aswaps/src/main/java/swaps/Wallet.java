@@ -1,12 +1,15 @@
 package swaps;
 
-import org.web3j.crypto.CipherException;
-import org.web3j.crypto.Credentials;
-import org.web3j.crypto.WalletUtils;
+import org.web3j.crypto.*;
+import org.web3j.protocol.Web3j;
 import org.web3j.protocol.core.DefaultBlockParameterName;
 import org.web3j.protocol.core.methods.response.EthGetTransactionCount;
+import org.web3j.protocol.core.methods.response.EthSendTransaction;
+import org.web3j.utils.Convert;
+import org.web3j.utils.Numeric;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.math.BigInteger;
 
 public class Wallet {
@@ -16,6 +19,7 @@ public class Wallet {
     private Web3jApi web3jApi;
     private Connector connector;
     private final String chain;
+    private Credentials credentials;
 
     public Wallet(String path, String password, String chain) {
         this.path = path;
@@ -24,6 +28,9 @@ public class Wallet {
         this.connector = new Connector();
 
         this.connect();
+
+        this.web3jApi = new Web3jApi(this.ethNode);
+
         this.openWallet();
     }
 
@@ -50,17 +57,14 @@ public class Wallet {
 
     private void openWallet() {
         try {
-            String walletPassword = this.password;
-            String wallet = this.path;
 
-            // Load the JSON encryted wallet
-            Credentials credentials = WalletUtils.loadCredentials(walletPassword, wallet);
+            this.credentials = WalletUtils.loadCredentials(this.password, this.path);
 
             // Get the account address
-            String accountAddress = credentials.getAddress();
+            String accountAddress = this.credentials.getAddress();
 
             // Get the unencrypted private key into hexadecimal
-            String privateKey = credentials.getEcKeyPair().getPrivateKey().toString(16);
+            String privateKey = this.credentials.getEcKeyPair().getPrivateKey().toString(16);
 
             System.out.println("acc address " + accountAddress);
             System.out.println("priv key " + privateKey);
@@ -72,4 +76,45 @@ public class Wallet {
             e.printStackTrace();
         }
     }
+
+    public Web3j getWeb3j() {
+        return this.ethNode.getWeb3j();
+    }
+
+    public BigDecimal getBalance(String address) throws IOException {
+        return this.web3jApi.ethGetBalanceToken(address);
+    }
+
+    public BigInteger getNonce(String address) throws IOException {
+        EthGetTransactionCount ethGetTransactionCount = this.ethNode.getWeb3j().ethGetTransactionCount(address, DefaultBlockParameterName.LATEST).send();
+        return ethGetTransactionCount.getTransactionCount();
+    }
+
+    public BigInteger convertToWei(String ether) {
+        return Convert.toWei(ether, Convert.Unit.ETHER).toBigInteger();
+    }
+
+    public BigInteger gasLimit(Long value) {
+        return BigInteger.valueOf(value);
+    }
+
+    public BigInteger gasPrice(String ether) {
+        return Convert.toWei(ether, Convert.Unit.GWEI).toBigInteger();
+    }
+
+    public RawTransaction createEtherTransaction(BigInteger nonce, BigInteger gasPrice, BigInteger gasLimit, String recipientAddress, String value) {
+        return RawTransaction.createEtherTransaction(nonce, gasPrice, gasLimit, recipientAddress, this.convertToWei(value));
+    }
+
+    public String sendEtherTransaction(BigInteger nonce, BigInteger gasPrice, BigInteger gasLimit, String recipientAddress, String value) throws IOException{
+        RawTransaction rawTransaction = RawTransaction.createEtherTransaction(nonce, gasPrice, gasLimit, recipientAddress, this.convertToWei(value));
+        byte[] signedMessage = TransactionEncoder.signMessage(rawTransaction, this.credentials);
+        String hexValue = Numeric.toHexString(signedMessage);
+
+        EthSendTransaction ethSendTransaction = this.ethNode.getWeb3j().ethSendRawTransaction(hexValue).send();
+
+        return ethSendTransaction.getTransactionHash();
+    }
+
+
 }

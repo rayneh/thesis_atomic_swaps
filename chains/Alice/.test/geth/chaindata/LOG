@@ -98,3 +98,71 @@
 =============== Jul 13, 2020 (CEST) ===============
 15:02:35.099001 db@close closing
 15:02:35.099001 db@close done T·0s
+=============== Jul 13, 2020 (CEST) ===============
+15:08:12.004524 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+15:08:12.011505 version@stat F·[3] S·12KiB[12KiB] Sc·[0.75]
+15:08:12.011505 db@open opening
+15:08:12.011505 journal@recovery F·1
+15:08:12.013501 journal@recovery recovering @19
+15:08:12.015495 version@stat F·[3] S·12KiB[12KiB] Sc·[0.75]
+15:08:12.025468 db@janitor F·5 G·0
+15:08:12.025468 db@open done T·13.9629ms
+=============== Jul 14, 2020 (CEST) ===============
+13:55:28.157129 db@close closing
+13:55:28.158126 db@close done T·997.2µs
+=============== Jul 14, 2020 (CEST) ===============
+13:55:30.969635 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+13:55:30.976612 version@stat F·[3] S·12KiB[12KiB] Sc·[0.75]
+13:55:30.976612 db@open opening
+13:55:30.976612 journal@recovery F·1
+13:55:30.977613 journal@recovery recovering @21
+13:55:30.981575 memdb@flush created L0@23 N·259 S·11KiB "\x144@..\xb2\x1b\x1d,v546":"\xf9L\xb7..bY\x9d,v544"
+13:55:30.983570 version@stat F·[4] S·24KiB[24KiB] Sc·[1.00]
+13:55:30.995538 db@janitor F·6 G·0
+13:55:30.995538 db@open done T·18.9254ms
+13:55:30.995538 table@compaction L0·4 -> L1·0 S·24KiB Q·548
+13:55:31.006508 table@build created L1@26 N·369 S·21KiB "\x11Շ..\x01\xb1',v287":"\xf9L\xb7..bY\x9d,v544"
+13:55:31.006508 version@stat F·[0 1] S·21KiB[0B 21KiB] Sc·[0.00 0.00]
+13:55:31.009502 table@compaction committed F-3 S-3KiB Ke·0 D·175 T·13.9641ms
+13:55:31.009502 table@remove removed @14
+13:55:31.009502 table@remove removed @5
+13:55:31.010497 table@remove removed @2
+13:56:31.849519 db@close closing
+13:56:31.868003 db@close done T·18.4841ms
+=============== Jul 14, 2020 (CEST) ===============
+13:56:33.872687 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+13:56:33.872687 version@stat F·[0 1] S·21KiB[0B 21KiB] Sc·[0.00 0.00]
+13:56:33.872687 db@open opening
+13:56:33.872687 journal@recovery F·1
+13:56:33.874650 journal@recovery recovering @24
+13:56:33.891673 memdb@flush created L0@27 N·196 S·8KiB "\x00\x823..+f.,v742":"\xb03\xfe..\xec\x10\xa8,v744"
+13:56:33.893669 version@stat F·[1 1] S·30KiB[8KiB 21KiB] Sc·[0.25 0.00]
+13:56:33.901648 db@janitor F·5 G·1
+13:56:33.901648 db@janitor removing table-23
+13:56:33.901648 db@open done T·28.9607ms
+14:01:04.118846 db@close closing
+14:01:04.122835 db@close done T·3.9888ms
+=============== Jul 14, 2020 (CEST) ===============
+14:01:05.865175 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+14:01:05.866173 version@stat F·[1 1] S·30KiB[8KiB 21KiB] Sc·[0.25 0.00]
+14:01:05.866173 db@open opening
+14:01:05.866173 journal@recovery F·1
+14:01:05.868167 journal@recovery recovering @28
+14:01:05.886762 memdb@flush created L0@30 N·998 S·51KiB "#\xaf[..\x98\x11\xf0,v1743":"\xf8ۧ..hQ\xb2,v1742"
+14:01:05.888715 version@stat F·[2 1] S·81KiB[60KiB 21KiB] Sc·[0.50 0.00]
+14:01:05.898689 db@janitor F·5 G·0
+14:01:05.898689 db@open done T·32.5155ms
+14:41:57.945081 db@close closing
+14:41:57.945081 db@close done T·0s
+=============== Jul 14, 2020 (CEST) ===============
+14:49:53.070363 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+14:49:53.074321 version@stat F·[2 1] S·81KiB[60KiB 21KiB] Sc·[0.50 0.00]
+14:49:53.074321 db@open opening
+14:49:53.074321 journal@recovery F·1
+14:49:53.076316 journal@recovery recovering @31
+14:49:53.081302 memdb@flush created L0@33 N·647 S·32KiB "H\x05\xc7..\xd5'],v2108":"Ď\xba..\xe7\x9c(,v2388"
+14:49:53.083298 version@stat F·[3 1] S·113KiB[92KiB 21KiB] Sc·[0.75 0.00]
+14:49:53.095265 db@janitor F·6 G·0
+14:49:53.095265 db@open done T·20.9441ms
+20:44:18.067572 db@close closing
+20:44:18.067572 db@close done T·0s

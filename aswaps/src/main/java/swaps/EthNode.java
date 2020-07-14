@@ -17,9 +17,7 @@ public class EthNode {
         this.name = name;
         this.host = host;
         this.port = port;
-        System.out.println("Connecting to Node ... " + name);
         this.web3j = Web3j.build(new HttpService(this.host + ":" + this.port));
-        System.out.println("Successfuly connected to " + name);
     }
 
     EthBlockNumber getBlockNumber() throws IOException{
