@@ -20,4 +20,21 @@ contract Swap {
         unlocked = [false, false, false];
     }
 
+    function unlock(int i, uint s, Path path, Sig sig) {
+        require (msg.sender == counterParty);
+
+        //if ( now < start + (diam(digraph) + |path|)*triangle && hashlock[i] == H(s) && isPath(path, digraph, leader[i], counterparty) && verifySigs(sig, s , path) ) {unlocked[i] = true}
+    }
+
+    function refund() {
+        require (msg.sender == party);
+
+        //if ( any hashlock unlocked and timed out ) {transer asset to party; halt;}
+    }
+
+    function claim() {
+        require (msg.sender == counterParty);
+
+        //if (every hashlock unlocked) {transfer asset to counterparty; halt;}
+    }
 }
