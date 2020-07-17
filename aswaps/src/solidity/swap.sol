@@ -11,7 +11,7 @@ contract Swap {
     bool[] unlocked;
     uint start;
 
-    function Swap(Asset _asset, Digraph _digraph, address[] _leaders, address _party, address _counterParty, uint[] _timeLock, uint256[] _hashLock, uint start) {
+    function Swap(Asset _asset, Digraph _digraph, address[] _leaders, address _party, address _counterParty, uint[] _timeLock, uint[] _hashLock, uint start) {
         asset = _asset;
         party = _party;
         counterParty = _counterParty;
