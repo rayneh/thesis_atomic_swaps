@@ -158,3 +158,26 @@
 15:05:50.623843 db@open done T·13.939ms
 18:41:05.702456 db@close closing
 18:41:05.702456 db@close done T·0s
+=============== Jul 17, 2020 (CEST) ===============
+03:58:12.629509 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+03:58:12.636491 version@stat F·[2 2] S·145KiB[139KiB 5KiB] Sc·[0.50 0.00]
+03:58:12.636491 db@open opening
+03:58:12.636491 journal@recovery F·1
+03:58:12.638485 journal@recovery recovering @32
+03:58:12.640479 version@stat F·[2 2] S·145KiB[139KiB 5KiB] Sc·[0.50 0.00]
+03:58:12.651450 db@janitor F·6 G·0
+03:58:12.651450 db@open done T·14.9593ms
+04:37:34.064377 db@close closing
+04:37:34.066374 db@close done T·1.9975ms
+=============== Jul 17, 2020 (CEST) ===============
+04:37:45.203641 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+04:37:45.210622 version@stat F·[2 2] S·145KiB[139KiB 5KiB] Sc·[0.50 0.00]
+04:37:45.210622 db@open opening
+04:37:45.210622 journal@recovery F·1
+04:37:45.212617 journal@recovery recovering @34
+04:37:45.218630 memdb@flush created L0@36 N·2223 S·115KiB "H\x00D..\x03I:,v3590":"\xa5\x92O..2\xb6\xac,v5111"
+04:37:45.221593 version@stat F·[3 2] S·260KiB[254KiB 5KiB] Sc·[0.75 0.00]
+04:37:45.234094 db@janitor F·7 G·0
+04:37:45.235064 db@open done T·24.442ms
+04:55:57.171686 db@close closing
+04:55:57.179664 db@close done T·7.9785ms

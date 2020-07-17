@@ -1,9 +1,11 @@
 package swaps.parties;
 
+import swaps.HashLock;
 import swaps.Wallet;
 
 import javax.imageio.IIOException;
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 
 
 public class Alice {
@@ -14,9 +16,11 @@ public class Alice {
     public String addressCarTitleWallet;
     public String addressAltCoinWallet;
 
+    private String secret;
+
     public Alice() {
         this.setWallets();
-
+        this.secret = "secret";
     }
 
     private void setWallets() {
@@ -53,6 +57,11 @@ public class Alice {
 
     public String getAddressCarTitleWallet() {
         return this.addressCarTitleWallet;
+    }
+
+    public String getHashLock() throws NoSuchAlgorithmException {
+        HashLock hashLock = new HashLock(this.secret);
+        return hashLock.getHashLock();
     }
 
 }

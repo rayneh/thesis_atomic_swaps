@@ -8,8 +8,8 @@ public class Bob {
     Wallet bitcoinWallet;
     Wallet altCoinWallet;
 
-    String addressBitcoinWallet;
-    String addressAltCoinWallet;
+    public String addressBitcoinWallet;
+    public String addressAltCoinWallet;
 
     public Bob() {
         this.setWallets();

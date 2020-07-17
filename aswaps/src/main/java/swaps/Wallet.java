@@ -4,13 +4,16 @@ import org.web3j.crypto.*;
 import org.web3j.protocol.Web3j;
 import org.web3j.protocol.core.DefaultBlockParameterName;
 import org.web3j.protocol.core.methods.response.EthGetTransactionCount;
+import org.web3j.protocol.core.methods.response.EthGetTransactionReceipt;
 import org.web3j.protocol.core.methods.response.EthSendTransaction;
+import org.web3j.protocol.core.methods.response.TransactionReceipt;
 import org.web3j.utils.Convert;
 import org.web3j.utils.Numeric;
 
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.util.Optional;
 
 public class Wallet {
     private final String path;
@@ -114,6 +117,16 @@ public class Wallet {
         EthSendTransaction ethSendTransaction = this.ethNode.getWeb3j().ethSendRawTransaction(hexValue).send();
 
         return ethSendTransaction.getTransactionHash();
+    }
+
+    public void waitForTransactionToBeMined(String tx) throws IOException, InterruptedException {
+        Optional<TransactionReceipt> transactionReceipt;
+        do {
+            EthGetTransactionReceipt ethGetTransactionReceiptResp = this.ethNode.getWeb3j().ethGetTransactionReceipt(tx).send();
+            transactionReceipt = ethGetTransactionReceiptResp.getTransactionReceipt();
+
+            Thread.sleep(3000); // Retry after 3 sec
+        } while(!transactionReceipt.isPresent());
     }
 
 
