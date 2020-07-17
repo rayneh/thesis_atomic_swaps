@@ -181,3 +181,37 @@
 04:37:45.235064 db@open done T·24.442ms
 04:55:57.171686 db@close closing
 04:55:57.179664 db@close done T·7.9785ms
+=============== Jul 17, 2020 (CEST) ===============
+04:57:17.996851 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+04:57:17.996851 version@stat F·[3 2] S·260KiB[254KiB 5KiB] Sc·[0.75 0.00]
+04:57:17.996851 db@open opening
+04:57:17.996851 journal@recovery F·1
+04:57:17.998846 journal@recovery recovering @37
+04:57:18.004831 memdb@flush created L0@39 N·1278 S·66KiB "\x04\xc4+..\x92>\xde,v6395":"\xfc\x042..8\x14\xb9,v6392"
+04:57:18.007822 version@stat F·[4 2] S·326KiB[320KiB 5KiB] Sc·[1.00 0.00]
+04:57:18.015800 db@janitor F·8 G·0
+04:57:18.015800 db@open done T·18.949ms
+04:57:18.015800 table@compaction L0·4 -> L1·2 S·326KiB Q·6396
+04:57:18.024776 table@build created L1@42 N·4266 S·243KiB "\x04\xc4+..\x92>\xde,v6395":"\xfc\x042..8\x14\xb9,v6392"
+04:57:18.024776 version@stat F·[0 1] S·243KiB[0B 243KiB] Sc·[0.00 0.00]
+04:57:18.026799 table@compaction committed F-5 S-83KiB Ke·0 D·2071 T·10.9986ms
+04:57:18.026799 table@remove removed @36
+04:57:18.026799 table@remove removed @27
+04:57:18.026799 table@remove removed @24
+04:57:18.026799 table@remove removed @11
+04:57:18.026799 table@remove removed @19
+05:01:11.008728 db@close closing
+05:01:11.014712 db@close done T·5.9841ms
+=============== Jul 17, 2020 (CEST) ===============
+05:01:19.772440 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+05:01:19.775432 version@stat F·[0 1] S·243KiB[0B 243KiB] Sc·[0.00 0.00]
+05:01:19.775432 db@open opening
+05:01:19.776429 journal@recovery F·1
+05:01:19.777427 journal@recovery recovering @40
+05:01:19.783411 memdb@flush created L0@43 N·772 S·39KiB "H\x00\xcd..\xfaP\x83,v6859":"\xf5?\xdf..\x1e\xbf\xec,v7165"
+05:01:19.785407 version@stat F·[1 1] S·283KiB[39KiB 243KiB] Sc·[0.25 0.00]
+05:01:19.797375 db@janitor F·5 G·1
+05:01:19.797375 db@janitor removing table-39
+05:01:19.797375 db@open done T·21.9427ms
+15:21:16.337167 db@close closing
+15:21:16.337167 db@close done T·0s

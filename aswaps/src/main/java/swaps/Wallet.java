@@ -125,7 +125,7 @@ public class Wallet {
             EthGetTransactionReceipt ethGetTransactionReceiptResp = this.ethNode.getWeb3j().ethGetTransactionReceipt(tx).send();
             transactionReceipt = ethGetTransactionReceiptResp.getTransactionReceipt();
 
-            Thread.sleep(3000); // Retry after 3 sec
+            Thread.sleep(1000); // Retry after 3 sec
         } while(!transactionReceipt.isPresent());
     }
 

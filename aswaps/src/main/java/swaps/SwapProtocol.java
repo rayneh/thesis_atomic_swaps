@@ -8,10 +8,13 @@ import swaps.parties.Bob;
 import swaps.parties.Carol;
 
 import java.io.IOException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.Arrays;
 import java.util.Optional;
 
 public class SwapProtocol {
-    Alice alice = new Alice();
+    Alice alice;
     Bob bob = new Bob();
     Carol carol = new Carol();
     Wallet bitcoinPool = new Wallet("src\\wallets\\BtcChain(Alice)-PoolAccount-UTC--2020-05-31T08-09-53.604775500Z--6ec4922fcffd90b36aa7104c506064b4a9988a90", "pwd", "alice");
@@ -27,6 +30,7 @@ public class SwapProtocol {
     void init() {
 
         try {
+            this.alice = new Alice();
 
             this.printPoolBalances();
             this.printBalances();
@@ -35,6 +39,23 @@ public class SwapProtocol {
             //this.printBalances();
 
             this.digraph = new Digraph(alice, bob, carol);
+
+            System.out.println("h = H(s): " + alice.getHashLockAsHex());
+            System.out.println("h = H(s): " + alice.getHashLockAsHex());
+
+            System.out.println("h = H(s): " + Arrays.toString(alice.getHashLockAsByteArray()));
+            System.out.println("h = H(s): " + Arrays.toString(alice.getHashLockAsByteArray()));
+
+            System.out.println("h = H(s) -> encoded: " + alice.getEncodedHash());
+            System.out.println("h = H(s) -> encoded: " + alice.getEncodedHash());
+
+            System.out.println(SwapUtils.isMessageDigestByteEqual(alice.getHashLockAsByteArray(), alice.getHashLockAsByteArray()));
+
+            TimeLock timeLock = new TimeLock(2L, 2L);
+            System.out.println("start time: " + timeLock.getStartInMilliSeconds());
+            System.out.println("time contracts: " + timeLock.getTimeToDeployContractsInMilliSeconds());
+            System.out.println("time funds: " + timeLock.getTimeToSendFundsInMilliSeconds());
+            System.out.println("time now: " + timeLock.getTimeNowInMilliSeconds());
             //alice.getAltCoinWallet().getNonce(alice.addressAltCoinWallet);
             //System.out.println(alice.getAltCoinWallet().getNonce(alice.addressAltCoinWallet)); //PRINT NONCE
             //System.out.println(alice.getAltCoinWallet().convertToWei("1")); //amount to send
@@ -46,7 +67,7 @@ public class SwapProtocol {
             //System.out.println(bitcoinPool.getBalance("0x01d091a2bcce9fcc71d1e4c8d83113ca9d150e26"));
 
 
-        } catch (IOException e) { //| InterruptedException
+        } catch (IOException | NoSuchAlgorithmException e) { //| InterruptedException
             e.printStackTrace();
         }
 
@@ -57,8 +78,6 @@ public class SwapProtocol {
             String tx = altCoinPool.sendEtherTransaction(altCoinPool.getNonce("0x2193259b178623345225272dd075717fcacc704e"), altCoinPool.gasPrice("1"), altCoinPool.gasLimit(21000L), alice.addressAltCoinWallet, "1");
             String tx1 = bitcoinPool.sendEtherTransaction(bitcoinPool.getNonce("0x6ec4922fcffd90b36aa7104c506064b4a9988a90"), bitcoinPool.gasPrice("1"), bitcoinPool.gasLimit(21000L), bob.addressBitcoinWallet, "1");
             String tx2 = carTitlePool.sendEtherTransaction(carTitlePool.getNonce("0x6392e91df60c5bc2ca09670cd4173e05a0e04833"), carTitlePool.gasPrice("1"), carTitlePool.gasLimit(21000L), carol.addressCarTitleWallet, "1");
-            //System.out.println(bitcoinPool.getBalance("0x01d091a2bcce9fcc71d1e4c8d83113ca9d150e26"));
-
 
             altCoinPool.waitForTransactionToBeMined(tx);
             bitcoinPool.waitForTransactionToBeMined(tx1);

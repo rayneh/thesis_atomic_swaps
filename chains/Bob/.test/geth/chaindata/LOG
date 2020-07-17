@@ -153,3 +153,35 @@
 04:37:43.710704 db@open done T·21.9407ms
 04:55:51.723465 db@close closing
 04:55:51.785278 db@close done T·61.8125ms
+=============== Jul 17, 2020 (CEST) ===============
+04:57:15.291465 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+04:57:15.291465 version@stat F·[2 1] S·159KiB[118KiB 40KiB] Sc·[0.50 0.00]
+04:57:15.291465 db@open opening
+04:57:15.291465 journal@recovery F·1
+04:57:15.293460 journal@recovery recovering @30
+04:57:15.298474 memdb@flush created L0@32 N·1386 S·71KiB "\x13n-..\xa1x\xa0,v4762":"\xf5\xc7\b..\f\f,,v4766"
+04:57:15.300443 version@stat F·[3 1] S·231KiB[190KiB 40KiB] Sc·[0.75 0.00]
+04:57:15.311412 db@janitor F·6 G·0
+04:57:15.311412 db@open done T·19.9463ms
+05:01:12.106623 db@close closing
+05:01:12.125572 db@close done T·18.9498ms
+=============== Jul 17, 2020 (CEST) ===============
+05:01:15.613023 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+05:01:15.617013 version@stat F·[3 1] S·231KiB[190KiB 40KiB] Sc·[0.75 0.00]
+05:01:15.617013 db@open opening
+05:01:15.618009 journal@recovery F·1
+05:01:15.619030 journal@recovery recovering @33
+05:01:15.622996 memdb@flush created L0@35 N·854 S·43KiB "\x05Z;..ļ8,v5627":"w\x8a\xa0..\xb5\x01\x94,v5628"
+05:01:15.624991 version@stat F·[4 1] S·275KiB[234KiB 40KiB] Sc·[1.00 0.00]
+05:01:15.635961 db@janitor F·7 G·0
+05:01:15.635961 db@open done T·18.9484ms
+05:01:15.635961 table@compaction L0·4 -> L1·1 S·275KiB Q·5631
+05:01:15.645934 table@build created L1@38 N·3758 S·215KiB "\x03\xf9U..\xa8\x97\xb6,v3385":"\xf5\xc7\b..\f\f,,v4766"
+05:01:15.645934 version@stat F·[0 1] S·215KiB[0B 215KiB] Sc·[0.00 0.00]
+05:01:15.647929 table@compaction committed F-4 S-60KiB Ke·0 D·1511 T·11.9679ms
+05:01:15.648926 table@remove removed @32
+05:01:15.648926 table@remove removed @29
+05:01:15.648926 table@remove removed @5
+05:01:15.648926 table@remove removed @18
+15:21:15.565175 db@close closing
+15:21:15.565175 db@close done T·0s

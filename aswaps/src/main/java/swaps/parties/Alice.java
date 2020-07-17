@@ -17,10 +17,12 @@ public class Alice {
     public String addressAltCoinWallet;
 
     private String secret;
+    private HashLock hashLock;
 
-    public Alice() {
+    public Alice() throws NoSuchAlgorithmException {
         this.setWallets();
         this.secret = "secret";
+        this.hashLock = new HashLock(this.secret);
     }
 
     private void setWallets() {
@@ -59,9 +61,20 @@ public class Alice {
         return this.addressCarTitleWallet;
     }
 
-    public String getHashLock() throws NoSuchAlgorithmException {
-        HashLock hashLock = new HashLock(this.secret);
-        return hashLock.getHashLock();
+    public String getHashLock() {
+        return this.hashLock.getHashLock();
+    }
+
+    public String getHashLockAsHex() {
+        return this.hashLock.getHashLockAsHex();
+    }
+
+    public byte[] getHashLockAsByteArray() {
+        return this.hashLock.getHashLockAsByteArray();
+    }
+
+    public String getEncodedHash() {
+        return this.hashLock.getEncodedHashLock();
     }
 
 }
