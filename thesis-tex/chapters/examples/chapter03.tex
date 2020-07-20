@@ -4,7 +4,7 @@
 %from cross.chain swaps paper 
 %CROSS CHAIN SWAPS ARE WELL KNOWN CONCEPT IN BLOCKCHAIN COMMUNITY [4,6,9,20,21,27] -> explain further in related work tho!!
 
-The concept of two-party atomic cross-chain swaps is believed that it emerged from an online forum discussion, see footnotes for references to bitcoinwiki and bitcointalk threads \footfullcite{bitcoinwiki "Atomic cross-chain trading" - https://en.bitcoin.it/wiki/Atomic_swap. 2016} \footfullcite{T.Nolan. "Atomic swaps using cut and choose" - https://bitcointalk.org/index.php?topic=1364951. 2016}. There is open source code available on github \footfullcite{S. Bowe and D. Hopwood. "Hashed time-locked contract transactions" - https://github.com/bitcoin/bips/blob/master/bip-0342.mediawiki. 2020} \footfullcite{DeCred. "Decred cross-chain atomic swapping." - https://github.com/decred/atomicswap. 2020} implementing a two-party cross-chain swaps protocol for selected currencies, as well as another proposal for applications using swaps \cite{zyskind2018enigma}. To address the scalability limits of existing blockchains several off-chain payment networks do exist, for further details refer to \footfullcite{R. Network. "What is the raiden network?" - https://raiden.network/101.html. 2020} and to \cite{poon2016bitcoin} \cite{decker2015fast} \cite{green2017bolt}. These concepts process multiple transactions off-chain and eventually resolve the final balance through a single on-chain transaction. The Revive network \cite{khalil2017revive} is another actor which uses off-chain transactions in a way to ensure, that participating parties do not end off worse in the process of re-balancing. These algorithms also utilitize the concept of hashed timelock contracts, but they address a different set of problems. Multi-party swaps in example become important, when matching kidney donors and recipients. Think of a case, where a transplant recipient has an incompatible donor and wants to swap donor with another recipient where all parties want to assure, that each recipient obtains a compatible organ. A number of algorithms \cite{abraham2007clearing} \cite{dickerson2016position} \cite{jia2017efficient} have been proposed for matching donors and recipients. Shapley and Scarf \cite{shapley1974cores} write about the circumstances under which a certain kind of swap markets could have strong equilibrium. Kaplan \cite{kaplan2011improved} describes a polynominal-time algorithm, which constructs a swap digraph for a given set of swaps, if one exists. This paper focuses on "the clearing problem" though, which is roughly analogous to constructing a swap digraph, but not on how execute those atomic cross-chain swaps on blockchains. A precursor of atomic cross-chain swaps is the fair exchange problem \cite{franklin1998secure} \cite{micali2003simple}. It tries to find a solution for an asset exchange between parties, which do not trust each other. Since its proven that a fair exchange between two parties can not be guaranteed without a trusted third party \cite{pagnia1999impossibility}, atomic cross-chain swaps could be a successor to the fair exchange problem through new technologies like blockchain and smart contracts. Borkowski proposes \ac{DeXTT} another uptake on blockchain interoperability by formally describing blockchains and token transfers between those, through utilitizing concepts such as claim-first transactions and determistic witnesses \cite{borkowski2019dextt}. Komodo \cite{barterdex2020} by SuperNETorg is another available atomic swap decentralized exchange of native coins, their BarterDEX system combines three key component like order matching, trade clearing and liquidity provision in a single system. It allows users to make a coin conversion request, find a suitable match and complete the trade using an atomic cross-chain protocol. Despite the fact that blockchain interoperability is addressed by many researches in different ways, these cross-chain technologies fall into three main categories according to Li and Zhang \cite{zheng2020blockchain}. The main categories of the cross-chain technologies are notary or multiple signature schemes, side chain/relay chain and hash timelock, the principles of these main categories are shown in table \ref{table:1}. \newline
+The concept of two-party atomic cross-chain swaps is believed that it emerged from an online forum discussion, see footnotes for references to bitcoinwiki and bitcointalk threads \footfullcite{bitcoinwiki "Atomic cross-chain trading" - https://en.bitcoin.it/wiki/Atomic_swap. 2016} \footfullcite{T.Nolan. "Atomic swaps using cut and choose" - https://bitcointalk.org/index.php?topic=1364951. 2016}. There is open source code available on github \footfullcite{S. Bowe and D. Hopwood. "Hashed time-locked contract transactions" - https://github.com/bitcoin/bips/blob/master/bip-0342.mediawiki. 2020} \footfullcite{DeCred. "Decred cross-chain atomic swapping." - https://github.com/decred/atomicswap. 2020} implementing a two-party cross-chain swaps protocol for selected currencies, as well as another proposal for applications using swaps \cite{zyskind2018enigma}. To address the scalability limits of existing blockchains several off-chain payment networks do exist, for further details refer to \footfullcite{R. Network. "What is the raiden network?" - https://raiden.network/101.html. 2020} and to \cite{poon2016bitcoin} \cite{decker2015fast} \cite{green2017bolt}. These concepts process multiple transactions off-chain and eventually resolve the final balance through a single on-chain transaction. The Revive network \cite{khalil2017revive} is another actor which uses off-chain transactions in a way to ensure, that participating parties do not end off worse in the process of re-balancing. These algorithms also utilitize the concept of hashed timelock contracts, but they address a different set of problems. Multi-party swaps in example become important, when matching kidney donors and recipients. Think of a case, where a transplant recipient has an incompatible donor and wants to swap donor with another recipient where all parties want to assure, that each recipient obtains a compatible organ. A number of algorithms \cite{abraham2007clearing} \cite{dickerson2016position} \cite{jia2017efficient} have been proposed for matching donors and recipients. Shapley and Scarf \cite{shapley1974cores} write about the circumstances under which a certain kind of swap markets could have strong equilibrium. Kaplan \cite{kaplan2011improved} describes a polynominal-time algorithm, which constructs a swap digraph for a given set of swaps, if one exists. This paper focuses on "the clearing problem" though, which is roughly analogous to constructing a swap digraph, but not on how execute those atomic cross-chain swaps on blockchains. A precursor of atomic cross-chain swaps is the fair exchange problem \cite{franklin1998secure} \cite{micali2003simple}. It tries to find a solution for an asset exchange between parties, which do not trust each other. Since its proven that a fair exchange between two parties can not be guaranteed without a trusted third party \cite{pagnia1999impossibility}, atomic cross-chain swaps could be a successor to the fair exchange problem through new technologies like blockchain and smart contracts. Borkowski proposes \ac{DeXTT} another uptake on blockchain interoperability by formally describing blockchains and token transfers between those, through utilitizing concepts such as claim-first transactions and determistic witnesses \cite{borkowski2019dextt}. Komodo \cite{barterdex2020} by SuperNETorg is another available atomic swap decentralized exchange of native coins, their BarterDEX system combines three key component like order matching, trade clearing and liquidity provision in a single system. It allows users to make a coin conversion request, find a suitable match and complete the trade using an atomic cross-chain protocol. Despite the fact that blockchain interoperability is addressed by many researches in different ways, these cross-chain technologies fall into three main categories according to Li and Zhang \cite{li2019research}. The main categories of the cross-chain technologies are notary or multiple signature schemes, side chain/relay chain and hash timelock, the principles of these main categories are shown in table \ref{table:1}. \newline
 
 \begin{table}[h!]
 	\centering
@@ -30,6 +30,7 @@ The notary or multi-signature scheme is a solution with weak centralization. It 
 \chapter{Requirement Analysis and Concept}
 \label{ch:chapter04}
 WRITE ABOUT REQUIREMENT ANALYSIS AND CONCEPT HERE
+% https://www.visual-paradigm.com/guide/requirements-gathering/requirement-analysis-techniques/
 
 \chapter{Implementation}
 \label{ch:chapter05}
@@ -56,6 +57,8 @@ EXPLAIN TESTING AND PROOF OF CONCEPT HERE
 
 \chapter{Future Research and Outlook}
 \label{ch:chapter06}
+
+% MB add subchapter for variety of consensus algorithms and tell why pow needs to be replaced and the different purposes of those algorithms.
 WRITE ABOUT FUTURE RESEARCH AND OUTLOOK HERE
 non interactive proofs of poW \cite{kiayias2017non} sidechains \cite{kiayias2019proof} polkadot \cite{wood2016polkadot}  chain interoperability \cite{buterin2016chain} sharding \cite{buterin2017sharding} plasma \cite{poon2017plasma} z-snarks \cite{garoffolo2020zendoo} towards secure interoperability with smart contracts \cite{dagher2017towards}
 
@@ -69,66 +72,68 @@ COSMOS \cite{kwon2018network} and tendermint \cite{kwon2014tendermint} buchmann 
 
 pick some current research and make MB different chapters
 
-%FROM \cite{li2019research}
-Table 1. Cross-chain technology comparison
-Cross-chain technology Algorithmic principle Shortcoming
-Notary Transfer of assets to notary accounts Weak centralization
-Side chain Read the data in the side chain Verification difficulties
-Relay chain Establishing relay chain Data redundancy
-
-Notary or multi-signature scheme is a weak centralized solution, transfer digital
-assets by locking assets in the main chain to multiple specific addresses and requiring
-signatures from multiple notaries. Ripple of Interledger protocol [2] enables assets of
-different blockchains to be transferred across chains through trusted third parties. Notary
-or multi-signature scheme is the simplest way to realize cross-chain asset transfer, but
-the security of asset transfer depends on the honesty of notaries.
-Side chain technology transfers digital assets by reading the data in the main chain
-to verify the authenticity of transaction payments. BTC Relay project is to realize crosschain
-payment by verifying Bitcoin SPV payment path to trigger the execution of ETH
-smart contract [3].
-Relay technology is to link existing blockchain projects by building a relay chain to
-realize asset transfer of different blockchains. COSMOS [4] and Polkadot [5] projects
-are to build cross-chain platform of blockchain through the combination of notary and
-relay technology.
 
 \chapter{Conclusion}
 \label{ch:chapter07}
-WRITE THE CONCLUSION HERE
+
 
 \chapter{Terminology}
 \label{ch:chapter08}
-EXPLAIN THE TERMINOLOGY HERE
 
-Address
-Alt-Coin
-App
-Asset
-Atomic Transaction
-Autonomous Object
-Block
-Block Time
-Bytecode
-Cryptocurrency
-CryptoNote
-Contract 
-External Actor
-Ether
-Ethereum Virtual Machine
-Gas
-Genesis Block
-Hash
-Padding - what is padding in sha-256 context
-Protocol - what is a protocol inctroducing ethereum and solidity paper
-Public and Private Key
-Public and Private Blockchain
-Storage State
-Solidity
-Transaction 
-Token
-Nonce
-Miner
+\begin{center}
+	\begin{tabular}{ p{4cm} p{8cm} } 
+		Address: & A 160-bit code used for identifying Accounts.  \\ 
+		Account: & Accounts have an intrinsic balance and transaction count held as part of ethereum state. Those accounts with empty associated \ac{EVM} code are controlled by external entities and those with non-empty \ac{EVM} code (thus the account represents an autonomous object). Every Account has a single address that identifies it. \\
+		Alt-Coin: & The term Alt-Coin refers to all cryptocurrencies launched after the success of bitcoin. Generally, they sell themselves as better alternatives to bitcoin or try to solve certain technological problems in a "better" or different way. \\
+		App: & An app is a type of software that allows you to perform specific tasks. Its also an acronym for application. Its often named after the device the application is running on. E.g. mobile app, desktop app or \ac{DApp}. Decentralized apps are a referral for applications running on decentralized architectures like the \ac{EVM}. \\
+		Asset: & An asset is a resource with economic value, owned or controlled by an individual, corporation or country. In financial context it comes with the expectation that it will provide a future benefit. In context of this work it can also be a car title owned by an individual like Carol.\\
+		Atomic Transaction: & Atomic Transactions are associated with Database operations where a set of actions must all complete or else none of them complete (atomicity). Same concept applies to swaps in blockchain context. \\
+		Autonomous Object: & A notional object, which is existent only in the hypothetical state of ethereum. It has an address and thus an associated account, which will have non-empty \ac{EVM} code. Incorporated only as the Storage State of that account. \\
+	\end{tabular}
+\end{center}
 
-%on-chain / off-chain
+\clearpage
+
+\begin{center}
+	\begin{tabular}{ p{4cm} p{8cm} }
+		Block: & (.....TEXT....) \\
+	\end{tabular}
+\end{center}
+
+\clearpage
+
+\begin{center}
+	\begin{tabular}{ p{4cm} p{8cm} } 
+		Block: & (.....TEXT....) \\
+		Block Time: & (.....TEXT....) \\
+		Bytecode: & (.....TEXT....) \\
+		Cryptocurrency: & (.....TEXT....) \\
+		CryptoNote: & (.....TEXT....) \\
+		Contract:  & (.....TEXT....) \\
+		External Actor: & (.....TEXT....) \\
+		Ether: & (.....TEXT....) \\
+		Ethereum Virtual Machine: & (.....TEXT....) \\
+		Gas: & (.....TEXT....) \\
+		Genesis Block: & (.....TEXT....) \\
+		Hash: & (.....TEXT....) \\
+		Padding: & what is padding in sha-256 context \\
+		Protocol: & what is a protocol inctroducing ethereum and solidity paper what is a protocol inctroducing ethereum and solidity paper what is a protocol inctroducing ethereum and solidity paper what is a protocol inctroducing ethereum and solidity paper what is a protocol inctroducing ethereum and solidity paper what is a protocol inctroducing ethereum and solidity paper \\
+		Public Key: & (.....TEXT....) \\
+		Public Blockchain: & (.....TEXT....) \\
+		Private Key: & (.....TEXT....) \\
+		Private Blockchain: & (.....TEXT....) \\
+		Storage State: & (.....TEXT....) \\
+		Solidity: & (.....TEXT....) \\
+		Transaction:  & (.....TEXT....) \\
+		Token: & (.....TEXT....) \\
+		Miner: & (.....TEXT....) \\
+		Nonce: & (.....TEXT....) \\
+		On-chain: & (.....TEXT....) \\
+		Off-chain: & (.....TEXT....) \\
+	\end{tabular}
+\end{center}
+
+%SECOND TABLE HERE
 
 
 
