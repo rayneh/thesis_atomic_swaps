@@ -86,7 +86,7 @@ pick some current research and make MB different chapters
 		Address: & A 160-bit code used for identifying Accounts.  \\ 
 		Account: & Accounts have an intrinsic balance and transaction count held as part of ethereum state. Those accounts with empty associated \ac{EVM} code are controlled by external entities and those with non-empty \ac{EVM} code (thus the account represents an autonomous object). Every Account has a single address that identifies it. \\
 		Alt-Coin: & The term Alt-Coin refers to all cryptocurrencies launched after the success of bitcoin. Generally, they sell themselves as better alternatives to bitcoin or try to solve certain technological problems in a "better" or different way. \\
-		App: & An app is a type of software that allows you to perform specific tasks. Its also an acronym for application. Its often named after the device the application is running on. E.g. mobile app, desktop app or \ac{DApp}. Decentralized apps are a referral for applications running on decentralized architectures like the \ac{EVM}. \\
+		App: & An app is a type of software that allows you to perform specific tasks. Its also an acronym for application. Its often named after the device the application is running on. E.g. mobile app, desktop app or \ac{DApp}. Decentralized apps are a referral for applications running on decentralized architectures like the \ac{EVM}. According to Wood an app is the end-user-visible application hosted in the ethereum browser. \\
 		Asset: & An asset is a resource with economic value, owned or controlled by an individual, corporation or country. In financial context it comes with the expectation that it will provide a future benefit. In context of this work it can also be a car title owned by an individual like Carol.\\
 		Atomic Transaction: & Atomic Transactions are associated with Database operations where a set of actions must all complete or else none of them complete (atomicity). Same concept applies to swaps in blockchain context. \\
 		Autonomous Object: & A notional object, which is existent only in the hypothetical state of the ethereum public chain. It has an address and thus an associated account, which will have non-empty \ac{EVM} code. Incorporated only as the Storage State of that account. \\
@@ -101,8 +101,9 @@ pick some current research and make MB different chapters
 		Block Time: & It defines the time that it takes for a block to get confirmed (mined) by participants of the network. In case of ethereum there is an expected block time of 10 to 19 seconds. \\
 		Bytecode: & Bytecode is the language which the \ac{EVM} understands and can execute. Smart contracts are often written in a high level programming language like solidity and compiled down to bytecode, which consists of a series of bytes, where each byte represents an operation for the \ac{EVM} to execute. Its often referred to as \ac{EVM Code}. \\
 		Cryptocurrency: & A cryptocurrency is a digital asset designed to work as medium of exchange and most of the time not issued by any state or central bank. The individual coin ownership are stored in a ledger, using strong cryptography to secure transaction records, to control the creation of additional coins, and to verify the transfer of coin ownership. \\
-		CryptoNote: & CryptoNote is an application layer protocol which aims to solve specific problems of bitcoin. These are respectively traceability of transactions, the \ac{PoW} function, irregular emission, hardcoded constants andbulky scripts. The protocol is the basis of several decentralized privacy-oriented cryptocurrencies. \\
-		Contract:  & (.....TEXT....) \\
+		CryptoNote: & CryptoNote is an application layer protocol which aims to solve specific problems of bitcoin. These are respectively traceability of transactions, the \ac{PoW} function, irregular emission, hardcoded constants and bulky scripts. The protocol is the basis of several decentralized privacy-oriented cryptocurrencies. \\
+		Contract:  & Generally a contract is a written or spoken agreement, especially one concerning employment, sales, or tenancy, that is intended to be enforceable by law. In ethereum or cryptocurrency environment a contract is more meant to be a financial contract and mostly referred to as smart contract. \\
+		External Actor: & An external actor in the context of this thesis is an entity, which resides and acts outside or inside of the cryptocurrency system, with potential malicious behavior. \\
 	\end{tabular}
 \end{center}
 
@@ -110,16 +111,29 @@ pick some current research and make MB different chapters
 
 \begin{center}
 	\begin{tabular}{ p{4cm} p{8cm} } 
-		External Actor: & (.....TEXT....) \\
-		Ether: & (.....TEXT....) \\
-		Ethereum Virtual Machine: & (.....TEXT....) \\
-		Gas: & (.....TEXT....) \\
-		Genesis Block: & (.....TEXT....) \\
-		Hash: & (.....TEXT....) \\
-		Padding: & what is padding in sha-256 context \\
-		Protocol: & what is a protocol inctroducing ethereum and solidity paper what is a protocol inctroducing ethereum and solidity paper what is a protocol inctroducing ethereum and solidity paper what is a protocol inctroducing ethereum and solidity paper what is a protocol inctroducing ethereum and solidity paper what is a protocol inctroducing ethereum and solidity paper \\
-		Public Key: & (.....TEXT....) \\
+		Ether: & Ether (short ETH) is the internal cryptocurrency of the ethereum blockchain. It can be transferred from account to account, but is also used to pay the gas fees for smart contracts and their execution of functions. \\
+		Ethereum Virtual Machine: & Ethereum provides a decentralized virtual machine, called the \ac{EVM}. It can execute scripts by using an international network of public nodes, in case of the ethereum public chain. The virtual machine's instruction set is Turing-complete. \\
+		Gas: & Its the fundamental network cost unit and can be converted freely from and to Ether as required. Gas does not exist outside of the computational engine of ethereum, its price is set by the transactions. Miners are free to ignore transactions, which have a too low gas price. \\
+		Genesis Block: & The genesis block is the first ever mined or origin block of a public or private ethereum network. It contains all essential information to configure the network and as well how to find related peers. \\
+		Hash: & Is the result of any hash function that can be used to map data of arbitrary size to fixed-size values. The values returned by a hash function are always the same result of same input and are called hash values, hash codes, digests or simply hashes. \\
+		Padding: & All six SHA functions (SHA-0, SHA-1, SHA-224, SHA-256, SHA-384 and SHA-512) start by padding the message according to the so-called Merkle-Damg{\aa}rd strengthening technique. The message is appended with a binary one and right-padded with a variable number of zeros, followed by the length of the original message coded over two binary words. The total padded message length must be a multiple of the message block size of the according function. \\
+	\end{tabular}
+\end{center}
+
+\clearpage
+
+\begin{center}
+	\begin{tabular}{ p{4cm} p{8cm} }
+		Protocol: & Generally a protocol is a system of rules how a computer and its developers can connect to, participate in and transmit information over a system or network. These instructions define code syntax and semantics that the system expects. Ethereum's protocol is built and designed for decentralized applications, with emphasis on rapid development time, security and interactivity. \\
+		Public Key: & In ethereum context the public key is derived from the private key using \ac{ECDSA}. Its also a synonym for the address.  \\
 		Public Blockchain: & (.....TEXT....) \\
+	\end{tabular}
+\end{center}
+
+\clearpage
+
+\begin{center}
+	\begin{tabular}{ p{4cm} p{8cm} }
 		Private Key: & (.....TEXT....) \\
 		Private Blockchain: & (.....TEXT....) \\
 		Storage State: & (.....TEXT....) \\
@@ -132,8 +146,6 @@ pick some current research and make MB different chapters
 		Off-chain: & (.....TEXT....) \\
 	\end{tabular}
 \end{center}
-
-
 
 
 
