@@ -294,3 +294,38 @@
 16:51:37.143941 table@remove removed @53
 21:17:24.592589 db@close closing
 21:17:24.597576 db@close done T·4.9865ms
+=============== Jul 22, 2020 (CEST) ===============
+12:17:57.946378 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+12:17:57.947376 version@stat F·[0 1] S·176B[0B 176B] Sc·[0.00 0.00]
+12:17:57.947376 db@open opening
+12:17:57.947376 journal@recovery F·1
+12:17:57.948372 journal@recovery recovering @64
+12:17:57.959343 memdb@flush created L0@67 N·1 S·159B "loc..seq,v42":"loc..seq,v42"
+12:17:57.960368 version@stat F·[1 1] S·335B[159B 176B] Sc·[0.25 0.00]
+12:17:57.971311 db@janitor F·5 G·1
+12:17:57.972309 db@janitor removing table-63
+12:17:57.972309 db@open done T·24.9334ms
+12:17:59.142163 db@close closing
+12:17:59.146152 db@close done T·3.9894ms
+=============== Jul 22, 2020 (CEST) ===============
+13:32:13.071856 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+13:32:13.075845 version@stat F·[1 1] S·335B[159B 176B] Sc·[0.25 0.00]
+13:32:13.075845 db@open opening
+13:32:13.075845 journal@recovery F·1
+13:32:13.075845 journal@recovery recovering @68
+13:32:13.082826 memdb@flush created L0@70 N·1 S·159B "loc..seq,v44":"loc..seq,v44"
+13:32:13.082826 version@stat F·[2 1] S·494B[318B 176B] Sc·[0.50 0.00]
+13:32:13.092800 db@janitor F·5 G·0
+13:32:13.092800 db@open done T·16.9548ms
+=============== Jul 22, 2020 (CEST) ===============
+14:15:54.473328 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+14:15:54.478314 version@stat F·[2 1] S·494B[318B 176B] Sc·[0.50 0.00]
+14:15:54.478314 db@open opening
+14:15:54.479335 journal@recovery F·1
+14:15:54.480337 journal@recovery recovering @71
+14:15:54.486293 memdb@flush created L0@73 N·1 S·159B "loc..seq,v46":"loc..seq,v46"
+14:15:54.487291 version@stat F·[3 1] S·653B[477B 176B] Sc·[0.75 0.00]
+14:15:54.496267 db@janitor F·6 G·0
+14:15:54.496267 db@open done T·17.9526ms
+14:15:58.985095 db@close closing
+14:15:58.989076 db@close done T·3.9815ms
