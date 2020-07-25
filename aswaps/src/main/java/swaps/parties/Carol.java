@@ -26,18 +26,18 @@ public class Carol {
         System.out.println("Connected to Carol's wallet on bitcoin Chain.");
         System.out.println("  -");
 
-        this.addressCarTitleWallet = "0x3a47996e234c792fa54960b096a2f7e88fbeddb8";
+        this.addressCarTitleWallet = "0x7ae905991c9e3cddba17557f5174b43da20d164b"; //   0x3a47996e234c792fa54960b096a2f7e88fbeddb8
         this.carTitleWallet = new swaps.Wallet("src\\wallets\\Carol-wallet-on-car-title-chainUTC--2020-07-13T17-51-24.731787200Z--7ae905991c9e3cddba17557f5174b43da20d164b", "pwd", "carol");
         System.out.println("Connected to Carol's wallet on car Title Chain.");
         System.out.println("  -");
 
     }
 
-    public void getBalanceOnCarTitleChain() throws IOException {
+    public void getBalanceOnBitCoinChain() throws IOException {
         System.out.println("Carol balance on bitcoin blockchain: " + this.bitcoinWallet.getBalance(this.addressBitcoinWallet));
     }
 
-    public void getBalanceOnAltCoinChain() throws IOException {
+    public void getBalanceOnCarTitleChain() throws IOException {
         System.out.println("Carol balance on car title blockchain: " + this.carTitleWallet.getBalance(this.addressCarTitleWallet));
     }
 

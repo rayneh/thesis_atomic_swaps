@@ -65,20 +65,30 @@ public class Digraph {
     }
 
     public void alicePublishContractOnAltCoinChain() throws Exception {
-        System.out.println("deploying contract on alt coin chain: ");
+        System.out.println("alice is deploying contract on alt coin chain: ");
         // String _party, String _counterParty, List<BigInteger> _timeLock, List<byte[]> _hashLock, BigInteger _start
         String contractAddress = this.alice.deploySwapContractOnAltCoinChain(this.alice.getAddressAltCoinWallet(), this.bob.addressAltCoinWallet, SwapUtils.convertLongArrayToBigIntegerList(this.timeLocks), this.hashLocks, this.timeLock.getStartAsBigInteger());
-        System.out.println("contract address on alt coin chain: " + contractAddress);
+        System.out.println("alice's contract address on alt coin chain: " + contractAddress);
 
         //TODO : send funds!
     }
 
-    public void bobPublishContractOnBtcChain() {
-        //TODO: bob publishes contract on btc chain and locks his funds!
+    public void bobPublishContractOnBtcChain() throws Exception {
+        System.out.println("bob is deploying contract on bitcoin chain: ");
+        // String _party, String _counterParty, List<BigInteger> _timeLock, List<byte[]> _hashLock, BigInteger _start
+        String contractAddress = this.bob.deploySwapContractOnBitCoinChain(this.bob.addressBitcoinWallet, this.carol.addressBitcoinWallet, SwapUtils.convertLongArrayToBigIntegerList(this.timeLocks), this.hashLocks, this.timeLock.getStartAsBigInteger());
+        System.out.println("bob's contract address on bitcoin chain: " + contractAddress);
+
+        //TODO : send funds!
     }
 
-    public void carolPublishContractOnCarTitleChain() {
-        //TODO: carol publishes contract on car title chains and locks her funds!
+    public void carolPublishContractOnCarTitleChain() throws Exception {
+        System.out.println("carol is deploying contract on car title chain: ");
+        // String _party, String _counterParty, List<BigInteger> _timeLock, List<byte[]> _hashLock, BigInteger _start
+        String contractAddress = this.carol.deploySwapContractOnCarTitleChain(this.carol.addressCarTitleWallet, this.alice.addressCarTitleWallet, SwapUtils.convertLongArrayToBigIntegerList(this.timeLocks), this.hashLocks, this.timeLock.getStartAsBigInteger());
+        System.out.println("carol's contract address on car title chain: " + contractAddress);
+
+        //TODO : send funds!
     }
 
     public void aliceClaimCarTitle() {

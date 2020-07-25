@@ -37,8 +37,8 @@ public class SwapProtocol {
             this.printPoolBalances();
             this.printBalances();
 
-            //this.prepareTrade();      //TODO: prepares trade! only run once before the swap
-            //this.printBalances();
+            this.prepareTrade();      //TODO: prepares trade! only run once before the swap
+            this.printBalances();
 
 
             System.out.println("h = H(s): " + alice.getHashLockAsHex());
@@ -98,6 +98,8 @@ public class SwapProtocol {
             this.digraph = new Digraph(alice, bob, carol);
             this.digraph.init();
             this.digraph.triggerPath("AB");
+            this.digraph.triggerPath("BA");
+            this.digraph.triggerPath("CC");
 
             //Swap swap = new Swap();         // String contractAddress, Web3j web3j, Credentials credentials, BigInteger gasPrice, BigInteger gasLimit
             //public static RemoteCall<Swap> deploy(Web3j web3j, Credentials credentials, ContractGasProvider contractGasProvider);
@@ -133,7 +135,7 @@ public class SwapProtocol {
         bob.getBalanceOnCarTitleChain();
         bob.getBalanceOnAltCoinChain();
         System.out.println("      -");
-        carol.getBalanceOnAltCoinChain();
+        carol.getBalanceOnBitCoinChain();
         carol.getBalanceOnCarTitleChain();
         System.out.println("      -");
     }
