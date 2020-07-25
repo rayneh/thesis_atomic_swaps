@@ -10,7 +10,7 @@ public class HashLock {
     private final MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
     private final String secret;
 
-    public HashLock(String secret) throws NoSuchAlgorithmException {
+    public HashLock(String secret) throws NoSuchAlgorithmException {            //TODO add block sig or num to hashlock, then create 3 hashlocks
         this.secret = secret;
         this.messageDigest.update(this.secret.getBytes(StandardCharsets.UTF_8));
     }
@@ -37,5 +37,10 @@ public class HashLock {
 
     public String getEncodedHashLock() {
         return Base64.getEncoder().encodeToString(this.getHashLockAsByteArray());
+    }
+
+    public String getEncodedHashLockWithCurrentBlockAppended(String block) {
+        String result = this.secret + block;
+        return Base64.getEncoder().encodeToString(result.getBytes(StandardCharsets.UTF_8));
     }
 }

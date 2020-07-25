@@ -1,11 +1,14 @@
 package swaps.parties;
 
+import org.web3j.crypto.Hash;
 import swaps.HashLock;
 import swaps.Wallet;
 
 import javax.imageio.IIOException;
 import java.io.IOException;
+import java.math.BigInteger;
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 
 
 public class Alice {
@@ -18,6 +21,8 @@ public class Alice {
 
     private String secret;
     private HashLock hashLock;
+
+    private String[] blockNumbersAtContractCreation;
 
     public Alice() throws NoSuchAlgorithmException {
         this.setWallets();
@@ -75,6 +80,22 @@ public class Alice {
 
     public String getEncodedHash() {
         return this.hashLock.getEncodedHashLock();
+    }
+
+    public String getCurrentAltCoinBlock() throws IOException {
+        return this.altCoinWallet.getCurrentBlock();
+    }
+
+    public HashLock getHashLockObject() {
+        return this.hashLock;
+    }
+
+    public void setBlockNumbers(String[] blockNumbers) {
+        this.blockNumbersAtContractCreation = blockNumbers;
+    }
+
+    public String deploySwapContractOnAltCoinChain(String _party, String _counterParty, List<BigInteger> _timeLock, List<byte[]> _hashLock, BigInteger _start) throws Exception {
+        return this.altCoinWallet.deploySwapContract(_party, _counterParty, _timeLock, _hashLock, _start);
     }
 
 }

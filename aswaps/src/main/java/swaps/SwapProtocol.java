@@ -1,8 +1,10 @@
 package swaps;
 
 
+import org.web3j.protocol.core.RemoteCall;
 import org.web3j.protocol.core.methods.response.EthGetTransactionReceipt;
 import org.web3j.protocol.core.methods.response.TransactionReceipt;
+import swaps.contracts.generated.Swap;
 import swaps.parties.Alice;
 import swaps.parties.Bob;
 import swaps.parties.Carol;
@@ -38,7 +40,6 @@ public class SwapProtocol {
             //this.prepareTrade();      //TODO: prepares trade! only run once before the swap
             //this.printBalances();
 
-            this.digraph = new Digraph(alice, bob, carol);
 
             System.out.println("h = H(s): " + alice.getHashLockAsHex());
             System.out.println("h = H(s): " + alice.getHashLockAsHex());
@@ -51,11 +52,14 @@ public class SwapProtocol {
 
             System.out.println(SwapUtils.isMessageDigestByteEqual(alice.getHashLockAsByteArray(), alice.getHashLockAsByteArray()));
 
-            TimeLock timeLock = new TimeLock(2L, 2L);
+            TimeLock timeLock = new TimeLock(2L, 3L);
             System.out.println("start time: " + timeLock.getStartInMilliSeconds());
             System.out.println("time contracts: " + timeLock.getTimeToDeployContractsInMilliSeconds());
             System.out.println("time funds: " + timeLock.getTimeToSendFundsInMilliSeconds());
             System.out.println("time now: " + timeLock.getTimeNowInMilliSeconds());
+
+            Long[] timeLocks = timeLock.getTimeLockArray();
+            System.out.println("TIMELOCK ARRAY -> " + timeLocks[0] + " " + timeLocks[1] + " " + timeLocks[2]);
             //alice.getAltCoinWallet().getNonce(alice.addressAltCoinWallet);
             //System.out.println(alice.getAltCoinWallet().getNonce(alice.addressAltCoinWallet)); //PRINT NONCE
             //System.out.println(alice.getAltCoinWallet().convertToWei("1")); //amount to send
@@ -67,7 +71,41 @@ public class SwapProtocol {
             //System.out.println(bitcoinPool.getBalance("0x01d091a2bcce9fcc71d1e4c8d83113ca9d150e26"));
 
 
-        } catch (IOException | NoSuchAlgorithmException e) { //| InterruptedException
+
+            System.out.println("current alt-coin block: " + alice.getCurrentAltCoinBlock());
+            System.out.println("current bitcoin block: " + bob.getCurrentBitcoinBlock());
+            System.out.println("current car title block: " + carol.getCurrentCarTitleBlock());
+
+            System.out.println("hashlock[0] encoded: " + alice.getHashLockObject().getEncodedHashLockWithCurrentBlockAppended(alice.getCurrentAltCoinBlock()));
+            System.out.println("hashlock[1] encoded: " + alice.getHashLockObject().getEncodedHashLockWithCurrentBlockAppended(bob.getCurrentBitcoinBlock()));
+            System.out.println("hashlock[2] encoded: " + alice.getHashLockObject().getEncodedHashLockWithCurrentBlockAppended(carol.getCurrentCarTitleBlock()));
+
+            String[] hashLocks = new String[3];         // hashlock array for contracts
+            hashLocks[0] = alice.getHashLockObject().getEncodedHashLockWithCurrentBlockAppended(alice.getCurrentAltCoinBlock());
+            hashLocks[1] = alice.getHashLockObject().getEncodedHashLockWithCurrentBlockAppended(bob.getCurrentBitcoinBlock());
+            hashLocks[2] = alice.getHashLockObject().getEncodedHashLockWithCurrentBlockAppended(carol.getCurrentCarTitleBlock());
+
+            System.out.println("HASHLOCK ARRAY -> " + hashLocks[0] + " " + hashLocks[1] + " " + hashLocks[2]);
+
+            // creating hashlock with wrong secret
+            HashLock hashLock = new HashLock("iaaaa");
+            System.out.println("hashlock[0] with wrong secret: " + hashLock.getEncodedHashLockWithCurrentBlockAppended(alice.getCurrentAltCoinBlock()));
+
+            //TODO: next steps -> deploy contracts !!
+            // and then when alice claims the funds (unlocks) bob and carol have to unlock hashlock[i] in their contracts
+
+            System.out.println("init..");
+            this.digraph = new Digraph(alice, bob, carol);
+            this.digraph.init();
+            //this.digraph.triggerPath("AB");       // EXCEPTION!!!
+
+            //Swap swap = new Swap();         // String contractAddress, Web3j web3j, Credentials credentials, BigInteger gasPrice, BigInteger gasLimit
+            //public static RemoteCall<Swap> deploy(Web3j web3j, Credentials credentials, ContractGasProvider contractGasProvider);
+
+
+
+
+        } catch (Exception e) { //| InterruptedException
             e.printStackTrace();
         }
 

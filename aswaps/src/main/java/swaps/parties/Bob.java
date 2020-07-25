@@ -3,6 +3,8 @@ package swaps.parties;
 import swaps.Wallet;
 
 import java.io.IOException;
+import java.math.BigInteger;
+import java.util.List;
 
 public class Bob {
     Wallet bitcoinWallet;
@@ -10,6 +12,8 @@ public class Bob {
 
     public String addressBitcoinWallet;
     public String addressAltCoinWallet;
+
+    private String[] blockNumbersAtContractCreation;
 
     public Bob() {
         this.setWallets();
@@ -51,5 +55,17 @@ public class Bob {
 
     public String getAddressBitcoinWallet() {
         return this.addressBitcoinWallet;
+    }
+
+    public String getCurrentBitcoinBlock() throws IOException {
+        return this.bitcoinWallet.getCurrentBlock();
+    }
+
+    public void setBlockNumbers(String[] blockNumbers) {
+        this.blockNumbersAtContractCreation = blockNumbers;
+    }
+
+    public String deploySwapContractOnBitCoinChain(String _party, String _counterParty, List<BigInteger> _timeLock, List<byte[]> _hashLock, BigInteger _start) throws Exception {
+        return this.bitcoinWallet.deploySwapContract(_party, _counterParty, _timeLock, _hashLock, _start);
     }
 }

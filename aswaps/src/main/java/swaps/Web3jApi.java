@@ -34,4 +34,9 @@ public class Web3jApi {
     BigDecimal ethGetBalanceToken(String address) throws IOException {
         return Convert.fromWei(String.valueOf(node.getWeb3j().ethGetBalance(address, DefaultBlockParameterName.LATEST).send().getBalance()), Convert.Unit.ETHER);
     }
+
+    public String getCurrentBlock() throws IOException {
+        EthBlockNumber ethBlockNumber = node.getWeb3j().ethBlockNumber().send();
+        return ethBlockNumber.getBlockNumber().toString();
+    }
 }

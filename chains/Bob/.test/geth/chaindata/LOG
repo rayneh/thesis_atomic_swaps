@@ -296,3 +296,14 @@
 14:15:54.463355 db@open done T·12.9655ms
 14:15:58.977117 db@close closing
 14:15:58.980128 db@close done T·3.0115ms
+=============== Jul 25, 2020 (CEST) ===============
+17:02:53.011643 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+17:02:53.017649 version@stat F·[0 1] S·215KiB[0B 215KiB] Sc·[0.00 0.00]
+17:02:53.017649 db@open opening
+17:02:53.017649 journal@recovery F·1
+17:02:53.019622 journal@recovery recovering @57
+17:02:53.021616 version@stat F·[0 1] S·215KiB[0B 215KiB] Sc·[0.00 0.00]
+17:02:53.033611 db@janitor F·3 G·0
+17:02:53.033611 db@open done T·15.9623ms
+20:55:55.388899 db@close closing
+20:55:55.392910 db@close done T·4.0112ms

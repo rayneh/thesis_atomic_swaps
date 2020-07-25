@@ -7,12 +7,15 @@ import org.web3j.protocol.core.methods.response.EthGetTransactionCount;
 import org.web3j.protocol.core.methods.response.EthGetTransactionReceipt;
 import org.web3j.protocol.core.methods.response.EthSendTransaction;
 import org.web3j.protocol.core.methods.response.TransactionReceipt;
+import org.web3j.tx.gas.DefaultGasProvider;
 import org.web3j.utils.Convert;
 import org.web3j.utils.Numeric;
+import swaps.contracts.generated.Swap;
 
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.util.List;
 import java.util.Optional;
 
 public class Wallet {
@@ -127,6 +130,16 @@ public class Wallet {
 
             Thread.sleep(1000); // Retry after 3 sec
         } while(!transactionReceipt.isPresent());
+    }
+
+    public String getCurrentBlock() throws IOException {
+        return this.web3jApi.getCurrentBlock();
+    }
+
+    public String deploySwapContract(String _party, String _counterParty, List<BigInteger> _timeLock, List<byte[]> _hashLock, BigInteger _start) throws Exception {
+        Swap swap = Swap.deploy(ethNode.getWeb3j(), credentials, new DefaultGasProvider(), _party, _counterParty, _timeLock, _hashLock, _start).send();
+
+        return swap.getContractAddress();
     }
 
 

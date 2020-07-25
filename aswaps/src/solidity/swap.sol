@@ -1,40 +1,50 @@
-pragma solidity ^0.5.6;
+pragma solidity ^0.6.0;
 
 contract Swap {
-    Asset asset;    //asset
-    Digraph digraph;
-    address[] leaders;
     address party;
     address counterParty;
     uint[] timeLock;
-    uint[] hashLock;
+    string[] hashLocks;
     bool[] unlocked;
     uint start;
 
-    function Swap(Asset _asset, Digraph _digraph, address[] _leaders, address _party, address _counterParty, uint[] _timeLock, uint[] _hashLock, uint start) {
-        asset = _asset;
+    function Swap(address _party, address _counterParty, uint[] _timeLock, string[] _hashLock, uint start) {
         party = _party;
         counterParty = _counterParty;
         timeLock = _timeLock;
-        hashLock = _hashLock;
-        unlocked = [false, false, false];
+        hashLocks = _hashLock;
+        unlocked[] = [false, false, false];
     }
 
-    function unlock(int i, uint s, Path path, Sig sig) {
+    function unlock(int i, string hashLock, uint now) {             // TODO: MB add sig after first test  AND isPath not needed, since digraph is implemented offchain
         require (msg.sender == counterParty);
 
-        //if ( now < start + (diam(digraph) + |path|)*triangle && hashlock[i] == H(s) && isPath(path, digraph, leader[i], counterparty) && verifySigs(sig, s , path) ) {unlocked[i] = true}
+        if (now < timeLock[i] && hashLocks[i] == hashLock) {                                        // DONE: if ( now < start + (diam(digraph) + |path|)*triangle && hashlock[i] == H(s) && isPath(path, digraph, leader[i], counterparty) && verifySigs(sig, s , path) ) {unlocked[i] = true}
+            unlocked[i] = true;
+        }
     }
 
-    function refund() {
+    function isUnlocked(int i) public returns (bool) {
+        return unlocked[i];
+    }
+
+    function lockEther() public payable {
+        require (msg.value == 1 && msg.sender == party);
+    }
+
+    function refund(uint now) {
         require (msg.sender == party);
 
-        //if ( any hashlock unlocked and timed out ) {transer asset to party; halt;}
+        if (now > timeLock) {                                                                       // DONE: if ( any hashlock unlocked and timed out ) {transer asset to party; halt;}
+            party.transfer(address(this).balance);
+        }
     }
 
     function claim() {
         require (msg.sender == counterParty);
 
-        //if (every hashlock unlocked) {transfer asset to counterparty; halt;}
+        if (unlocked[0] == true && unlocked[1] == true && unlocked[2] == true) {                    //DONE: if (every hashlock unlocked) {transfer asset to counterparty; halt;}
+            counterParty.transfer(address(this).balance);
+        }
     }
 }
