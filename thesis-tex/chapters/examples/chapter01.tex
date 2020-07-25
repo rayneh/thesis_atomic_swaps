@@ -3,7 +3,7 @@
 %
 \chapter{Introduction}
 \label{ch:intro}
-This Chapter will discuss the motivation and several historic information which led to the research objective covered by this thesis. Next chapter will discuss the model and general principles serving as foundation to address the research objective. Finally the implementation of atomic cross-chain swaps on Ethereum blockchains will be presented. Followed by an outlook into the future of blockchain interoperability research will be an own chapter. The last chapter will be a conclusion of this work, to reflect the whole thesis.
+This chapter \ref{ch:intro} discusses the motivation and several historic information which led to the research objective covered by this thesis. The next chapter \ref{ch:background} introduces the model and general principles serving as foundation to address the research objective. Followed by chapter \ref{ch:chapter03} which presents a requirement analysis for the three-way swap prototype. In chapter \ref{ch:chapter04} the implementation of atomic cross-chain swaps on Ethereum blockchains is presented. The last chapter \ref{ch:chapter05} discusses a conclusion of this work, to reflect the whole thesis and address future research directions. Finally the last chapter \ref{ch:chapter06} presents important terminology, which is crucial to understand the topics mentioned above.
 
 %TODO mightn want to change the introduction, more like a story
 %
@@ -20,7 +20,53 @@ Decentralization and scaling of blockchains is a widely addressed topic by many 
 %
 \section{Research Objectives}
 \label{sec:intro:goal}
-This work covers three research objectives in general, which are equally weighted in importance. The chapter model and general principles will explain the basics like the ethereum blockchain and smart contracts to build the foundation to understand the implementation of atomic cross-chain swaps. Besides the \ac{EVM} and smart contacts digraphs will also be discussed, since they are crucial to execute a secure swap between two or three blockchains. The second part will introduce the implementation of atomic cross-chain swaps between three blockchains (three-way swap) and will discuss the reference architecture and the implementation of the smart contracts in detail. The last part will be all about future research and an outlook about current blockchain research to show the direction and possible outcome of an blockchain ecosystem which we might see in the future. Since there is a vast amount of blockchains with different consensus algorithms and software architectures there seems to be a need for interoperability between these chains. Some researchers do even propose whole frameworks in order to remove the intermediate party and swap information, token or assets back and forth between these chains. Ultimately this work will provide an implementation of atomic cross-chain swaps between three ethereum blockchains, enabling end users to trade information, assets or token between three chains without an intermediate party and discuss an overview about current and future blockchain research addressing interoperability.
+This work covers three research objectives in general, which are equally weighted in importance. The chapter \ref{ch:background} presents foundations such as the ethereum blockchain and smart contracts to build the foundation to understand the implementation of atomic cross-chain swaps. Besides the \ac{EVM} and smart contacts digraphs will also be discussed, since they are crucial to execute a secure swap between two or three blockchains. The second part will introduce the implementation of atomic cross-chain swaps between three blockchains (three-way swap) and will discuss the reference architecture and the implementation of the smart contracts in detail. The last part will be all about future research and an outlook about current blockchain research to show the direction and possible outcome of an blockchain ecosystem which we might see in the future. Since there is a vast amount of blockchains with different consensus algorithms and software architectures there seems to be a need for interoperability between these chains. Some researchers do even propose whole frameworks in order to remove the intermediate party and swap information, token or assets back and forth between these chains. Ultimately this work will provide an implementation of atomic cross-chain swaps between three ethereum blockchains, enabling end users to trade information, assets or token between three chains without an intermediate party and discuss an overview about current and future blockchain research addressing interoperability.
+
+%
+% Section: Ziele
+%
+\section{Related Work}
+\label{sec:intro:relatedwork}
+
+The concept of two-party atomic cross-chain swaps is believed that it emerged from an online forum discussion, see footnotes for references to bitcoinwiki and bitcointalk threads \cite{atomictrading} \cite{cutandchoose}. There is open source code available on github \cite{hashedtimelocked} \cite{dered} implementing a two-party cross-chain swaps protocol for selected currencies, as well as another proposal for applications using swaps \cite{zyskind2018enigma}. To address the scalability limits of existing blockchains several off-chain payment networks do exist, for further details refer to \cite{raidennetwork} and to \cite{poon2016bitcoin} \cite{decker2015fast} \cite{green2017bolt}. These concepts process multiple transactions off-chain and eventually resolve the final balance through a single on-chain transaction. The Revive network \cite{khalil2017revive} is another actor which uses off-chain transactions in a way to ensure, that participating parties do not end off worse in the process of re-balancing. These algorithms also utilitize the concept of hashed timelock contracts, but they address a different set of problems. Multi-party swaps in example become important, when matching kidney donors and recipients. Think of a case, where a transplant recipient has an incompatible donor and wants to swap donor with another recipient where all parties want to assure, that each recipient obtains a compatible organ. A number of algorithms \cite{abraham2007clearing} \cite{dickerson2016position} \cite{jia2017efficient} have been proposed for matching donors and recipients. Shapley and Scarf \cite{shapley1974cores} write about the circumstances under which a certain kind of swap markets could have strong equilibrium. Kaplan \cite{kaplan2011improved} describes a polynominal-time algorithm, which constructs a swap digraph for a given set of swaps, if one exists. This paper focuses on "the clearing problem" though, which is roughly analogous to constructing a swap digraph, but not on how execute those atomic cross-chain swaps on blockchains. A precursor of atomic cross-chain swaps is the fair exchange problem \cite{franklin1998secure} \cite{micali2003simple}. It tries to find a solution for an asset exchange between parties, which do not trust each other. Since its proven that a fair exchange between two parties can not be guaranteed without a trusted third party \cite{pagnia1999impossibility}, atomic cross-chain swaps could be a successor to the fair exchange problem through new technologies like blockchain and smart contracts. Borkowski proposes \ac{DeXTT} another uptake on blockchain interoperability by formally describing blockchains and token transfers between those, through utilitizing concepts such as claim-first transactions and determistic witnesses \cite{borkowski2019dextt}. Komodo \cite{barterdex2020} by SuperNETorg is another available atomic swap decentralized exchange of native coins, their BarterDEX system combines three key component like order matching, trade clearing and liquidity provision in a single system. It allows users to make a coin conversion request, find a suitable match and complete the trade using an atomic cross-chain protocol. Despite the fact that blockchain interoperability is addressed by many researches in different ways, these cross-chain technologies fall into three main categories according to Li and Zhang \cite{li2019research}. The main categories of the cross-chain technologies are notary or multiple signature schemes, side chain/relay chain and hash timelock, the principles of these main categories are shown in table \ref{table:1}. \newline
+
+\begin{table}[h!]
+	\centering
+	\begin{tabular}{|c | c | c |} 
+		\hline 
+		Cross-chain technology & Algorithmic principle & Shortcoming \\ [0.5ex] 
+		\hline \hline
+		Notary & Transfer of assets to notary accounts & Weak centralization  \\ 
+		\hline
+		Side chain & Read the data in the side chain & Verification difficulties  \\
+		\hline
+		Relay chain & Establishing relay chain & Data redundancy  \\ [1ex] 
+		\hline
+	\end{tabular}
+	\caption{Cross-chain technology comparison}
+	\label{table:1}
+\end{table}
+
+The notary or multi-signature scheme is a solution with weak centralization. It transfers assets by locking them to multiple accounts on the main-chain and requires signatures from multiple notaries to release the locked funds. Ripple by Interledger protocol \cite{hope2016interledger} transfers assets across different blockchains through trusted third parties. To transfer assets cross-chain, the notary or multi-signature scheme is the simplest way to achieve swaps, but still depends on the honesty of the notaries to ensure none of the participating parties end up worse. The side chain technology transfers digital assets by reading the data from the main chain and verifies the authenticity of the transaction payments. For example the BTC Relay \cite{btcrelay} project implements those cross-chain payments by verifying the bitcoin \ac{SPV} payment path to trigger ethereum smart contracts \cite{buterin2014ethereum}. The relay technology links existing blockchains by building a relay chain to implement cross-chain swaps of assets. Cosmos \cite{kwon2018network} and Polkadot \cite{wood2016polkadot} propose a cross-chain platform compatible with any blockchain, to build such a system they combine the notary and relay technology. \newline \newline
+
+
+
+% MB interesting https://arxiv.org/ftp/arxiv/papers/1902/1902.04471.pdf   -> read it, talks about on and off chain impl of swaps!!
+
+% TODO evaluate content from future research and outlook!! : AND ADD TEXT BEFORE THE COMPARISON TABLE
+% MB add subchapter for variety of consensus algorithms and tell why pow needs to be replaced and the different purposes of those algorithms.
+% Consensus mechanisms	Proof of authorityProof of spaceProof of stakeProof of work
+
+%theres also research specifically for ethereum private sidechains \cite{robinson2019atomic}
+
+non interactive proofs of poW \cite{kiayias2017non} sidechains \cite{kiayias2019proof} chain interoperability \cite{buterin2016chain} sharding \cite{buterin2017sharding} plasma \cite{poon2017plasma} z-snarks \cite{garoffolo2020zendoo} towards secure interoperability with smart contracts \cite{dagher2017towards}
+
+caught in chains mention open tasks from paper \cite{borkowski2018caught}
+pegged sidechains \cite{back2014enabling}
+sidechains and interoperability \cite{johnson2019sidechains}
+tendermint \cite{kwon2014tendermint} buchmann \cite{buchman2016tendermint} PBFT \cite{castro1999practical}
+
+% These areas range from generic industrial applications to more specic use cases in Business Process Management (BPM) [5,6], anti-counterfeiting [7], or healthcare [8].  from -> towards blockchain interoperability \cite{schulte2019towards}
 
 
 

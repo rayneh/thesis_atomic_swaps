@@ -1,91 +1,43 @@
-\chapter{Related Work}
-\label{ch:chapter03}
-%theres also research specifically for ethereum private sidechains \cite{robinson2019atomic}
-%from cross.chain swaps paper 
-%CROSS CHAIN SWAPS ARE WELL KNOWN CONCEPT IN BLOCKCHAIN COMMUNITY [4,6,9,20,21,27] -> explain further in related work tho!!
-
-The concept of two-party atomic cross-chain swaps is believed that it emerged from an online forum discussion, see footnotes for references to bitcoinwiki and bitcointalk threads \cite{atomictrading} \cite{cutandchoose}. There is open source code available on github \cite{hashedtimelocked} \cite{dered} implementing a two-party cross-chain swaps protocol for selected currencies, as well as another proposal for applications using swaps \cite{zyskind2018enigma}. To address the scalability limits of existing blockchains several off-chain payment networks do exist, for further details refer to \cite{raidennetwork} and to \cite{poon2016bitcoin} \cite{decker2015fast} \cite{green2017bolt}. These concepts process multiple transactions off-chain and eventually resolve the final balance through a single on-chain transaction. The Revive network \cite{khalil2017revive} is another actor which uses off-chain transactions in a way to ensure, that participating parties do not end off worse in the process of re-balancing. These algorithms also utilitize the concept of hashed timelock contracts, but they address a different set of problems. Multi-party swaps in example become important, when matching kidney donors and recipients. Think of a case, where a transplant recipient has an incompatible donor and wants to swap donor with another recipient where all parties want to assure, that each recipient obtains a compatible organ. A number of algorithms \cite{abraham2007clearing} \cite{dickerson2016position} \cite{jia2017efficient} have been proposed for matching donors and recipients. Shapley and Scarf \cite{shapley1974cores} write about the circumstances under which a certain kind of swap markets could have strong equilibrium. Kaplan \cite{kaplan2011improved} describes a polynominal-time algorithm, which constructs a swap digraph for a given set of swaps, if one exists. This paper focuses on "the clearing problem" though, which is roughly analogous to constructing a swap digraph, but not on how execute those atomic cross-chain swaps on blockchains. A precursor of atomic cross-chain swaps is the fair exchange problem \cite{franklin1998secure} \cite{micali2003simple}. It tries to find a solution for an asset exchange between parties, which do not trust each other. Since its proven that a fair exchange between two parties can not be guaranteed without a trusted third party \cite{pagnia1999impossibility}, atomic cross-chain swaps could be a successor to the fair exchange problem through new technologies like blockchain and smart contracts. Borkowski proposes \ac{DeXTT} another uptake on blockchain interoperability by formally describing blockchains and token transfers between those, through utilitizing concepts such as claim-first transactions and determistic witnesses \cite{borkowski2019dextt}. Komodo \cite{barterdex2020} by SuperNETorg is another available atomic swap decentralized exchange of native coins, their BarterDEX system combines three key component like order matching, trade clearing and liquidity provision in a single system. It allows users to make a coin conversion request, find a suitable match and complete the trade using an atomic cross-chain protocol. Despite the fact that blockchain interoperability is addressed by many researches in different ways, these cross-chain technologies fall into three main categories according to Li and Zhang \cite{li2019research}. The main categories of the cross-chain technologies are notary or multiple signature schemes, side chain/relay chain and hash timelock, the principles of these main categories are shown in table \ref{table:1}. \newline
-
-\begin{table}[h!]
-	\centering
-	\begin{tabular}{|c | c | c |} 
-		\hline 
-		Cross-chain technology & Algorithmic principle & Shortcoming \\ [0.5ex] 
-		\hline \hline
-		Notary & Transfer of assets to notary accounts & Weak centralization  \\ 
-		\hline
-		Side chain & Read the data in the side chain & Verification difficulties  \\
-		\hline
-		Relay chain & Establishing relay chain & Data redundancy  \\ [1ex] 
-		\hline
-	\end{tabular}
-	\caption{Cross-chain technology comparison}
-	\label{table:1}
-\end{table}
-
-The notary or multi-signature scheme is a solution with weak centralization. It transfers assets by locking them to multiple accounts on the main-chain and requires signatures from multiple notaries to release the locked funds. Ripple by Interledger protocol \cite{hope2016interledger} transfers assets across different blockchains through trusted third parties. To transfer assets cross-chain, the notary or multi-signature scheme is the simplest way to achieve swaps, but still depends on the honesty of the notaries to ensure none of the participating parties end up worse. The side chain technology transfers digital assets by reading the data from the main chain and verifies the authenticity of the transaction payments. For example the BTC Relay \cite{btcrelay} project implements those cross-chain payments by verifying the bitcoin \ac{SPV} payment path to trigger ethereum smart contracts \cite{buterin2014ethereum}. The relay technology links existing blockchains by building a relay chain to implement cross-chain swaps of assets. Cosmos \cite{kwon2018network} and Polkadot \cite{wood2016polkadot} propose a cross-chain platform compatible with any blockchain, to build such a system they combine the notary and relay technology. How the above and other uptakes towards interoperability function in detail will be discussed in \autoref{ch:chapter06}.
-
-% MB interesting https://arxiv.org/ftp/arxiv/papers/1902/1902.04471.pdf   -> read it, talks about on and off chain impl of swaps!!
-
 \chapter{Requirement Analysis and Concept}
-\label{ch:chapter04}
+\label{ch:chapter03}
 WRITE ABOUT REQUIREMENT ANALYSIS AND CONCEPT HERE
 % https://www.visual-paradigm.com/guide/requirements-gathering/requirement-analysis-techniques/
 
 \chapter{Implementation}
-\label{ch:chapter05}
+\label{ch:chapter04}
 WRITE ABOUT IMPLEMENTATION HERE
 
 \section{Reference Architecture}
-\label{sec:chapter05:ref_architecture}
+\label{sec:chapter04:ref_architecture}
 
 SHOW FIGURE FOR REFERENCE ARCHITECTURE HERE
 %
 % Section: Listen
 %
 \section{Smart Contracts}
-\label{sec:chapter05:smartcontracts}
+\label{sec:chapter04:smartcontracts}
 WRITE ABOUT SMART CONTRACT IMPLEMENTATIONS HERE
 
 \section{Middleware (Intermediate Party)}
-\label{sec:chapter05:middleware}
+\label{sec:chapter04:middleware}
 WRITE ABOUT MIDDLEWARE HERE
 
 \section{Proof of Concept (aka Tests?)}
-\label{sec:chapter05:poc}
+\label{sec:chapter04:poc}
 EXPLAIN TESTING AND PROOF OF CONCEPT HERE
 
-\chapter{Future Research and Outlook}
-\label{ch:chapter06}
-% MB add subchapter for variety of consensus algorithms and tell why pow needs to be replaced and the different purposes of those algorithms.
-WRITE ABOUT FUTURE RESEARCH AND OUTLOOK HERE
-non interactive proofs of poW \cite{kiayias2017non} sidechains \cite{kiayias2019proof} polkadot \cite{wood2016polkadot}  chain interoperability \cite{buterin2016chain} sharding \cite{buterin2017sharding} plasma \cite{poon2017plasma} z-snarks \cite{garoffolo2020zendoo} towards secure interoperability with smart contracts \cite{dagher2017towards}
-
-caught in chains mention open tasks from paper \cite{borkowski2018caught}
-pegged sidechains \cite{back2014enabling}
-sidechains and interoperability \cite{johnson2019sidechains}
-
-% These areas range from generic industrial applications to more specic use cases in Business Process Management (BPM) [5,6], anti-counterfeiting [7], or healthcare [8].  from -> towards blockchain interoperability \cite{schulte2019towards}
-
-COSMOS \cite{kwon2018network} and tendermint \cite{kwon2014tendermint} buchmann \cite{buchman2016tendermint} PBFT \cite{castro1999practical}
-
-pick some current research and make MB different chapters
-
-% Consensus mechanisms	Proof of authorityProof of spaceProof of stakeProof of work
-
-\section{Interoperability Technologies}
-\label{sec:background:interoperability}
-
-\section{Consensus Algorithms}
-\label{sec:background:consensus}
-
-
 \chapter{Conclusion}
-\label{ch:chapter07}
+\label{ch:chapter05}
+
+\section{Future Research}
+\label{sec:background:futureresearch}
+
+\section{Acknowledgements}
+\label{sec:background:acknowledgements}
 
 
 \chapter{Terminology}
-\label{ch:chapter08}
+\label{ch:chapter06}
 
 \begin{center}
 	\begin{tabular}{ p{4cm} p{8cm} } 
