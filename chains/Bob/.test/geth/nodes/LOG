@@ -349,3 +349,40 @@
 17:02:53.090432 table@remove removed @66
 20:55:55.396877 db@close closing
 20:55:55.399868 db@close done T·2.9912ms
+=============== Jul 25, 2020 (CEST) ===============
+20:59:46.847586 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+20:59:46.851575 version@stat F·[0 1] S·176B[0B 176B] Sc·[0.00 0.00]
+20:59:46.851575 db@open opening
+20:59:46.851575 journal@recovery F·1
+20:59:46.852573 journal@recovery recovering @77
+20:59:46.862546 memdb@flush created L0@80 N·1 S·159B "loc..seq,v50":"loc..seq,v50"
+20:59:46.864540 version@stat F·[1 1] S·335B[159B 176B] Sc·[0.25 0.00]
+20:59:46.875512 db@janitor F·5 G·1
+20:59:46.875512 db@janitor removing table-76
+20:59:46.876508 db@open done T·24.933ms
+21:20:05.044721 db@close closing
+21:20:05.047712 db@close done T·2.9908ms
+=============== Jul 25, 2020 (CEST) ===============
+21:20:43.423766 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+21:20:43.423766 version@stat F·[1 1] S·335B[159B 176B] Sc·[0.25 0.00]
+21:20:43.423766 db@open opening
+21:20:43.423766 journal@recovery F·1
+21:20:43.424764 journal@recovery recovering @81
+21:20:43.431745 memdb@flush created L0@83 N·1 S·159B "loc..seq,v52":"loc..seq,v52"
+21:20:43.432743 version@stat F·[2 1] S·494B[318B 176B] Sc·[0.50 0.00]
+21:20:43.443713 db@janitor F·5 G·0
+21:20:43.443713 db@open done T·19.9471ms
+21:21:25.064158 db@close closing
+21:21:25.068117 db@close done T·3.9593ms
+=============== Jul 25, 2020 (CEST) ===============
+21:21:26.910763 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+21:21:26.911761 version@stat F·[2 1] S·494B[318B 176B] Sc·[0.50 0.00]
+21:21:26.911761 db@open opening
+21:21:26.911761 journal@recovery F·1
+21:21:26.912760 journal@recovery recovering @84
+21:21:26.919739 memdb@flush created L0@86 N·1 S·159B "loc..seq,v54":"loc..seq,v54"
+21:21:26.920740 version@stat F·[3 1] S·653B[477B 176B] Sc·[0.75 0.00]
+21:21:26.931707 db@janitor F·6 G·0
+21:21:26.931707 db@open done T·19.9467ms
+21:23:19.874555 db@close closing
+21:23:19.879542 db@close done T·4.9874ms

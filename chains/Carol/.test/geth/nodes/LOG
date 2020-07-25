@@ -349,3 +349,16 @@
 17:02:48.534394 table@remove removed @66
 20:55:57.575705 db@close closing
 20:55:57.579694 db@close done T·3.989ms
+=============== Jul 25, 2020 (CEST) ===============
+20:59:50.469921 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+20:59:50.469921 version@stat F·[0 1] S·176B[0B 176B] Sc·[0.00 0.00]
+20:59:50.469921 db@open opening
+20:59:50.469921 journal@recovery F·1
+20:59:50.471916 journal@recovery recovering @77
+20:59:50.477902 memdb@flush created L0@80 N·1 S·159B "loc..seq,v50":"loc..seq,v50"
+20:59:50.478897 version@stat F·[1 1] S·335B[159B 176B] Sc·[0.25 0.00]
+20:59:50.487873 db@janitor F·5 G·1
+20:59:50.487873 db@janitor removing table-76
+20:59:50.487873 db@open done T·17.9521ms
+21:23:23.629740 db@close closing
+21:23:23.633554 db@close done T·3.8136ms

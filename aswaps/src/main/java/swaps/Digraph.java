@@ -6,13 +6,14 @@ import swaps.parties.Carol;
 
 import java.io.IOException;
 import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Digraph {
     private Alice alice;
     private Bob bob;
     private Carol carol;
-    private String[] hashLocks;
+    private List<byte[]> hashLocks;
     private Long[] timeLocks;
     private TimeLock timeLock;
 
@@ -24,11 +25,12 @@ public class Digraph {
 
     public void init() throws IOException {
         System.out.println("generating hashlock array...");
-        this.hashLocks = new String[3];
-        hashLocks[0] = alice.getHashLockObject().getEncodedHashLockWithCurrentBlockAppended(alice.getCurrentAltCoinBlock());
-        hashLocks[1] = alice.getHashLockObject().getEncodedHashLockWithCurrentBlockAppended(bob.getCurrentBitcoinBlock());
-        hashLocks[2] = alice.getHashLockObject().getEncodedHashLockWithCurrentBlockAppended(carol.getCurrentCarTitleBlock());
-        System.out.println("HASHLOCK ARRAY -> " + hashLocks[0] + " " + hashLocks[1] + " " + hashLocks[2]);
+        this.hashLocks = new ArrayList<>();
+        hashLocks.add(alice.getHashLockObject().getHashLockAsByteArrayWithCurrentBlockAppended(alice.getCurrentAltCoinBlock()));
+        hashLocks.add(alice.getHashLockObject().getHashLockAsByteArrayWithCurrentBlockAppended(bob.getCurrentBitcoinBlock()));
+        hashLocks.add(alice.getHashLockObject().getHashLockAsByteArrayWithCurrentBlockAppended(carol.getCurrentCarTitleBlock()));
+
+        System.out.println("HASHLOCK ARRAY -> " + hashLocks.toString());
 
         System.out.println("generating timelock array...");
         this.timeLock = new TimeLock(2L, 3L);
@@ -63,10 +65,12 @@ public class Digraph {
     }
 
     public void alicePublishContractOnAltCoinChain() throws Exception {
-        //TODO: alice publishes contract on alt-coin chain and locks her funds!
-
+        System.out.println("deploying contract on alt coin chain: ");
         // String _party, String _counterParty, List<BigInteger> _timeLock, List<byte[]> _hashLock, BigInteger _start
-        this.alice.deploySwapContractOnAltCoinChain(this.alice.getAddressAltCoinWallet(), this.bob.addressAltCoinWallet, SwapUtils.convertLongArrayToBigIntegerList(this.timeLocks), SwapUtils.convertStringArrayToByteArrayList(this.hashLocks), this.timeLock.getStartAsBigInteger());
+        String contractAddress = this.alice.deploySwapContractOnAltCoinChain(this.alice.getAddressAltCoinWallet(), this.bob.addressAltCoinWallet, SwapUtils.convertLongArrayToBigIntegerList(this.timeLocks), this.hashLocks, this.timeLock.getStartAsBigInteger());
+        System.out.println("contract address on alt coin chain: " + contractAddress);
+
+        //TODO : send funds!
     }
 
     public void bobPublishContractOnBtcChain() {

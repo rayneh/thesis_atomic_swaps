@@ -22,12 +22,14 @@ public final class SwapUtils {
     }
 
     public static List<byte[]> convertStringArrayToByteArrayList(String[] data) {
-        List<String> strings = Arrays.asList(data);
+        List<byte[]> bytes = new ArrayList<>(32);  // data.length
 
-        List<byte[]> bytes = new ArrayList<>(data.length);
-
-        for(String s : strings) {
+        for(String s : data) {
             bytes.add(s.getBytes());
+        }
+
+        for(byte[] b : bytes) {
+            System.out.println(b.length);
         }
 
         return bytes;

@@ -97,7 +97,7 @@ public class SwapProtocol {
             System.out.println("init..");
             this.digraph = new Digraph(alice, bob, carol);
             this.digraph.init();
-            //this.digraph.triggerPath("AB");       // EXCEPTION!!!
+            this.digraph.triggerPath("AB");
 
             //Swap swap = new Swap();         // String contractAddress, Web3j web3j, Credentials credentials, BigInteger gasPrice, BigInteger gasLimit
             //public static RemoteCall<Swap> deploy(Web3j web3j, Credentials credentials, ContractGasProvider contractGasProvider);

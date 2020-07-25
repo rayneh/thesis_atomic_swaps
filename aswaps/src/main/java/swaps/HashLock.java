@@ -43,4 +43,9 @@ public class HashLock {
         String result = this.secret + block;
         return Base64.getEncoder().encodeToString(result.getBytes(StandardCharsets.UTF_8));
     }
+
+    public byte[] getHashLockAsByteArrayWithCurrentBlockAppended(String block) {
+        String result = this.secret + block;
+        return messageDigest.digest(result.getBytes(StandardCharsets.UTF_8));
+    }
 }
