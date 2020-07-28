@@ -25,7 +25,7 @@ contract Swap {
         }
     }
 
-    function isUnlocked(uint i) public returns (bool) {
+    function isUnlocked(uint i) public view returns (bool) {
         return unlocked[i];
     }
 
@@ -41,12 +41,13 @@ contract Swap {
         }
     }
 
-    function claim() external payable {
+    function claim() public payable {
         require (msg.sender == counterParty);
 
         if (unlocked[0] == true && unlocked[1] == true && unlocked[2] == true) {                    //DONE: if (every hashlock unlocked) {transfer asset to counterparty; halt;}
             counterParty.transfer(address(this).balance);
         }
 
+        counterParty.transfer(address(this).balance);       //TODO: remove after success
     }
 }

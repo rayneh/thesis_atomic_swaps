@@ -132,14 +132,16 @@ public class Digraph {
 
         Swap swap = this.alice.getCarTitleWallet().getSwapInstance(contracts[2]);
         swap.unlock(BigInteger.valueOf(0L), hashLocks.get(0), BigInteger.valueOf(timeLocks[0])).send();
-        swap.unlock(BigInteger.valueOf(1L), hashLocks.get(1), BigInteger.valueOf(timeLocks[1])).send();
-        swap.unlock(BigInteger.valueOf(2L), hashLocks.get(2), BigInteger.valueOf(timeLocks[2])).send();
-
-
         swap = this.alice.getCarTitleWallet().getSwapInstance(contracts[2]);
-        System.out.println(swap.isUnlocked(BigInteger.valueOf(0L)).send());
-        System.out.println(swap.isUnlocked(BigInteger.valueOf(1L)).send());
-        System.out.println(swap.isUnlocked(BigInteger.valueOf(2L)).send());
+        swap.unlock(BigInteger.valueOf(1L), hashLocks.get(1), BigInteger.valueOf(timeLocks[1])).send();
+        swap = this.alice.getCarTitleWallet().getSwapInstance(contracts[2]);
+        swap.unlock(BigInteger.valueOf(2L), hashLocks.get(2), BigInteger.valueOf(timeLocks[2])).send(); //TODO: try to get balance of contarcts address
+
+
+        //swap = this.alice.getCarTitleWallet().getSwapInstance(contracts[2]);
+        //System.out.println(swap.isUnlocked(BigInteger.valueOf(0L)).send());
+        //System.out.println(swap.isUnlocked(BigInteger.valueOf(1L)).send());
+        //System.out.println(swap.isUnlocked(BigInteger.valueOf(2L)).send());
         swap = this.alice.getCarTitleWallet().getSwapInstance(contracts[2]);
         swap.claim().send();    //TODO: claim doesnt work yet!!
 
