@@ -38,6 +38,14 @@ public class Pools {
             bitcoinPool.waitForTransactionToBeMined(tx1);
             carTitlePool.waitForTransactionToBeMined(tx2);
 
+            /*String tx3 = altCoinPool.sendEtherTransaction(altCoinPool.getNonce("0x2193259b178623345225272dd075717fcacc704e"), altCoinPool.gasPrice("1"), altCoinPool.gasLimit(21000L), bob.addressAltCoinWallet, "1");
+            String tx4 = bitcoinPool.sendEtherTransaction(bitcoinPool.getNonce("0x6ec4922fcffd90b36aa7104c506064b4a9988a90"), bitcoinPool.gasPrice("1"), bitcoinPool.gasLimit(21000L), carol.addressBitcoinWallet, "1");
+            String tx5 = carTitlePool.sendEtherTransaction(carTitlePool.getNonce("0x6392e91df60c5bc2ca09670cd4173e05a0e04833"), carTitlePool.gasPrice("1"), carTitlePool.gasLimit(21000L), alice.addressCarTitleWallet, "1");
+
+            altCoinPool.waitForTransactionToBeMined(tx3);
+            bitcoinPool.waitForTransactionToBeMined(tx4);
+            carTitlePool.waitForTransactionToBeMined(tx5);*/ //TODO: only needed once for gas
+
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
         }

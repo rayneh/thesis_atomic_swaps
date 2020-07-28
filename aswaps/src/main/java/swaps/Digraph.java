@@ -40,7 +40,7 @@ public class Digraph {
         System.out.println("HASHLOCK ARRAY -> " + hashLocks.toString());
 
         System.out.println("generating timelock array...");
-        this.timeLock = new TimeLock(2L, 3L);
+        this.timeLock = new TimeLock(5L, 10L);
         this.timeLocks = timeLock.getTimeLockArray();
         System.out.println("TIMELOCK ARRAY -> " + timeLocks[0] + " " + timeLocks[1] + " " + timeLocks[2]);
     }
@@ -87,8 +87,8 @@ public class Digraph {
         //TransactionReceipt receipts = swaps[0].lockEther().send();      //Convert.toWei("1", Convert.Unit.ETHER).toBigInteger()
 
 
-        this.alice.getAltCoinWallet().waitForTransactionToBeMined(transactionReceipt);  //TODO problem balance not correct! MB call function deposit!!! + define callback function!!
-        //TODO : send funds!
+        this.alice.getAltCoinWallet().waitForTransactionToBeMined(transactionReceipt);
+
         System.out.println("sent funds to contract, TX: " + transactionReceipt);
     }
 
@@ -104,7 +104,6 @@ public class Digraph {
 
         this.bob.getBitcoinWallet().waitForTransactionToBeMined(transactionReceipt);
         System.out.println("sent funds to contract, TX: " + transactionReceipt);
-        //TODO : send funds!
     }
 
     public void carolPublishContractOnCarTitleChain() throws Exception {
@@ -119,19 +118,55 @@ public class Digraph {
 
         this.carol.getCarTitleWallet().waitForTransactionToBeMined(transactionReceipt);
         System.out.println("sent funds to contract, TX: " + transactionReceipt);
-        //TODO : send funds!
     }
 
-    public void aliceClaimCarTitle() {
+    public void aliceUnlockArcs() throws Exception {
+        //TODO: unlock hashlocks and timelocks here!!       //TODO: alice gets new swap instance of carol's contract, then unlocks and claims!!
+
+        //swaps[0].unlock(BigInteger.valueOf(0L), hashLocks.get(0), BigInteger.valueOf(timeLocks[0])).send();
+        //swaps[0].unlock(BigInteger.valueOf(1L), hashLocks.get(1), BigInteger.valueOf(timeLocks[1])).send();
+        //swaps[0].unlock(BigInteger.valueOf(2L), hashLocks.get(2), BigInteger.valueOf(timeLocks[2])).send();
+
+
+        //swaps[0].claim().send();
+
+        Swap swap = this.alice.getCarTitleWallet().getSwapInstance(contracts[2]);
+        swap.unlock(BigInteger.valueOf(0L), hashLocks.get(0), BigInteger.valueOf(timeLocks[0])).send();
+        swap.unlock(BigInteger.valueOf(1L), hashLocks.get(1), BigInteger.valueOf(timeLocks[1])).send();
+        swap.unlock(BigInteger.valueOf(2L), hashLocks.get(2), BigInteger.valueOf(timeLocks[2])).send();
+
+
+        swap = this.alice.getCarTitleWallet().getSwapInstance(contracts[2]);
+        System.out.println(swap.isUnlocked(BigInteger.valueOf(0L)).send());
+        System.out.println(swap.isUnlocked(BigInteger.valueOf(1L)).send());
+        System.out.println(swap.isUnlocked(BigInteger.valueOf(2L)).send());
+        swap = this.alice.getCarTitleWallet().getSwapInstance(contracts[2]);
+        swap.claim().send();    //TODO: claim doesnt work yet!!
+
+
+    }
+
+    public void bobUnlockArcs() throws Exception {
+        //TODO: unlock hashlocks and timelocks here!!
+    }
+
+    public void carolUnlockArcs() throws Exception {
+        //TODO: unlock hashlocks and timelocks here!!
+    }
+
+    public void aliceClaimCarTitle() throws Exception {
         //TODO: alice claims the car title and sends secret to carol! Also unlock witht he hashlocks!
+        this.aliceUnlockArcs();
     }
 
-    public void carolClaimBtc() {
-        //TODO:  carol claims the bitcoin and sends secret to bob! Also unlock witht he hashlocks!
-    }
-
-    public void bobClaimAltCoin() {
+    public void bobClaimAltCoin() throws Exception {
         //TODO: bob claims the alt coins and swap finished! Also unlock witht he hashlocks!
+        this.bobUnlockArcs();
+    }
+
+    public void carolClaimBtc() throws Exception {
+        //TODO:  carol claims the bitcoin and sends secret to bob! Also unlock witht he hashlocks!
+        this.carolUnlockArcs();
     }
 
     public void updateSwapInstances() {

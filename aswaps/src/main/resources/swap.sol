@@ -30,7 +30,7 @@ contract Swap {
     }
 
     function lockEther() public payable {
-        require (msg.value == 1000000000000000000 && msg.sender == party);      // msg.value == 1 &&    == value of wei
+        require (msg.value == 1000000000000000000 && msg.sender == party);      // msg.value == 1 &&    == value of wei //TODO: MB not needed!!!
     }
 
     function refund(uint timeNow) public {
@@ -41,11 +41,12 @@ contract Swap {
         }
     }
 
-    function claim() public {
+    function claim() external payable {
         require (msg.sender == counterParty);
 
         if (unlocked[0] == true && unlocked[1] == true && unlocked[2] == true) {                    //DONE: if (every hashlock unlocked) {transfer asset to counterparty; halt;}
             counterParty.transfer(address(this).balance);
         }
+
     }
 }

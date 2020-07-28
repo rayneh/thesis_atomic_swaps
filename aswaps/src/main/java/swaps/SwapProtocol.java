@@ -93,8 +93,8 @@ public class SwapProtocol {
             this.digraph.getPools().printPoolBalances();
             this.digraph.printBalances();
 
-            //this.digraph.getPools().prepareTrade(alice, bob, carol);      //TODO: prepares trade! only run once before the swap
-            //this.digraph.printBalances();
+            this.digraph.getPools().prepareTrade(alice, bob, carol);      //TODO: prepares trade! only run once before the swap
+            this.digraph.printBalances();
 
             this.digraph.init();
             this.digraph.triggerPath("AB");
@@ -105,8 +105,10 @@ public class SwapProtocol {
 
             this.digraph.printBalances();
 
-            //Swap swap = new Swap();         // String contractAddress, Web3j web3j, Credentials credentials, BigInteger gasPrice, BigInteger gasLimit
-            //public static RemoteCall<Swap> deploy(Web3j web3j, Credentials credentials, ContractGasProvider contractGasProvider);
+            this.digraph.triggerPath("AC");
+
+            this.digraph.printBalances();
+
 
 
 
@@ -116,41 +118,6 @@ public class SwapProtocol {
         }
 
     }
-
-    /*private void prepareTrade() {
-        try {
-            String tx = altCoinPool.sendEtherTransaction(altCoinPool.getNonce("0x2193259b178623345225272dd075717fcacc704e"), altCoinPool.gasPrice("1"), altCoinPool.gasLimit(21000L), alice.addressAltCoinWallet, "1");
-            String tx1 = bitcoinPool.sendEtherTransaction(bitcoinPool.getNonce("0x6ec4922fcffd90b36aa7104c506064b4a9988a90"), bitcoinPool.gasPrice("1"), bitcoinPool.gasLimit(21000L), bob.addressBitcoinWallet, "1");
-            String tx2 = carTitlePool.sendEtherTransaction(carTitlePool.getNonce("0x6392e91df60c5bc2ca09670cd4173e05a0e04833"), carTitlePool.gasPrice("1"), carTitlePool.gasLimit(21000L), carol.addressCarTitleWallet, "1");
-
-            altCoinPool.waitForTransactionToBeMined(tx);
-            bitcoinPool.waitForTransactionToBeMined(tx1);
-            carTitlePool.waitForTransactionToBeMined(tx2);
-
-        } catch (IOException | InterruptedException e) {
-            e.printStackTrace();
-        }
-    }*/
-
-    /*private void printBalances() throws IOException {
-        alice.getBalanceOnCarTitleChain();
-        alice.getBalanceOnAltCoinChain();
-        System.out.println("      -");
-        bob.getBalanceOnCarTitleChain();
-        bob.getBalanceOnAltCoinChain();
-        System.out.println("      -");
-        carol.getBalanceOnBitCoinChain();
-        carol.getBalanceOnCarTitleChain();
-        System.out.println("      -");
-    }*/
-
-    /*private void printPoolBalances() throws IOException {
-        System.out.println("      -");
-        System.out.println("Token Pool Bitcoin(alice) chain: " + bitcoinPool.getBalance("0x6ec4922fcffd90b36aa7104c506064b4a9988a90"));
-        System.out.println("Token Pool AltCoin(bob) chain: " + altCoinPool.getBalance("0x2193259b178623345225272dd075717fcacc704e"));
-        System.out.println("Token Pool CarTitle(carol) chain: " + carTitlePool.getBalance("0x6392e91df60c5bc2ca09670cd4173e05a0e04833"));
-        System.out.println("      -");
-    }*/
 
 
 }
