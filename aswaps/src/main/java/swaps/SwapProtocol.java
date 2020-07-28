@@ -19,9 +19,9 @@ public class SwapProtocol {
     Alice alice;
     Bob bob = new Bob();
     Carol carol = new Carol();
-    Wallet bitcoinPool = new Wallet("src\\wallets\\BtcChain(Alice)-PoolAccount-UTC--2020-05-31T08-09-53.604775500Z--6ec4922fcffd90b36aa7104c506064b4a9988a90", "pwd", "alice");
+    /*Wallet bitcoinPool = new Wallet("src\\wallets\\BtcChain(Alice)-PoolAccount-UTC--2020-05-31T08-09-53.604775500Z--6ec4922fcffd90b36aa7104c506064b4a9988a90", "pwd", "alice");
     Wallet altCoinPool = new Wallet("src\\wallets\\AltCoinChain(Bob)-PoolAccount-UTC--2020-05-31T08-12-34.964616200Z--2193259b178623345225272dd075717fcacc704e", "pwd", "bob");
-    Wallet carTitlePool = new Wallet("src\\wallets\\CarTitleChain(Carol)-PoolAccount-UTC--2020-05-31T08-13-29.296892300Z--6392e91df60c5bc2ca09670cd4173e05a0e04833", "pwd", "carol");
+    Wallet carTitlePool = new Wallet("src\\wallets\\CarTitleChain(Carol)-PoolAccount-UTC--2020-05-31T08-13-29.296892300Z--6392e91df60c5bc2ca09670cd4173e05a0e04833", "pwd", "carol");*/
 
     Digraph digraph;
 
@@ -33,13 +33,6 @@ public class SwapProtocol {
 
         try {
             this.alice = new Alice();
-
-            this.printPoolBalances();
-            this.printBalances();
-
-            this.prepareTrade();      //TODO: prepares trade! only run once before the swap
-            this.printBalances();
-
 
             System.out.println("h = H(s): " + alice.getHashLockAsHex());
             System.out.println("h = H(s): " + alice.getHashLockAsHex());
@@ -96,10 +89,21 @@ public class SwapProtocol {
 
             System.out.println("init..");
             this.digraph = new Digraph(alice, bob, carol);
+
+            this.digraph.getPools().printPoolBalances();
+            this.digraph.printBalances();
+
+            //this.digraph.getPools().prepareTrade(alice, bob, carol);      //TODO: prepares trade! only run once before the swap
+            //this.digraph.printBalances();
+
             this.digraph.init();
             this.digraph.triggerPath("AB");
             this.digraph.triggerPath("BA");
             this.digraph.triggerPath("CC");
+
+            this.digraph.updateSwapInstances();
+
+            this.digraph.printBalances();
 
             //Swap swap = new Swap();         // String contractAddress, Web3j web3j, Credentials credentials, BigInteger gasPrice, BigInteger gasLimit
             //public static RemoteCall<Swap> deploy(Web3j web3j, Credentials credentials, ContractGasProvider contractGasProvider);
@@ -113,7 +117,7 @@ public class SwapProtocol {
 
     }
 
-    private void prepareTrade() {
+    /*private void prepareTrade() {
         try {
             String tx = altCoinPool.sendEtherTransaction(altCoinPool.getNonce("0x2193259b178623345225272dd075717fcacc704e"), altCoinPool.gasPrice("1"), altCoinPool.gasLimit(21000L), alice.addressAltCoinWallet, "1");
             String tx1 = bitcoinPool.sendEtherTransaction(bitcoinPool.getNonce("0x6ec4922fcffd90b36aa7104c506064b4a9988a90"), bitcoinPool.gasPrice("1"), bitcoinPool.gasLimit(21000L), bob.addressBitcoinWallet, "1");
@@ -126,9 +130,9 @@ public class SwapProtocol {
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
         }
-    }
+    }*/
 
-    private void printBalances() throws IOException {
+    /*private void printBalances() throws IOException {
         alice.getBalanceOnCarTitleChain();
         alice.getBalanceOnAltCoinChain();
         System.out.println("      -");
@@ -138,15 +142,15 @@ public class SwapProtocol {
         carol.getBalanceOnBitCoinChain();
         carol.getBalanceOnCarTitleChain();
         System.out.println("      -");
-    }
+    }*/
 
-    private void printPoolBalances() throws IOException {
+    /*private void printPoolBalances() throws IOException {
         System.out.println("      -");
         System.out.println("Token Pool Bitcoin(alice) chain: " + bitcoinPool.getBalance("0x6ec4922fcffd90b36aa7104c506064b4a9988a90"));
         System.out.println("Token Pool AltCoin(bob) chain: " + altCoinPool.getBalance("0x2193259b178623345225272dd075717fcacc704e"));
         System.out.println("Token Pool CarTitle(carol) chain: " + carTitlePool.getBalance("0x6392e91df60c5bc2ca09670cd4173e05a0e04833"));
         System.out.println("      -");
-    }
+    }*/
 
 
 }

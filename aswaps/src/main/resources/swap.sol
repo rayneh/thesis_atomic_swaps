@@ -1,14 +1,14 @@
 pragma solidity >=0.4.25;
 
 contract Swap {
-    address party;
-    address counterParty;
+    address payable party;
+    address payable counterParty;
     uint[] timeLock;
     bytes32[] hashLocks;
     bool[] unlocked;
     uint start;
 
-    constructor(address _party, address _counterParty, uint[] _timeLock, bytes32[] _hashLock, uint _start) {
+    constructor(address payable _party, address payable _counterParty, uint[] memory _timeLock, bytes32[] memory _hashLock, uint _start) public {
         party = _party;
         counterParty = _counterParty;
         timeLock = _timeLock;
@@ -17,7 +17,7 @@ contract Swap {
         unlocked = [false, false, false];
     }
 
-    function unlock(uint i, bytes32 hashLock, uint timeNow) {             // TODO: MB add sig after first test  AND isPath not needed, since digraph is implemented offchain
+    function unlock(uint i, bytes32 hashLock, uint timeNow) public {             // TODO: MB add sig after first test  AND isPath not needed, since digraph is implemented offchain
         require (msg.sender == counterParty);
 
         if (timeNow < timeLock[i] && hashLocks[i] == hashLock) {                                        // DONE: if ( now < start + (diam(digraph) + |path|)*triangle && hashlock[i] == H(s) && isPath(path, digraph, leader[i], counterparty) && verifySigs(sig, s , path) ) {unlocked[i] = true}
@@ -30,10 +30,10 @@ contract Swap {
     }
 
     function lockEther() public payable {
-        require (msg.value == 1 && msg.sender == party);
+        require (msg.value == 1000000000000000000 && msg.sender == party);      // msg.value == 1 &&    == value of wei
     }
 
-    function refund(uint timeNow) {
+    function refund(uint timeNow) public {
         require (msg.sender == party);
 
         if (timeNow > timeLock[3]) {                                                                       // DONE: if ( any hashlock unlocked and timed out ) {transer asset to party; halt;}
@@ -41,7 +41,7 @@ contract Swap {
         }
     }
 
-    function claim() {
+    function claim() public {
         require (msg.sender == counterParty);
 
         if (unlocked[0] == true && unlocked[1] == true && unlocked[2] == true) {                    //DONE: if (every hashlock unlocked) {transfer asset to counterparty; halt;}

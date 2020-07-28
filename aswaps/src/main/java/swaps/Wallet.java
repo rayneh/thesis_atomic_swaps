@@ -1,5 +1,6 @@
 package swaps;
 
+import org.web3j.abi.datatypes.Function;
 import org.web3j.crypto.*;
 import org.web3j.protocol.Web3j;
 import org.web3j.protocol.core.DefaultBlockParameterName;
@@ -8,6 +9,7 @@ import org.web3j.protocol.core.methods.response.EthGetTransactionReceipt;
 import org.web3j.protocol.core.methods.response.EthSendTransaction;
 import org.web3j.protocol.core.methods.response.TransactionReceipt;
 import org.web3j.tx.gas.DefaultGasProvider;
+import org.web3j.tx.gas.StaticGasProvider;
 import org.web3j.utils.Convert;
 import org.web3j.utils.Numeric;
 import swaps.contracts.generated.Swap;
@@ -122,6 +124,22 @@ public class Wallet {
         return ethSendTransaction.getTransactionHash();
     }
 
+    /*public String sendContractTransaction(BigInteger nonce, BigInteger gasPrice, BigInteger gasLimit, String recipientAddress, String value) throws IOException{
+        RawTransaction rawTransaction = RawTransaction.createContractTransaction(nonce, gasPrice, gasLimit, this.convertToWei(value), null);
+        RawTransaction.createContractTransaction()
+        byte[] signedMessage = TransactionEncoder.signMessage(rawTransaction, this.credentials);
+        String hexValue = Numeric.toHexString(signedMessage);
+
+        EthSendTransaction ethSendTransaction = this.ethNode.getWeb3j().ethSendRawTransaction(hexValue).send();
+
+        return ethSendTransaction.getTransactionHash();
+    }*/
+
+    public String sendContractTransaction(BigInteger nonce, BigInteger gasPrice, BigInteger gasLimit, String contractAddress, String value) throws IOException{
+        //Function function = new Function()
+        return "ethSendTransaction.getTransactionHash()";
+    }
+
     public void waitForTransactionToBeMined(String tx) throws IOException, InterruptedException {
         Optional<TransactionReceipt> transactionReceipt;
         do {
@@ -137,9 +155,13 @@ public class Wallet {
     }
 
     public String deploySwapContract(String _party, String _counterParty, List<BigInteger> _timeLock, List<byte[]> _hashLock, BigInteger _start) throws Exception {
-        Swap swap = Swap.deploy(ethNode.getWeb3j(), credentials, new DefaultGasProvider(), _party, _counterParty, _timeLock, _hashLock, _start).send();
+        Swap swap = Swap.deploy(ethNode.getWeb3j(), credentials, new StaticGasProvider(BigInteger.valueOf(2200000), BigInteger.valueOf(4300000)), _party, _counterParty, _timeLock, _hashLock, _start).send(); //new DefaultGasProvider()
 
         return swap.getContractAddress();
+    }
+
+    public Swap getSwapInstance(String address) {
+        return Swap.load(address, ethNode.getWeb3j(), credentials, new StaticGasProvider(BigInteger.valueOf(2200000), BigInteger.valueOf(4300000)));        //new DefaultGasProvider()
     }
 
 
