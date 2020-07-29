@@ -27,7 +27,7 @@ public class Wallet {
     private Web3jApi web3jApi;
     private Connector connector;
     private final String chain;
-    private Credentials credentials;
+    Credentials credentials;
 
     public Wallet(String path, String password, String chain) {
         this.path = path;

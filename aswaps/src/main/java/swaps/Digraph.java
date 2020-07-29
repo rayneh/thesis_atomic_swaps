@@ -1,6 +1,13 @@
 package swaps;
 
+import org.web3j.abi.FunctionEncoder;
+import org.web3j.abi.datatypes.Function;
 import org.web3j.protocol.core.methods.response.TransactionReceipt;
+import org.web3j.tx.FastRawTransactionManager;
+import org.web3j.tx.TransactionManager;
+import org.web3j.tx.gas.DefaultGasProvider;
+import org.web3j.tx.response.PollingTransactionReceiptProcessor;
+import org.web3j.tx.response.TransactionReceiptProcessor;
 import org.web3j.utils.Convert;
 import swaps.contracts.generated.Swap;
 import swaps.parties.Alice;
@@ -10,6 +17,8 @@ import swaps.parties.Carol;
 import java.io.IOException;
 import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class Digraph {
@@ -121,29 +130,24 @@ public class Digraph {
     }
 
     public void aliceUnlockArcs() throws Exception {
-        //TODO: unlock hashlocks and timelocks here!!       //TODO: alice gets new swap instance of carol's contract, then unlocks and claims!!
-
-        //swaps[0].unlock(BigInteger.valueOf(0L), hashLocks.get(0), BigInteger.valueOf(timeLocks[0])).send();
-        //swaps[0].unlock(BigInteger.valueOf(1L), hashLocks.get(1), BigInteger.valueOf(timeLocks[1])).send();
-        //swaps[0].unlock(BigInteger.valueOf(2L), hashLocks.get(2), BigInteger.valueOf(timeLocks[2])).send();
-
-
-        //swaps[0].claim().send();
-
         Swap swap = this.alice.getCarTitleWallet().getSwapInstance(contracts[2]);
         swap.unlock(BigInteger.valueOf(0L), hashLocks.get(0), BigInteger.valueOf(timeLocks[0])).send();
         swap = this.alice.getCarTitleWallet().getSwapInstance(contracts[2]);
         swap.unlock(BigInteger.valueOf(1L), hashLocks.get(1), BigInteger.valueOf(timeLocks[1])).send();
         swap = this.alice.getCarTitleWallet().getSwapInstance(contracts[2]);
-        swap.unlock(BigInteger.valueOf(2L), hashLocks.get(2), BigInteger.valueOf(timeLocks[2])).send(); //TODO: try to get balance of contarcts address
+        swap.unlock(BigInteger.valueOf(2L), hashLocks.get(2), BigInteger.valueOf(timeLocks[2])).send();
 
+        System.out.println("BALANCE CONTRACT ADDRESS -> car title chain: " + this.alice.getCarTitleWallet().getBalance(contracts[2]));
 
-        //swap = this.alice.getCarTitleWallet().getSwapInstance(contracts[2]);
-        //System.out.println(swap.isUnlocked(BigInteger.valueOf(0L)).send());
-        //System.out.println(swap.isUnlocked(BigInteger.valueOf(1L)).send());
-        //System.out.println(swap.isUnlocked(BigInteger.valueOf(2L)).send());
-        swap = this.alice.getCarTitleWallet().getSwapInstance(contracts[2]);
-        swap.claim().send();    //TODO: claim doesnt work yet!!
+        swap = this.alice.getCarTitleWallet().getSwapInstance(contracts[2]);         //TODO: claim works, as internal transaction tho, which is not visible on the balance!!
+
+        String txHash = swap.claim().send().getTransactionHash();
+        TransactionReceiptProcessor receiptProcessor = new PollingTransactionReceiptProcessor(this.alice.getCarTitleWallet().getWeb3j(), TransactionManager.DEFAULT_POLLING_FREQUENCY, TransactionManager.DEFAULT_POLLING_ATTEMPTS_PER_TX_HASH);
+
+        TransactionReceipt txReceipt = receiptProcessor.waitForTransactionReceipt(txHash);
+        System.out.println("called claim() function: " + txReceipt.toString());
+
+        this.pools.sendCarTitle(this.alice.addressCarTitleWallet);
 
 
     }

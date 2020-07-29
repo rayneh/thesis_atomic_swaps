@@ -101,7 +101,7 @@ public class SwapProtocol {
             this.digraph.triggerPath("BA");
             this.digraph.triggerPath("CC");
 
-            this.digraph.updateSwapInstances();
+            //this.digraph.updateSwapInstances();
 
             this.digraph.printBalances();
 
