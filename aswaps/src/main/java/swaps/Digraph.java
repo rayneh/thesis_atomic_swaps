@@ -41,7 +41,7 @@ public class Digraph {
         System.out.println("HASHLOCK ARRAY -> " + hashLocks.toString());
 
         System.out.println("generating timelock array...");
-        this.timeLock = new TimeLock(5L, 15L);
+        this.timeLock = new TimeLock(5L, 10L);
         this.timeLocks = timeLock.getTimeLockArray();
         System.out.println("TIMELOCK ARRAY -> " + timeLocks[0] + " " + timeLocks[1] + " " + timeLocks[2]);
     }

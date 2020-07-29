@@ -1,11 +1,12 @@
 package swaps;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import org.web3j.protocol.Web3j;
+import org.web3j.protocol.core.DefaultBlockParameterName;
 import org.web3j.protocol.http.HttpService;
 import org.web3j.protocol.core.methods.response.EthBlockNumber;
-import org.web3j.protocol.core.methods.response.EthGasPrice;
-import org.web3j.protocol.core.methods.response.Web3ClientVersion;
+import org.web3j.utils.Convert;
 
 public class EthNode {
     private Web3j web3j;
@@ -30,5 +31,14 @@ public class EthNode {
 
     Web3j getWeb3j() {
         return this.web3j;
+    }
+
+    BigDecimal ethGetBalanceToken(String address) throws IOException {
+        return Convert.fromWei(String.valueOf(web3j.ethGetBalance(address, DefaultBlockParameterName.LATEST).send().getBalance()), Convert.Unit.ETHER);
+    }
+
+    public String getCurrentBlock() throws IOException {
+        EthBlockNumber ethBlockNumber = web3j.ethBlockNumber().send();
+        return ethBlockNumber.getBlockNumber().toString();
     }
 }

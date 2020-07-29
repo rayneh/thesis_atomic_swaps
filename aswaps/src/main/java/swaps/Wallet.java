@@ -24,7 +24,7 @@ public class Wallet {
     private final String path;
     private final String password;
     private EthNode ethNode;
-    private Web3jApi web3jApi;
+    //private Web3jApi web3jApi;
     private Connector connector;
     private final String chain;
     Credentials credentials;
@@ -37,7 +37,7 @@ public class Wallet {
 
         this.connect();
 
-        this.web3jApi = new Web3jApi(this.ethNode);
+        //this.web3jApi = new Web3jApi(this.ethNode);
 
         this.openWallet();
     }
@@ -90,7 +90,7 @@ public class Wallet {
     }
 
     public BigDecimal getBalance(String address) throws IOException {
-        return this.web3jApi.ethGetBalanceToken(address);
+        return this.ethNode.ethGetBalanceToken(address);
     }
 
     public BigInteger getNonce(String address) throws IOException {
@@ -151,7 +151,7 @@ public class Wallet {
     }
 
     public String getCurrentBlock() throws IOException {
-        return this.web3jApi.getCurrentBlock();
+        return this.ethNode.getCurrentBlock();
     }
 
     public String deploySwapContract(String _party, String _counterParty, List<BigInteger> _timeLock, List<byte[]> _hashLock, BigInteger _start) throws Exception {

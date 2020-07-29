@@ -22,7 +22,7 @@ public class SwapProtocol {
         try {
             this.alice = new Alice();
 
-            System.out.println("h = H(s): " + alice.getHashLockAsHex());
+            /*System.out.println("h = H(s): " + alice.getHashLockAsHex());
             System.out.println("h = H(s): " + alice.getHashLockAsHex());
 
             System.out.println("h = H(s): " + Arrays.toString(alice.getHashLockAsByteArray()));
@@ -40,7 +40,7 @@ public class SwapProtocol {
             System.out.println("time now: " + timeLock.getTimeNowInMilliSeconds());
 
             Long[] timeLocks = timeLock.getTimeLockArray();
-            System.out.println("TIMELOCK ARRAY -> " + timeLocks[0] + " " + timeLocks[1] + " " + timeLocks[2]);
+            System.out.println("TIMELOCK ARRAY -> " + timeLocks[0] + " " + timeLocks[1] + " " + timeLocks[2]);*/
             //alice.getAltCoinWallet().getNonce(alice.addressAltCoinWallet);
             //System.out.println(alice.getAltCoinWallet().getNonce(alice.addressAltCoinWallet)); //PRINT NONCE
             //System.out.println(alice.getAltCoinWallet().convertToWei("1")); //amount to send
@@ -88,8 +88,6 @@ public class SwapProtocol {
             this.digraph.triggerPath("AB");
             this.digraph.triggerPath("BA");
             this.digraph.triggerPath("CC");
-
-            //this.digraph.updateSwapInstances();
 
             this.digraph.printBalances();
 
