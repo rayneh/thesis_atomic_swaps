@@ -1,27 +1,15 @@
 package swaps;
 
-
-import org.web3j.protocol.core.RemoteCall;
-import org.web3j.protocol.core.methods.response.EthGetTransactionReceipt;
-import org.web3j.protocol.core.methods.response.TransactionReceipt;
-import swaps.contracts.generated.Swap;
 import swaps.parties.Alice;
 import swaps.parties.Bob;
 import swaps.parties.Carol;
-
-import java.io.IOException;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
-import java.util.Optional;
+
 
 public class SwapProtocol {
     Alice alice;
     Bob bob = new Bob();
     Carol carol = new Carol();
-    /*Wallet bitcoinPool = new Wallet("src\\wallets\\BtcChain(Alice)-PoolAccount-UTC--2020-05-31T08-09-53.604775500Z--6ec4922fcffd90b36aa7104c506064b4a9988a90", "pwd", "alice");
-    Wallet altCoinPool = new Wallet("src\\wallets\\AltCoinChain(Bob)-PoolAccount-UTC--2020-05-31T08-12-34.964616200Z--2193259b178623345225272dd075717fcacc704e", "pwd", "bob");
-    Wallet carTitlePool = new Wallet("src\\wallets\\CarTitleChain(Carol)-PoolAccount-UTC--2020-05-31T08-13-29.296892300Z--6392e91df60c5bc2ca09670cd4173e05a0e04833", "pwd", "carol");*/
 
     Digraph digraph;
 
@@ -106,6 +94,8 @@ public class SwapProtocol {
             this.digraph.printBalances();
 
             this.digraph.triggerPath("AC");
+            this.digraph.triggerPath("CA");
+            this.digraph.triggerPath("BB");
 
             this.digraph.printBalances();
 

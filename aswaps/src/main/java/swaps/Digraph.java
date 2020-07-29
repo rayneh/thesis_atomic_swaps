@@ -1,24 +1,16 @@
 package swaps;
 
-import org.web3j.abi.FunctionEncoder;
-import org.web3j.abi.datatypes.Function;
 import org.web3j.protocol.core.methods.response.TransactionReceipt;
-import org.web3j.tx.FastRawTransactionManager;
 import org.web3j.tx.TransactionManager;
-import org.web3j.tx.gas.DefaultGasProvider;
 import org.web3j.tx.response.PollingTransactionReceiptProcessor;
 import org.web3j.tx.response.TransactionReceiptProcessor;
-import org.web3j.utils.Convert;
 import swaps.contracts.generated.Swap;
 import swaps.parties.Alice;
 import swaps.parties.Bob;
 import swaps.parties.Carol;
-
 import java.io.IOException;
 import java.math.BigInteger;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 public class Digraph {
@@ -49,7 +41,7 @@ public class Digraph {
         System.out.println("HASHLOCK ARRAY -> " + hashLocks.toString());
 
         System.out.println("generating timelock array...");
-        this.timeLock = new TimeLock(5L, 10L);
+        this.timeLock = new TimeLock(5L, 15L);
         this.timeLocks = timeLock.getTimeLockArray();
         System.out.println("TIMELOCK ARRAY -> " + timeLocks[0] + " " + timeLocks[1] + " " + timeLocks[2]);
     }
@@ -82,19 +74,13 @@ public class Digraph {
 
     public void alicePublishContractOnAltCoinChain() throws Exception {
         System.out.println("alice is deploying contract on alt coin chain: ");
-        // String _party, String _counterParty, List<BigInteger> _timeLock, List<byte[]> _hashLock, BigInteger _start
         contracts[0] = this.alice.deploySwapContractOnAltCoinChain(this.alice.getAddressAltCoinWallet(), this.bob.addressAltCoinWallet, SwapUtils.convertLongArrayToBigIntegerList(this.timeLocks), this.hashLocks, this.timeLock.getStartAsBigInteger());
         System.out.println("alice's contract address on alt coin chain: " + contracts[0]);
-        //altCoinPool.sendEtherTransaction(altCoinPool.getNonce("0x2193259b178623345225272dd075717fcacc704e"), altCoinPool.gasPrice("1"), altCoinPool.gasLimit(21000L), alice.addressAltCoinWallet, "1");
 
         String transactionReceipt = this.alice.getAltCoinWallet().sendEtherTransaction(this.alice.getAltCoinWallet().getNonce(this.alice.addressAltCoinWallet),
                 this.alice.getAltCoinWallet().gasPrice("1"),
                 this.alice.getAltCoinWallet().gasLimit(21000L),
                 contracts[0], "1");
-
-        //swaps[0] = this.alice.getAltCoinWallet().getSwapInstance(contracts[0]);       //BAD, doesnt send 1 ether!!!
-        //TransactionReceipt receipts = swaps[0].lockEther().send();      //Convert.toWei("1", Convert.Unit.ETHER).toBigInteger()
-
 
         this.alice.getAltCoinWallet().waitForTransactionToBeMined(transactionReceipt);
 
@@ -129,7 +115,9 @@ public class Digraph {
         System.out.println("sent funds to contract, TX: " + transactionReceipt);
     }
 
-    public void aliceUnlockArcs() throws Exception {
+    public void aliceClaimCarTitle() throws Exception {
+        System.out.println("alice unlocking car title contract ...");
+
         Swap swap = this.alice.getCarTitleWallet().getSwapInstance(contracts[2]);
         swap.unlock(BigInteger.valueOf(0L), hashLocks.get(0), BigInteger.valueOf(timeLocks[0])).send();
         swap = this.alice.getCarTitleWallet().getSwapInstance(contracts[2]);
@@ -145,50 +133,61 @@ public class Digraph {
         TransactionReceiptProcessor receiptProcessor = new PollingTransactionReceiptProcessor(this.alice.getCarTitleWallet().getWeb3j(), TransactionManager.DEFAULT_POLLING_FREQUENCY, TransactionManager.DEFAULT_POLLING_ATTEMPTS_PER_TX_HASH);
 
         TransactionReceipt txReceipt = receiptProcessor.waitForTransactionReceipt(txHash);
-        System.out.println("called claim() function: " + txReceipt.toString());
+        System.out.println("alice called claim() function to claim car title: " + txReceipt.toString());
 
         this.pools.sendCarTitle(this.alice.addressCarTitleWallet);
-
-
-    }
-
-    public void bobUnlockArcs() throws Exception {
-        //TODO: unlock hashlocks and timelocks here!!
-    }
-
-    public void carolUnlockArcs() throws Exception {
-        //TODO: unlock hashlocks and timelocks here!!
-    }
-
-    public void aliceClaimCarTitle() throws Exception {
-        //TODO: alice claims the car title and sends secret to carol! Also unlock witht he hashlocks!
-        this.aliceUnlockArcs();
-    }
-
-    public void bobClaimAltCoin() throws Exception {
-        //TODO: bob claims the alt coins and swap finished! Also unlock witht he hashlocks!
-        this.bobUnlockArcs();
     }
 
     public void carolClaimBtc() throws Exception {
-        //TODO:  carol claims the bitcoin and sends secret to bob! Also unlock witht he hashlocks!
-        this.carolUnlockArcs();
+        System.out.println("carol unlocking bitcoin contract ...");
+
+        Swap swap = this.carol.getBitcoinWallet().getSwapInstance(contracts[1]);
+        swap.unlock(BigInteger.valueOf(0L), hashLocks.get(0), BigInteger.valueOf(timeLocks[0])).send();
+        swap = this.carol.getBitcoinWallet().getSwapInstance(contracts[1]);
+        swap.unlock(BigInteger.valueOf(1L), hashLocks.get(1), BigInteger.valueOf(timeLocks[1])).send();
+        swap = this.carol.getBitcoinWallet().getSwapInstance(contracts[1]);
+        swap.unlock(BigInteger.valueOf(2L), hashLocks.get(2), BigInteger.valueOf(timeLocks[2])).send();
+
+        System.out.println("BALANCE CONTRACT ADDRESS -> bit coin chain: " + this.carol.getBitcoinWallet().getBalance(contracts[1]));
+
+        swap = this.carol.getBitcoinWallet().getSwapInstance(contracts[1]);         //TODO: claim works, as internal transaction tho, which is not visible on the balance!!
+
+        String txHash = swap.claim().send().getTransactionHash();
+
+        TransactionReceiptProcessor receiptProcessor = new PollingTransactionReceiptProcessor(this.carol.getBitcoinWallet().getWeb3j(), TransactionManager.DEFAULT_POLLING_FREQUENCY, TransactionManager.DEFAULT_POLLING_ATTEMPTS_PER_TX_HASH);
+
+        TransactionReceipt txReceipt = receiptProcessor.waitForTransactionReceipt(txHash);
+        System.out.println("carol called claim() function to claim btc: " + txReceipt.toString());
+
+        this.pools.sendBitCoin(this.carol.addressBitcoinWallet);
     }
 
-    public void updateSwapInstances() {
-        System.out.println("updating swap instances ...");
+    public void bobClaimAltCoin() throws Exception {
+        System.out.println("bob unlocking alt coin contract ...");
 
-        //swaps[0] = this.pools.getAltCoinPool().getSwapInstance(contracts[0]);
-        swaps[0] = this.alice.getAltCoinWallet().getSwapInstance(contracts[0]);
-        //swaps[1] = this.pools.getBitcoinPool().getSwapInstance(contracts[1]);
-        swaps[1] = this.bob.getBitcoinWallet().getSwapInstance(contracts[1]);
-        //swaps[2] = this.pools.getCarTitlePool().getSwapInstance(contracts[2]);
-        swaps[2] = this.carol.getCarTitleWallet().getSwapInstance(contracts[2]);
+        Swap swap = this.bob.getAltCoinWallet().getSwapInstance(contracts[0]);
+        swap.unlock(BigInteger.valueOf(0L), hashLocks.get(0), BigInteger.valueOf(timeLocks[0])).send();
+        swap = this.bob.getAltCoinWallet().getSwapInstance(contracts[0]);
+        swap.unlock(BigInteger.valueOf(1L), hashLocks.get(1), BigInteger.valueOf(timeLocks[1])).send();
+        swap = this.bob.getAltCoinWallet().getSwapInstance(contracts[0]);
+        swap.unlock(BigInteger.valueOf(2L), hashLocks.get(2), BigInteger.valueOf(timeLocks[2])).send();
 
-        System.out.println("updated instances: " + swaps[0].toString() + swaps[1].toString() + swaps[2].toString());
+        System.out.println("BALANCE CONTRACT ADDRESS -> alt coin chain: " + this.bob.getAltCoinWallet().getBalance(contracts[0]));
+
+        swap = this.bob.getAltCoinWallet().getSwapInstance(contracts[0]);       //TODO: claim works, as internal transaction tho, which is not visible on the balance!!
+
+        String txHash = swap.claim().send().getTransactionHash();
+
+        TransactionReceiptProcessor receiptProcessor = new PollingTransactionReceiptProcessor(this.bob.getAltCoinWallet().getWeb3j(), TransactionManager.DEFAULT_POLLING_FREQUENCY, TransactionManager.DEFAULT_POLLING_ATTEMPTS_PER_TX_HASH);
+
+        TransactionReceipt txReceipt = receiptProcessor.waitForTransactionReceipt(txHash);
+        System.out.println("bob called claim() function to claim altcoin: " + txReceipt.toString());
+
+        this.pools.sendAltCoin(this.bob.addressAltCoinWallet);
     }
 
     public void printBalances() throws IOException {
+        System.out.println("      -");
         alice.getBalanceOnCarTitleChain();
         alice.getBalanceOnAltCoinChain();
         System.out.println("      -");

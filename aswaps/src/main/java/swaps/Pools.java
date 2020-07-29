@@ -52,21 +52,21 @@ public class Pools {
     }
 
     public String sendCarTitle(String address) throws IOException, InterruptedException {
-        String tx = carTitlePool.sendEtherTransaction(carTitlePool.getNonce("0x6392e91df60c5bc2ca09670cd4173e05a0e04833"), carTitlePool.gasPrice("1"), carTitlePool.gasLimit(21000L), address, "1");
+        String tx = carTitlePool.sendEtherTransaction(carTitlePool.getNonce("0x6392e91df60c5bc2ca09670cd4173e05a0e04833"), carTitlePool.gasPrice("1"), carTitlePool.gasLimit(23000L), address, "1");
         carTitlePool.waitForTransactionToBeMined(tx);
 
         return tx;
     }
 
     public String sendAltCoin(String address) throws IOException, InterruptedException {
-        String tx = altCoinPool.sendEtherTransaction(altCoinPool.getNonce("0x2193259b178623345225272dd075717fcacc704e"), altCoinPool.gasPrice("1"), altCoinPool.gasLimit(21000L), address, "1");
-        carTitlePool.waitForTransactionToBeMined(tx);
+        String tx = altCoinPool.sendEtherTransaction(altCoinPool.getNonce("0x2193259b178623345225272dd075717fcacc704e"), altCoinPool.gasPrice("1"), altCoinPool.gasLimit(23000L), address, "1");
+        altCoinPool.waitForTransactionToBeMined(tx);
 
         return tx;
     }
 
     public String sendBitCoin(String address) throws IOException, InterruptedException {
-        String tx = bitcoinPool.sendEtherTransaction(bitcoinPool.getNonce("0x6ec4922fcffd90b36aa7104c506064b4a9988a90"), bitcoinPool.gasPrice("1"), bitcoinPool.gasLimit(21000L), address, "1");
+        String tx = bitcoinPool.sendEtherTransaction(bitcoinPool.getNonce("0x6ec4922fcffd90b36aa7104c506064b4a9988a90"), bitcoinPool.gasPrice("1"), bitcoinPool.gasLimit(23000L), address, "1");
         bitcoinPool.waitForTransactionToBeMined(tx);
 
         return tx;
