@@ -1,6 +1,5 @@
 package swaps;
 
-import org.web3j.protocol.core.methods.response.EthBlockNumber;
 
 public class Connector {
     private EthNode alice;

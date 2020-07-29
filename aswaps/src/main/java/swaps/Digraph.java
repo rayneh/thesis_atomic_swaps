@@ -74,7 +74,7 @@ public class Digraph {
 
     public void alicePublishContractOnAltCoinChain() throws Exception {
         System.out.println("alice is deploying contract on alt coin chain: ");
-        contracts[0] = this.alice.deploySwapContractOnAltCoinChain(this.alice.getAddressAltCoinWallet(), this.bob.addressAltCoinWallet, SwapUtils.convertLongArrayToBigIntegerList(this.timeLocks), this.hashLocks, this.timeLock.getStartAsBigInteger());
+        contracts[0] = this.alice.deploySwapContractOnAltCoinChain(this.alice.getAddressAltCoinWallet(), this.bob.addressAltCoinWallet, this.convertLongArrayToBigIntegerList(this.timeLocks), this.hashLocks, this.timeLock.getStartAsBigInteger());
         System.out.println("alice's contract address on alt coin chain: " + contracts[0]);
 
         String transactionReceipt = this.alice.getAltCoinWallet().sendEtherTransaction(this.alice.getAltCoinWallet().getNonce(this.alice.addressAltCoinWallet),
@@ -89,7 +89,7 @@ public class Digraph {
 
     public void bobPublishContractOnBtcChain() throws Exception {
         System.out.println("bob is deploying contract on bitcoin chain: ");
-        contracts[1] = this.bob.deploySwapContractOnBitCoinChain(this.bob.addressBitcoinWallet, this.carol.addressBitcoinWallet, SwapUtils.convertLongArrayToBigIntegerList(this.timeLocks), this.hashLocks, this.timeLock.getStartAsBigInteger());
+        contracts[1] = this.bob.deploySwapContractOnBitCoinChain(this.bob.addressBitcoinWallet, this.carol.addressBitcoinWallet, this.convertLongArrayToBigIntegerList(this.timeLocks), this.hashLocks, this.timeLock.getStartAsBigInteger());
         System.out.println("bob's contract address on bitcoin chain: " + contracts[1]);
 
         String transactionReceipt = this.bob.getBitcoinWallet().sendEtherTransaction(this.bob.getBitcoinWallet().getNonce(this.bob.addressBitcoinWallet),
@@ -103,7 +103,7 @@ public class Digraph {
 
     public void carolPublishContractOnCarTitleChain() throws Exception {
         System.out.println("carol is deploying contract on car title chain: ");
-        contracts[2] = this.carol.deploySwapContractOnCarTitleChain(this.carol.addressCarTitleWallet, this.alice.addressCarTitleWallet, SwapUtils.convertLongArrayToBigIntegerList(this.timeLocks), this.hashLocks, this.timeLock.getStartAsBigInteger());
+        contracts[2] = this.carol.deploySwapContractOnCarTitleChain(this.carol.addressCarTitleWallet, this.alice.addressCarTitleWallet, this.convertLongArrayToBigIntegerList(this.timeLocks), this.hashLocks, this.timeLock.getStartAsBigInteger());
         System.out.println("carol's contract address on car title chain: " + contracts[2]);
 
         String transactionReceipt = this.carol.getCarTitleWallet().sendEtherTransaction(this.carol.getCarTitleWallet().getNonce(this.carol.addressCarTitleWallet),
@@ -201,5 +201,15 @@ public class Digraph {
 
     public Pools getPools() {
         return this.pools;
+    }
+
+    public List<BigInteger> convertLongArrayToBigIntegerList(Long[] data) {
+        List<BigInteger> list = new ArrayList<>(data.length);
+
+        for(long num : data) {
+            list.add(BigInteger.valueOf(num));
+        }
+
+        return list;
     }
 }

@@ -1,10 +1,7 @@
 package swaps.parties;
 
-import org.web3j.crypto.Hash;
 import swaps.HashLock;
 import swaps.Wallet;
-
-import javax.imageio.IIOException;
 import java.io.IOException;
 import java.math.BigInteger;
 import java.security.NoSuchAlgorithmException;
@@ -12,7 +9,6 @@ import java.util.List;
 
 
 public class Alice {
-//needs address on alt-coin chain (bob) and wallet on car chain (carol)
     private Wallet carTitleWallet;
     private Wallet altCoinWallet;
 

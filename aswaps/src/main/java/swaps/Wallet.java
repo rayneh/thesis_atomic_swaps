@@ -1,6 +1,5 @@
 package swaps;
 
-import org.web3j.abi.datatypes.Function;
 import org.web3j.crypto.*;
 import org.web3j.protocol.Web3j;
 import org.web3j.protocol.core.DefaultBlockParameterName;
@@ -8,12 +7,10 @@ import org.web3j.protocol.core.methods.response.EthGetTransactionCount;
 import org.web3j.protocol.core.methods.response.EthGetTransactionReceipt;
 import org.web3j.protocol.core.methods.response.EthSendTransaction;
 import org.web3j.protocol.core.methods.response.TransactionReceipt;
-import org.web3j.tx.gas.DefaultGasProvider;
 import org.web3j.tx.gas.StaticGasProvider;
 import org.web3j.utils.Convert;
 import org.web3j.utils.Numeric;
 import swaps.contracts.generated.Swap;
-
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -24,7 +21,6 @@ public class Wallet {
     private final String path;
     private final String password;
     private EthNode ethNode;
-    //private Web3jApi web3jApi;
     private Connector connector;
     private final String chain;
     Credentials credentials;
@@ -36,8 +32,6 @@ public class Wallet {
         this.connector = new Connector();
 
         this.connect();
-
-        //this.web3jApi = new Web3jApi(this.ethNode);
 
         this.openWallet();
     }
@@ -122,22 +116,6 @@ public class Wallet {
         EthSendTransaction ethSendTransaction = this.ethNode.getWeb3j().ethSendRawTransaction(hexValue).send();
 
         return ethSendTransaction.getTransactionHash();
-    }
-
-    /*public String sendContractTransaction(BigInteger nonce, BigInteger gasPrice, BigInteger gasLimit, String recipientAddress, String value) throws IOException{
-        RawTransaction rawTransaction = RawTransaction.createContractTransaction(nonce, gasPrice, gasLimit, this.convertToWei(value), null);
-        RawTransaction.createContractTransaction()
-        byte[] signedMessage = TransactionEncoder.signMessage(rawTransaction, this.credentials);
-        String hexValue = Numeric.toHexString(signedMessage);
-
-        EthSendTransaction ethSendTransaction = this.ethNode.getWeb3j().ethSendRawTransaction(hexValue).send();
-
-        return ethSendTransaction.getTransactionHash();
-    }*/
-
-    public String sendContractTransaction(BigInteger nonce, BigInteger gasPrice, BigInteger gasLimit, String contractAddress, String value) throws IOException{
-        //Function function = new Function()
-        return "ethSendTransaction.getTransactionHash()";
     }
 
     public void waitForTransactionToBeMined(String tx) throws IOException, InterruptedException {
