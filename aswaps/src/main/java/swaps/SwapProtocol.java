@@ -53,7 +53,7 @@ public class SwapProtocol {
 
 
 
-            System.out.println("current alt-coin block: " + alice.getCurrentAltCoinBlock());
+            /*System.out.println("current alt-coin block: " + alice.getCurrentAltCoinBlock());
             System.out.println("current bitcoin block: " + bob.getCurrentBitcoinBlock());
             System.out.println("current car title block: " + carol.getCurrentCarTitleBlock());
 
@@ -66,14 +66,12 @@ public class SwapProtocol {
             hashLocks[1] = alice.getHashLockObject().getEncodedHashLockWithCurrentBlockAppended(bob.getCurrentBitcoinBlock());
             hashLocks[2] = alice.getHashLockObject().getEncodedHashLockWithCurrentBlockAppended(carol.getCurrentCarTitleBlock());
 
-            System.out.println("HASHLOCK ARRAY -> " + hashLocks[0] + " " + hashLocks[1] + " " + hashLocks[2]);
+            System.out.println("HASHLOCK ARRAY -> " + hashLocks[0] + " " + hashLocks[1] + " " + hashLocks[2]);*/
 
             // creating hashlock with wrong secret
-            HashLock hashLock = new HashLock("iaaaa");
-            System.out.println("hashlock[0] with wrong secret: " + hashLock.getEncodedHashLockWithCurrentBlockAppended(alice.getCurrentAltCoinBlock()));
+            //HashLock hashLock = new HashLock("iaaaa");
+            //System.out.println("hashlock[0] with wrong secret: " + hashLock.getEncodedHashLockWithCurrentBlockAppended(alice.getCurrentAltCoinBlock()));
 
-            //TODO: next steps -> deploy contracts !!
-            // and then when alice claims the funds (unlocks) bob and carol have to unlock hashlock[i] in their contracts
 
             System.out.println("init..");
             this.digraph = new Digraph(alice, bob, carol);
@@ -101,7 +99,7 @@ public class SwapProtocol {
 
 
 
-        } catch (Exception e) { //| InterruptedException
+        } catch (Exception e) {
             e.printStackTrace();
         }
 

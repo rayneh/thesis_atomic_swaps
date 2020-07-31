@@ -1014,3 +1014,39 @@
 19:28:55.548663 db@open done T·66.499ms
 19:36:27.943002 db@close closing
 19:36:27.970927 db@close done T·27.9254ms
+=============== Jul 29, 2020 (CEST) ===============
+19:48:21.412943 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+19:48:21.412943 version@stat F·[3 2] S·3MiB[241KiB 3MiB] Sc·[0.75 0.03]
+19:48:21.412943 db@open opening
+19:48:21.412943 journal@recovery F·1
+19:48:21.414965 journal@recovery recovering @223
+19:48:21.418928 memdb@flush created L0@225 N·582 S·33KiB "\x13Ű..\xf3\xf0\xea,v95207":"\xf6S\x8b..\t}v,v95216"
+19:48:21.421920 version@stat F·[4 2] S·3MiB[274KiB 3MiB] Sc·[1.00 0.03]
+19:48:21.430895 db@janitor F·8 G·0
+19:48:21.430895 db@open done T·17.9518ms
+19:48:21.430895 table@compaction L0·4 -> L1·2 S·3MiB Q·95218
+19:48:21.469922 table@build created L1@228 N·39671 S·2MiB "\x00G\x9e..<\x03x,v18430":"h\x00\x00..\xbaXi,v48243"
+19:48:21.498845 table@build created L1@229 N·25384 S·1MiB "h\x00\x00..Xit,v48240":"\xff\xd3\x1a..\xc1\xe5),v73491"
+19:48:21.498845 version@stat F·[0 2] S·3MiB[0B 3MiB] Sc·[0.00 0.04]
+19:48:21.499843 table@compaction committed F-4 S-61KiB Ke·0 D·1552 T·68.948ms
+19:48:21.499843 table@remove removed @222
+19:48:21.500840 table@remove removed @219
+19:48:21.500840 table@remove removed @216
+19:48:21.500840 table@remove removed @214
+19:48:21.500840 table@remove removed @215
+20:04:59.044102 db@close closing
+20:04:59.049089 db@close done T·4.9869ms
+=============== Jul 30, 2020 (CEST) ===============
+17:23:54.590226 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+17:23:54.598204 version@stat F·[0 2] S·3MiB[0B 3MiB] Sc·[0.00 0.04]
+17:23:54.598204 db@open opening
+17:23:54.598204 journal@recovery F·1
+17:23:54.600177 journal@recovery recovering @226
+17:23:54.619089 memdb@flush created L0@230 N·1033 S·61KiB "\x11,R..\x13\xf2\xac,v96249":"\xfc\xf4c..Fch,v96251"
+17:23:54.620086 version@stat F·[1 2] S·3MiB[61KiB 3MiB] Sc·[0.25 0.04]
+17:23:54.628065 db@janitor F·6 G·1
+17:23:54.628065 db@janitor removing table-225
+17:23:54.629062 db@open done T·30.8576ms
+=============== Jul 31, 2020 (CEST) ===============
+13:48:44.981754 db@close closing
+13:48:44.986740 db@close done T·4.9866ms

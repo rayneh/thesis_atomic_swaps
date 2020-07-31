@@ -5,7 +5,9 @@ WRITE ABOUT REQUIREMENT ANALYSIS AND CONCEPT HERE
 
 \chapter{Implementation}
 \label{ch:chapter04}
-WRITE ABOUT IMPLEMENTATION HERE
+The prototype presented in this chapter aims to implement the three-way swap example of Alice, Bob and Carol discussed earlier in chapter \ref{subsec:background:second_section:example}. Implementing the protocol from chapter \ref{subsec:background:second_section:protocol} to execute any kind of swap would be too much work for this thesis. For simplicity this work uses three ethereum blockchains posing as the bitcoin, alt-coin and car-title blockchain. All communication with the blockchains is handled through the Geth client \cite{gethclient}. Also for simplicity certain parts of Herlihy's proposed smart contracts are executed off-chain, such as the generation of the hashlock and timelock values and it's verification. The prototype utilitizes class Pools, which holds a wallet one each chain containing ethereum accounts with mined ether to prepare the initial situation of Alice, Bob and Carol. The Pools class also serves another purpose, due to a problem that came up during the implementation. Ether moved by a smart contract are executed as internal transactions, which are only held by the state of the \ac{EVM}'s stack and thus are not visible on an account's balance. To overcome this issue the class Pools sends one ether upon a successful call of the claim() function of the corresponding smart contract to the callers's account, to make the transfer visible during run time. There are methods to trace internal transactions of a smart contract by instrumenting the \ac{EVM} \cite{instrumentingEVM}, which is discussed in chapter \ref{sec:background:futureresearch}. In order to delegate the actions made by the participating parties a java middleware is needed, which implements the wallets and communicates with the blockchains through the geth clients. It also prepares the initial situation for the parties mentioned in the example by controlling the pool accounts to distribute assets to the participating parties. Classes Alice, Bob and Carol represent the parties and have control of their assets in order to send ether and deploy contracts. The middleware uses the web3j library to communicate with the geth clients \cite{web3j}.
+
+
 
 \section{Reference Architecture}
 \label{sec:chapter04:ref_architecture}
@@ -22,6 +24,8 @@ WRITE ABOUT SMART CONTRACT IMPLEMENTATIONS HERE
 \label{sec:chapter04:middleware}
 WRITE ABOUT MIDDLEWARE HERE
 
+EXPLAIN WHAT IS IMPL OFFCHAIN AND WHY
+
 \section{Proof of Concept (aka Tests?)}
 \label{sec:chapter04:poc}
 EXPLAIN TESTING AND PROOF OF CONCEPT HERE
@@ -31,6 +35,15 @@ EXPLAIN TESTING AND PROOF OF CONCEPT HERE
 
 \section{Future Research}
 \label{sec:background:futureresearch}
+% was ich gerne noch machen wuerde
+
+digraph and time on chain impl
+
+implement protocol to be comaptible with any chain, that supports turing complete smart contracts
+
+find ethereum client, which supports internal transactions to make smart contract.transfer visible.
+
+instrumenting evm, -> https://ethereum.stackexchange.com/questions/4446/instrumenting-evm
 
 \section{Acknowledgements}
 \label{sec:background:acknowledgements}
@@ -45,9 +58,9 @@ EXPLAIN TESTING AND PROOF OF CONCEPT HERE
 		Account: & Accounts have an intrinsic balance and transaction count held as part of ethereum state. Those accounts with empty associated \ac{EVM} code are controlled by external entities and those with non-empty \ac{EVM} code (thus the account represents an autonomous object). Every Account has a single address that identifies it. \\
 		Alt-Coin: & The term Alt-Coin refers to all cryptocurrencies launched after the success of bitcoin. Generally, they sell themselves as better alternatives to bitcoin or try to solve certain technological problems in a "better" or different way. \\
 		App: & An app is a type of software that allows you to perform specific tasks. Its also an acronym for application. Its often named after the device the application is running on. E.g. mobile app, desktop app or \ac{DApp}. Decentralized apps are a referral for applications running on decentralized architectures like the \ac{EVM}. \\
-		Asset: & An asset is a resource with economic value, owned or controlled by an individual, corporation or country. In financial context it comes with the expectation that it will provide a future benefit. In context of this work it can also be a car title owned by an individual like Carol.\\
+		Asset: & An asset is a resource with economic value, owned or controlled by an individual, corporation or country. In financial context it comes with the expectation that it provides a future benefit. In context of this work it can also be a car title owned by an individual like Carol.\\
 		Atomic Transaction: & Atomic Transactions are associated with Database operations where a set of actions must all complete or else none of them complete (atomicity). Same concept applies to swaps in blockchain context. \\
-		Autonomous Object: & A notional object, which is existent only in the hypothetical state of the ethereum public chain. It has an address and thus an associated account, which will have non-empty \ac{EVM} code. Incorporated only as the Storage State of that account. \\
+		Autonomous Object: & A notional object, which is existent only in the hypothetical state of the ethereum public chain. It has an address and thus an associated account, which has non-empty \ac{EVM} code. Incorporated only as the Storage State of that account. \\
 	\end{tabular}
 \end{center}
 
@@ -108,7 +121,7 @@ EXPLAIN TESTING AND PROOF OF CONCEPT HERE
 \end{center}
 
 
-
+% internal transaction
 
 
 

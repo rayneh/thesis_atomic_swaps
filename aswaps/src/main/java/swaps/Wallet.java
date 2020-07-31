@@ -21,7 +21,6 @@ public class Wallet {
     private final String path;
     private final String password;
     private EthNode ethNode;
-    private Connector connector;
     private final String chain;
     Credentials credentials;
 
@@ -29,7 +28,6 @@ public class Wallet {
         this.path = path;
         this.password = password;
         this.chain = chain;
-        this.connector = new Connector();
 
         this.connect();
 
@@ -39,15 +37,15 @@ public class Wallet {
     private void connect() {
         switch (this.chain) {
             case "alice": {
-                this.ethNode = this.connector.getAlice();
+                this.ethNode = new EthNode("BTC(Alice) - Chain", "http://127.0.0.1", "8081");//= this.connector.getAlice();
                 break;
             }
             case "bob": {
-                this.ethNode = this.connector.getBob();
+                this.ethNode = new EthNode("ALT-COIN(Bob) - Chain", "http://localhost", "8082");//= this.connector.getBob();
                 break;
             }
             case "carol": {
-                this.ethNode = this.connector.getCarol();
+                this.ethNode = new EthNode("CAR-TITLE(Carol) - Chain", "http://localhost", "8083");//= this.connector.getCarol();
                 break;
             }
             default: {
