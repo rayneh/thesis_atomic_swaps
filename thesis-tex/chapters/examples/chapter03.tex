@@ -5,11 +5,7 @@ WRITE ABOUT REQUIREMENT ANALYSIS AND CONCEPT HERE
 
 \chapter{Implementation}
 \label{ch:chapter04}
-The prototype presented in this chapter aims to implement the three-way swap example of Alice, Bob and Carol discussed earlier in chapter \ref{subsec:background:second_section:example}. Implementing the protocol from chapter \ref{subsec:background:second_section:protocol} to execute any kind of swap would be too much work for this thesis. For simplicity this work uses three ethereum blockchains posing as the bitcoin, alt-coin and car-title blockchain. All communication with the blockchains is handled through the Geth client \cite{gethclient}. Also for simplicity certain parts of Herlihy's proposed smart contracts are executed off-chain, such as the generation of the hashlock and timelock values and it's verification. The prototype utilitizes class Pools, which holds a wallet one each chain containing ethereum accounts with mined ether to prepare the initial situation of Alice, Bob and Carol. The Pools class also serves another purpose, due to a problem that came up during the implementation. Ether moved by a smart contract are executed as internal transactions, which are only held by the state of the \ac{EVM}'s stack and thus are not visible on an account's balance. To overcome this issue the class Pools sends one ether upon a successful call of the claim() function of the corresponding smart contract to the callers's account, to make the transfer visible during run time. There are methods to trace internal transactions of a smart contract by instrumenting the \ac{EVM} \cite{instrumentingEVM}, which is discussed in chapter \ref{sec:background:futureresearch}. In order to delegate the actions made by the participating parties a java middleware is needed, which implements the wallets and communicates with the blockchains through the geth clients. It also prepares the initial situation for the parties mentioned in the example by controlling the pool accounts to distribute assets to the participating parties. Classes Alice, Bob and Carol represent the parties and have control of their assets in order to send ether and deploy contracts. The middleware uses the web3j library \cite{web3j} to communicate with the geth clients. The class HashLock generates hashlock $h$ with the given formula $h$ = $H$($s$), where $H$($\cdot$) is a cryptographic hash function using the \ac{SHA-256} hashing algorithm. It takes the secret $s$ with the appended current block and resolves to the hashed secret $s$, which can be reached only with the correct secret and block. Smart contracts can determine the current time only by the system state, meaning the contracts can only measure time by the current block number in the blockchain e.g. block \# 10 is later than block \# 5. To measure a real time like \ac{UTC} the implementation still needs to be off-chain with a corresponding time server. Class TimeLock generates start times and holds information and saves them into the published smart contract, when phases have to be completed in order to execute the swap protocol. The middleware needs a smart contract solidity file, so all parties can deploy and publish the contract onto the blockchains. Class Digraph delegates the swap protocol for the parties. Instances Alice, Bob and Carol representing the actors are passed to Digraph's constructor upon initialization. Paths are triggered by instance Digrap by the according string representations (table \ref{table:2}), which then call the functions in a given order and executes the swap in behalf of Alice, Bob and Carol. The swap is executed in two phases, called Phase 0 (contract deployment and locking of funds ) and 1 (revealing secrets).
-
-%TODO: class diagram and digraph path gfx plus references.
-
-
+The prototype presented in this chapter aims to implement the three-way swap example of Alice, Bob and Carol discussed earlier in chapter \ref{subsec:background:second_section:example}. Implementing the protocol from chapter \ref{subsec:background:second_section:protocol} to execute any kind of swap would be too much work for this thesis. For simplicity this work uses three ethereum blockchains posing as the bitcoin, alt-coin and car-title blockchain. All communication with the blockchains is handled through the Geth client \cite{gethclient}. Also for simplicity certain parts of Herlihy's proposed smart contracts are executed off-chain, such as the generation of the hashlock and timelock values and it's verification. The prototype utilitizes class Pools, which holds a wallet one each chain containing ethereum accounts with mined ether to prepare the initial situation of Alice, Bob and Carol. The Pools class also serves another purpose, due to a problem that came up during the implementation. Ether moved by a smart contract are executed as internal transactions, which are only held by the state of the \ac{EVM}'s stack and thus are not visible on an account's balance. To overcome this issue the class Pools sends one ether upon a successful call of the claim() function of the corresponding smart contract to the callers's account, to make the transfer visible during run time. There are methods to trace internal transactions of a smart contract by instrumenting the \ac{EVM} \cite{instrumentingEVM}, which is discussed in chapter \ref{sec:background:futureresearch}. In order to delegate the actions made by the participating parties a java middleware is needed, which implements the wallets and communicates with the blockchains through the geth clients. It also prepares the initial situation for the parties mentioned in the example by controlling the pool accounts to distribute assets to the participating parties. Classes Alice, Bob and Carol represent the parties and have control of their assets in order to send ether and deploy contracts. The middleware uses the web3j library \cite{web3j} to communicate with the geth clients. The class HashLock generates hashlock $h$ with the given formula $h$ = $H$($s$), where $H$($\cdot$) is a cryptographic hash function using the \ac{SHA-256} hashing algorithm. It takes the secret $s$ with the appended current block and resolves to the hashed secret $s$, which can be reached only with the correct secret and block. Smart contracts can determine the current time only by the system state, meaning the contracts can only measure time by the current block number in the blockchain e.g. block \# 10 is later than block \# 5. To measure a real time like \ac{UTC} the implementation still needs to be off-chain with a corresponding time server. Class TimeLock generates start times and holds information and saves them into the published smart contract, when phases have to be completed in order to execute the swap protocol. The middleware needs a smart contract solidity file, so all parties can deploy and publish the contract onto the blockchains. Class Digraph delegates the swap protocol for the parties. Instances Alice, Bob and Carol representing the actors are passed to Digraph's constructor upon initialization. Paths are triggered by instance Digrap by the according string representations (table \ref{table:2}), which then call the functions in a given order and executes the swap in behalf of Alice, Bob and Carol. The swap is executed in two phases, called Phase 0 (contract deployment and locking of funds figure \ref{fig:phase0}) and 1 (revealing secrets figure \ref{fig:phase1}). \newline
 
 \begin{table}[h!]
 	\centering
@@ -33,9 +29,15 @@ The prototype presented in this chapter aims to implement the three-way swap exa
 \end{table}
 
 \begin{figure}[h]
-	\includegraphics[width=0.6\paperwidth]{swaps-crop}	%TODO: ref gfx
-	\caption{UML Class Diagram Middleware}
-	\label{fig:uml}
+	\includegraphics[width=0.7\paperwidth]{phase0}	
+	\caption{Swap Protocol Phase 0}
+	\label{fig:phase0}
+\end{figure}
+
+\begin{figure}[h]
+	\includegraphics[width=0.7\paperwidth]{phase1}
+	\caption{Swap Protocol Phase 1}
+	\label{fig:phase1}
 \end{figure}
 
 \clearpage
@@ -44,7 +46,14 @@ The prototype presented in this chapter aims to implement the three-way swap exa
 \section{Reference Architecture}
 \label{sec:chapter04:ref_architecture}
 
-SHOW FIGURE FOR REFERENCE ARCHITECTURE HERE
+
+\begin{figure}[h]
+	\includegraphics[width=0.7\paperwidth]{reference_architecture}	%TODO: ref gfx
+	\caption{Swap Protocol Reference Architecture}
+	\label{fig:reference_architecture}
+\end{figure}
+\clearpage
+
 %
 % Section: Listen
 %
@@ -52,11 +61,25 @@ SHOW FIGURE FOR REFERENCE ARCHITECTURE HERE
 \label{sec:chapter04:smartcontracts}
 WRITE ABOUT SMART CONTRACT IMPLEMENTATIONS HERE
 
+\begin{figure}[h]
+	\includegraphics[width=0.7\paperwidth]{swap_contract}	%TODO: ref gfx
+	\caption{Swap Contract}
+	\label{fig:swap_contract}
+\end{figure}
+\clearpage
+
 \section{Middleware (Intermediate Party)}
 \label{sec:chapter04:middleware}
 WRITE ABOUT MIDDLEWARE HERE
 
 EXPLAIN WHAT IS IMPL OFFCHAIN AND WHY
+
+\begin{figure}[h]
+	\includegraphics[width=0.7\paperwidth]{swaps-crop}	%TODO: ref gfx MB put in middleware chapter
+	\caption{UML Class Diagram Middleware}
+	\label{fig:uml}
+\end{figure}
+\clearpage
 
 \section{Proof of Concept (aka Tests?)}
 \label{sec:chapter04:poc}
@@ -72,6 +95,8 @@ EXPLAIN TESTING AND PROOF OF CONCEPT HERE
 digraph and time on chain impl
 
 implement protocol to be comaptible with any chain, that supports turing complete smart contracts
+
+take any kind of swap into acount two and three way
 
 find ethereum client, which supports internal transactions to make smart contract.transfer visible.
 
