@@ -96,15 +96,17 @@ EXPLAIN TESTING AND PROOF OF CONCEPT HERE
 \label{sec:background:futureresearch}
 % was ich gerne noch machen wuerde
 
-digraph and time on chain impl
+digraph and hashlock on chain impl
+
+further research on implementing time server on chain for timelocks, problem: evm only knows system time by block count
+similar to \cite{HTLAs} Hashed-Timelock Agreements bye hyperledger which are based on the timelock principle from bitcoin \cite{timelock}
 
 implement protocol to be comaptible with any chain, that supports turing complete smart contracts
+- libs need to be added or implemented manually, to see a list of smart contract coins refer to cryptoslate list \cite{smart_contract_coins}
 
 take any kind of swap into acount two and three way
 
-find ethereum client, which supports internal transactions to make smart contract.transfer visible.
-
-instrumenting evm, -> https://ethereum.stackexchange.com/questions/4446/instrumenting-evm
+in case of ethereum make internal transactions visible by  instrumenting evm, \cite{instrumenting_evm}
 
 \section{Acknowledgements}
 \label{sec:background:acknowledgements}
