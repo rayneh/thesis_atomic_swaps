@@ -1,7 +1,16 @@
 \chapter{Requirement Analysis and Concept}
 \label{ch:chapter03}
-WRITE ABOUT REQUIREMENT ANALYSIS AND CONCEPT HERE
-% https://www.visual-paradigm.com/guide/requirements-gathering/requirement-analysis-techniques/
+Alice, Bob and Carol want to trade assets they own on different blockchains. Since they do not trust each other they need a solution where the trade is either executed completely or reversed. They want their assets to be returned in case a party behaves irrationally. For example if Carol tries to scam them, Alice and Bob do not want to loose their assets and end up worse in the swap process. The example \ref{subsec:background:second_section:example} discussed in chapter model and general principles \ref{ch:background} is the user story that is addressed by the prototype implementation. Requirements to implement a system feasible of solving their initial situation in an atomic matter is discussed next. First the blockchain needs to support turing-complete smart contracts to hold information during the trade and to decide weather the swap contract is unlocked or timed out. By holding these information the contract can decide if the locked funds are eligible to be claimed by the counter party or if the party can claim a refund in case the contract is timed out. Second is a digraph implementation as a smart contract to execute the swap decentralized. For simplicity delegation can be handled by the middleware, by splitting the trade into two phases that are discussed in chapter \ref{ch:chapter04}. Third requirements are the hashlocks and timelocks. The correct hashlock is needed to unlock the contract by appending it to the secret revealed by the party leading the digraph paths. To unlock the contract before it times out timelocks passed to the unlock function need to be smaller than the prematurely added timelocks that are held by the contract state. If the unlock limits are surpassed the contract times out and allows the party which locked their funds on contract creation to reclaim them. For full decentralization the hashlocks and timelocks need to be created by the smart contract, but for simplicity the middleware creates them. By passing the values to the smart contract's claim and refund functions as parameter it can decide if the phases are completed in the correct time windows or if the trade is canceled. The UML use case diagram \ref{fig:uml_use_case} below shows interactions between the actors and systems. In a productive environment the participating parties would be outside the system, but again for simplicity the implemented prototype handles all steps of the actors to complete the swap. The implementation chapter \ref{ch:chapter04} discuss the realization of the use case diagram in detail. Including an UML class diagram and abstraction of the swap digraph.
+
+
+%TODO ref to uml use case diagram
+
+\begin{figure}[h]
+	\includegraphics[height=1\paperwidth]{uml}	
+	\caption{UML Use Case Diagram}
+	\label{fig:uml_use_case}
+\end{figure}
+
 
 \chapter{Implementation}
 \label{ch:chapter04}
