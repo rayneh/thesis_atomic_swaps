@@ -85,32 +85,15 @@ This chapter discusses the middleware of the swap prototype, it's classes and sh
 \end{figure}
 \clearpage
 
-\section{Proof of Concept (aka Tests?)}
+\section{Tests (Evaluation)}
 \label{sec:chapter04:poc}
 EXPLAIN TESTING AND PROOF OF CONCEPT HERE
 
-\chapter{Conclusion}
+\chapter{Conclusion and Future Research}
 \label{ch:chapter05}
+The atomic cross-chain prototype discussed in chapter \ref{ch:chapter04} shows that swapping assets across different is possible with the use of smart contracts. To reach full decentralized blockhain interoperability more needs to be done though. For simplicity the prototype handles delegation of the trade and generation of the hashlocks and timelocks off-chain. By adding these features as smart contract implementations the prototype can be further decentralized. It remains an open question if bitcoin can implement swaps with the current scripting language it supports, because the lack of turing-completeness is a problem. To implement and generate the timelocks on-chain there needs to be evaluation on how time can be measured in block generation times, because the \ac{EVM} only knows the time by the current world state and past blocks that have been added. Hyperledger implements their approach with Hashed-Timelock Agreements \cite{HTLAs}, which are based on the timelock \cite{timelock} principle of bitcoin. After successful decentralization of delegation and generation of timelocks and hashlocks on-chain next step is supporting other cryptocurrencies that support smart contracts. Further evaluation is needed to see if different consensus algorithms bring up more problems to be solved for executing swaps. A list of cryptocurrencies that have smart contract support created by cryptoslate \cite{smart_contract_coins} shows that it needs a lot more research on this topic to reach full interoperability of these blockchains. Before even adding support for other cryptocurrencies to the prototype further development of ethereum's clients and libraries has to be done to make internal transactions visible to the end user by instrumenting the EVM \cite{instrumenting_evm}. Also the prototype does not support two-way swaps of assets between two chains at this time. Solving the previous mentioned tasks and the problems that come up during further evaluation of these, the next logical step is to support more cryptocurrencies to create a framework that supports any kind blockchain teechnologies.
 
-\section{Future Research}
-\label{sec:background:futureresearch}
-% was ich gerne noch machen wuerde
-
-digraph and hashlock on chain impl
-
-further research on implementing time server on chain for timelocks, problem: evm only knows system time by block count
-similar to \cite{HTLAs} Hashed-Timelock Agreements bye hyperledger which are based on the timelock principle from bitcoin \cite{timelock}
-
-implement protocol to be comaptible with any chain, that supports turing complete smart contracts
-- libs need to be added or implemented manually, to see a list of smart contract coins refer to cryptoslate list \cite{smart_contract_coins}
-
-take any kind of swap into acount two and three way
-
-in case of ethereum make internal transactions visible by  instrumenting evm, \cite{instrumenting_evm}
-
-\section{Acknowledgements}
-\label{sec:background:acknowledgements}
-
+%TODO: MB add two more sentences!!
 
 \chapter{Terminology}
 \label{ch:chapter06}
