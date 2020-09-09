@@ -90,7 +90,7 @@ Around the 1990s it became clear that algorithmic enforcement of agreements coul
 A directed graph (digraph) $\mathcal{D}$ (figure \ref{fig:a_digraph_d}) in the example consists of a finite nonempty set of objects called vertices. So the vertex set of the example \ref{fig:a_digraph_d} is $V$($\mathcal{D}$) = \{$u$, $v$, $w$, $x$, $y$, $z$\}. It also has a finite set of A($\mathcal{D}$) of ordered pairs of distinct vertices called arcs (or directed edges according to \cite{chartrand2010graphs}), in this example \ref{fig:a_digraph_d} $A$($\mathcal{D}$) = \{($u$, $v$), ($u$, $w$), ($w$, $u$), ($z$, $u$), ($x$, $z$), ($y$, $z$)\}. So the digraph $\mathcal{D}$ consists of $V$($\mathcal{D}$) the vertex set and $A$($\mathcal{D}$) the arc set of $\mathcal{D}$, which can also be expressed as $\mathcal{D}$ = ($V$, $A$). The order (size) is sometimes denoted as |$\mathcal{D}$|, so the size of the digraph $\mathcal{D}$ in the example \ref{fig:a_digraph_d} is |$\mathcal{D}$| = 6. For an arc ($u$, $v$) the first vertex $u$ is its tail and the second vertex $v$ is its head, we can also say that the arc ($u$, $v$) leaves $u$ and enters $v$. Another expression is, assuming ($u$, $v$) is an arc, one can say that $u$ dominates $v$ (or $v$ is dominated by $u$) and can be denoted by $u$ $\rightarrow$ $v$. A digraph $\mathcal{D}$ is strongly connected (or just strong) if each vertex of $\mathcal{D}$ is reachable from every other of $\mathcal{D}$'s vertices.  If its not possible to loop through a digraph $\mathcal{D}$, then it has no cycle and the digraph $\mathcal{D}$ is acyclic. The set $S$ of vertices (arcs) is called a feedback vertex set or an feedback arc set, if $\mathcal{D}$ happens to be acyclic. Let $\mathcal{H}$ be another digraph, if $V$($\mathcal{H}$) $\subseteq$ $V$($D$), $A$($\mathcal{H}$) $\subseteq$ $A$($D$) and every arc in $A$($\mathcal{H}$) has both end-vertices in $V$($\mathcal{H}$), then $H$ is a subdigraph of digraph $\mathcal{D}$. The distance from $x$ to $z$ is the minimum length of a ($x$, $y$)-walk and is denoted as $dist$($x$, $y$) of the given digraph $\mathcal{D}$ in figure \ref{fig:a_digraph_d}. If a digraph $\mathcal{D}$ is strongly connected and only if $\mathcal{D}$ is strong, then the diameter of $\mathcal{D}$ is $diam$($\mathcal{D}$) = $dist$($V$, $V$) \cite{bang2007theory}. The example in this chapter and its figure \ref{fig:a_digraph_d} is important to understand and to know the basic terminology, since the processes of atomic cross-chain swaps itself is based on digraphs.
 
 \begin{figure}[h]
-	\includegraphics[width=0.6\paperwidth]{adigraphd}	%16cm  height=7cm  height=0.4
+	\includegraphics[height=0.3\paperwidth]{adigraphd}	%width=0.6
 	\caption{A Digraph D}
 	\label{fig:a_digraph_d}
 \end{figure}
@@ -124,7 +124,7 @@ Let $H$($\cdot$) be a cryptographic hash function. Alice could transfer her alt-
 
 %TODO REPLACE FIGURES WITH NEW SHOTS FROM THE PDFs
 \begin{figure}[h]
-	\includegraphics[width=16cm]{deploying_contracts}	%16cm
+	\includegraphics[width=0.6\paperwidth]{deploying_contracts}	%16cm
 	\caption{Atomic cross-chain swap: deploying contracts}
 	\label{fig:deploying_contracts}
 \end{figure}
@@ -132,7 +132,7 @@ Let $H$($\cdot$) be a cryptographic hash function. Alice could transfer her alt-
 \clearpage
 
 \begin{figure}[h]
-	\includegraphics[width=0.8\paperwidth]{triggering_arcs}	%16cmheight=5.5cm  
+	\includegraphics[width=0.6\paperwidth]{triggering_arcs}	%16cmheight=5.5cm  
 	\caption{Atomic cross-chain swap: triggering arcs}
 	\label{fig:triggering_arcs}
 \end{figure}
@@ -150,7 +150,7 @@ In a simple two-party swap each participating party publishes a contract that as
 % MB also add some stuff about research from \cite{li2019research}
 
 \begin{figure}[h]
-	\includegraphics[height=6.5cm]{timeouts_subdigraph}	%16cm
+	\includegraphics[width=0.6\paperwidth]{timeouts_subdigraph}	%height=6.5cm
 	\caption{A is the leader, B and C followers. Timeouts can be assigned when the follower subdigraph is acyclic (left) but not when it is cyclic (right)}
 	\label{fig:timeouts_subdigraph}
 \end{figure}
