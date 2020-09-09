@@ -96,7 +96,45 @@ This chapter discusses the middleware of the swap prototype, it's classes and sh
 
 \section{Tests (Evaluation)}
 \label{sec:chapter04:poc}
-Testing is difficult due to a problem that came up during implementation of the swap prototype. The \ac{EVM} handles funds sent by a smart contract as internal transactions, which do not show up on the recipients account balance. Information who owns the coins after sending it is only available in the contract's state. Making them visible requires tracing the \ac{EVM}'s stack on assembly level to keep track on who owns the funds.
+Testing is difficult due to a problem that came up during implementation of the swap prototype. The \ac{EVM} handles funds sent by a smart contract as internal transactions, which do not show up on the recipients account balance. Information who owns the coins after sending it is only available in the contract's state. Making them visible requires tracing the \ac{EVM}'s stack on assembly level to keep track on who owns the funds. The prototype implementation uses a workaround to simulate the result of a claim or refund function call of the swap contract. It does that by sending funds from one of the pool accounts to the caller's address to make the transaction visible on the balance. This influences execution times of the prototype and test results. Since three chains and the prototype are all running on the same system the test results do not represent a productive environment. To reproduce the testing results an equivalent system is required, where the swap prototype and chains are hosted on. Nevertheless test results of the implemented system are discussed next. Swaps per hour (SPH) is calculated by measuring the time one swap needs to complete. One run includes preparation of the Alice, Bob and Carol's initial situation, connecting to wallets and the workaround discussed above. The values shown in table \ref{table:3} result in approximately eight swaps per hour by dividing one hour in nanoseconds through the average time of the three runs. Transactions per second (TPS) are measured by sending ten transaction and measure the time they need until they are published and confirmed on the blockchain. By dividing ten through the average time in seconds of table \ref{table:4} the transactions per second on one chain is approximately 0.049 TPS.
+
+\begin{table}[h!]
+	\centering
+	\begin{tabular}{|c | c | c |} 
+		\hline 
+		Iteration & Time in nanoseconds & Time in minutes \\ [0.5ex] 
+		\hline \hline
+		Run 1 & 377392865700 ns & 6.29 min  \\ 
+		\hline
+		Run 2 & 435784403900 ns & 7.26 min  \\
+		\hline
+		Run 3 & 423182624900 ns & 7.05 min  \\
+		\hline
+		Average & 412119964833 ns & 6.87 min  \\ [1ex] 
+		\hline
+	\end{tabular}
+	\caption{Test results swaps per hour (SPH)}
+	\label{table:3}
+\end{table}
+
+\begin{table}[h!]
+	\centering
+	\begin{tabular}{|c | c | c |} 
+		\hline 
+		Iteration & Time in nanoseconds & Time in seconds \\ [0.5ex] 
+		\hline \hline
+		Run 1 & 56932675400 ns & 56.93 sec  \\ 
+		\hline
+		Run 2 & 55702292100 ns & 55.70 sec  \\
+		\hline
+		Run 3 & 71745206200 ns & 71.75 sec  \\
+		\hline
+		Average & 61460057900 ns & 61.46 sec  \\ [1ex] 
+		\hline
+	\end{tabular}
+	\caption{Test results transactions per second (TPS)}
+	\label{table:4}
+\end{table}
 
 \chapter{Conclusion and Future Research}
 \label{ch:chapter05}
