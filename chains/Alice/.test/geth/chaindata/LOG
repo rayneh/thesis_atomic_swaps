@@ -1105,3 +1105,37 @@
 13:28:46.837986 db@open done T·17.9529ms
 20:37:15.328136 db@close closing
 20:37:15.334120 db@close done T·5.9844ms
+=============== Sep 8, 2020 (CEST) ===============
+21:19:34.533798 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+21:19:34.541777 version@stat F·[3 2] S·3MiB[211KiB 3MiB] Sc·[0.75 0.04]
+21:19:34.541777 db@open opening
+21:19:34.541777 journal@recovery F·1
+21:19:34.545767 journal@recovery recovering @242
+21:19:34.548759 version@stat F·[3 2] S·3MiB[211KiB 3MiB] Sc·[0.75 0.04]
+21:19:34.560727 db@janitor F·7 G·0
+21:19:34.560727 db@open done T·18.9497ms
+=============== Sep 9, 2020 (CEST) ===============
+16:13:05.199719 db@close closing
+16:13:05.260556 db@close done T·60.8373ms
+=============== Sep 9, 2020 (CEST) ===============
+16:34:16.389902 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+16:34:16.392918 version@stat F·[3 2] S·3MiB[211KiB 3MiB] Sc·[0.75 0.04]
+16:34:16.392918 db@open opening
+16:34:16.392918 journal@recovery F·1
+16:34:16.394911 journal@recovery recovering @244
+16:34:16.404861 memdb@flush created L0@246 N·5700 S·321KiB "\x06=\xd1..\x15\x13S,v103309":"\xfd\x84\r..\xe12o,v103307"
+16:34:16.406856 version@stat F·[4 2] S·4MiB[533KiB 3MiB] Sc·[1.00 0.04]
+16:34:16.416831 db@janitor F·8 G·0
+16:34:16.416831 db@open done T·23.9123ms
+16:34:16.417828 table@compaction L0·4 -> L1·2 S·4MiB Q·103324
+16:34:16.466724 table@build created L1@249 N·40115 S·2MiB "\x003\xd7..*\xb6\x8c,v71298":"h\x00\x00..\xbc\x1b[,v44121"
+16:34:16.498641 table@build created L1@250 N·30356 S·1MiB "h\x00\x00..\x1b[t,v44118":"\xff\f\x87..\x9ct\xfa,v74340"
+16:34:16.498641 version@stat F·[0 2] S·3MiB[0B 3MiB] Sc·[0.00 0.04]
+16:34:16.499637 table@compaction committed F-4 S-121KiB Ke·0 D·3073 T·81.8091ms
+16:34:16.500606 table@remove removed @239
+16:34:16.500606 table@remove removed @236
+16:34:16.500606 table@remove removed @233
+16:34:16.501603 table@remove removed @231
+16:34:16.501603 table@remove removed @232
+17:31:16.870980 db@close closing
+17:31:16.875967 db@close done T·4.9869ms
