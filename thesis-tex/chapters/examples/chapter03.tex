@@ -6,9 +6,11 @@ Alice, Bob and Carol want to trade assets they own on different blockchains. Sin
 %TODO MB add sequence diagram!!
 
 \begin{figure}[h]
-	\includegraphics[height=1\paperwidth]{uml}	
-	\caption{UML Use Case Diagram}
-	\label{fig:uml_use_case}
+	\begin{center}
+		\includegraphics[width=0.7\paperwidth]{uml}	
+		\caption{UML Use Case Diagram}
+		\label{fig:uml_use_case}
+	\end{center}
 \end{figure}
 
 
@@ -38,15 +40,19 @@ The prototype presented in this chapter aims to implement the three-way swap exa
 \end{table}
 
 \begin{figure}[h]
-	\includegraphics[width=0.7\paperwidth]{phase0}	
-	\caption{Swap Protocol Phase 0}
-	\label{fig:phase0}
+	\begin{center}
+		\includegraphics[width=0.6\paperwidth]{phase0}	
+		\caption{Swap Protocol Phase 0}
+		\label{fig:phase0}
+	\end{center}
 \end{figure}
 
 \begin{figure}[h]
-	\includegraphics[width=0.7\paperwidth]{phase1}
-	\caption{Swap Protocol Phase 1}
-	\label{fig:phase1}
+	\begin{center}
+		\includegraphics[width=0.6\paperwidth]{phase1}
+		\caption{Swap Protocol Phase 1}
+		\label{fig:phase1}
+	\end{center}
 \end{figure}
 
 \clearpage
@@ -60,9 +66,11 @@ This chapter discusses the reference architecture (figure \ref{fig:reference_arc
 %TODO MB write 2 more sentences!!
 
 \begin{figure}[h]
-	\includegraphics[width=0.7\paperwidth]{reference_architecture}
-	\caption{Swap Protocol Reference Architecture}
-	\label{fig:reference_architecture}
+	\begin{center}
+		\includegraphics[width=0.6\paperwidth]{reference_architecture}
+		\caption{Swap Protocol Reference Architecture}
+		\label{fig:reference_architecture}
+	\end{center}
 \end{figure}
 \clearpage
 
@@ -76,9 +84,11 @@ The swap contract (figure \ref{fig:swap_contract}) holds several attributes (lin
 
 
 \begin{figure}[h]
-	\includegraphics[width=0.7\paperwidth]{swap_contract}
-	\caption{Swap Contract}
-	\label{fig:swap_contract}
+	\begin{center}
+		\includegraphics[width=0.7\paperwidth]{swap_contract}
+		\caption{Swap Contract}
+		\label{fig:swap_contract}
+	\end{center}
 \end{figure}
 \clearpage
 
@@ -96,7 +106,7 @@ This chapter discusses the middleware of the swap prototype, it's classes and sh
 
 \section{Tests (Evaluation)}
 \label{sec:chapter04:poc}
-Testing is difficult due to a problem that came up during implementation of the swap prototype. The \ac{EVM} handles funds sent by a smart contract as internal transactions, which do not show up on the recipients account balance. Information who owns the coins after sending it is only available in the contract's state. Making them visible requires tracing the \ac{EVM}'s stack on assembly level to keep track on who owns the funds. The prototype implementation uses a workaround to simulate the result of a claim or refund function call of the swap contract. It does that by sending funds from one of the pool accounts to the caller's address to make the transaction visible on the balance. This influences execution times of the prototype and test results. Since three chains and the prototype are all running on the same system the test results do not represent a productive environment. To reproduce the testing results an equivalent system is required, where the swap prototype and chains are hosted on. Nevertheless test results of the implemented system are discussed next. Swaps per hour (SPH) is calculated by measuring the time one swap needs to complete. One run includes preparation of the Alice, Bob and Carol's initial situation, connecting to wallets and the workaround discussed above. The values shown in table \ref{table:3} result in approximately eight swaps per hour by dividing one hour in nanoseconds through the average time of the three runs. Transactions per second (TPS) are measured by sending ten transaction and measure the time they need until they are published and confirmed on the blockchain. By dividing ten through the average time in seconds of table \ref{table:4} the transactions per second on one chain is approximately 0.049 TPS.
+Testing is difficult due to a problem that came up during implementation of the swap prototype. The \ac{EVM} handles funds sent by a smart contract as internal transactions, which do not show up on the recipients account balance. Information who owns the coins after sending it is only available in the contract's state. Making them visible requires tracing the \ac{EVM}'s stack on assembly level to keep track on who owns the funds. The prototype implementation uses a workaround to simulate the result of a claim or refund function call of the swap contract. It does that by sending funds from one of the pool accounts to the caller's address to make the transaction visible on the balance. This influences execution times of the prototype and test results. Since three chains and the prototype are all running on the same system, test results do not represent a productive environment. To reproduce the testing results an equivalent system is required, where the swap prototype and chains are hosted on. Nevertheless test results of the implemented system are discussed next. Swaps per hour (SPH) is calculated by measuring the time one swap needs to complete. One run includes preparation of the Alice, Bob and Carol's initial situation, connecting to wallets and the workaround discussed above. The values shown by table \ref{table:3} result in approximately eight swaps per hour by dividing one hour in nanoseconds through the average time of the three runs. Transactions per second (TPS) are measured by sending ten transaction and measure the time they need until transactions are published and confirmed on the blockchain. By dividing ten through the average time in seconds of table \ref{table:4} the transactions per second on one chain is approximately 0.049 TPS.
 
 \begin{table}[h!]
 	\centering
@@ -138,7 +148,7 @@ Testing is difficult due to a problem that came up during implementation of the 
 
 \chapter{Conclusion and Future Research}
 \label{ch:chapter05}
-The atomic cross-chain prototype discussed in chapter \ref{ch:chapter04} shows that swapping assets across different is possible with the use of smart contracts. To reach full decentralized blockhain interoperability more needs to be done though. For simplicity the prototype handles delegation of the trade and generation of the hashlocks and timelocks off-chain. By adding these features as smart contract implementations the prototype can be further decentralized. It remains an open question if bitcoin can implement swaps with the current scripting language it supports, because the lack of turing-completeness is a problem. To implement and generate the timelocks on-chain there needs to be evaluation on how time can be measured in block generation times, because the \ac{EVM} only knows the time by the current world state and past blocks that have been added. Hyperledger implements their approach with Hashed-Timelock Agreements \cite{HTLAs}, which are based on the timelock \cite{timelock} principle of bitcoin. After successful decentralization of delegation and generation of timelocks and hashlocks on-chain next step is supporting other cryptocurrencies that support smart contracts. Further evaluation is needed to see if different consensus algorithms bring up more problems to be solved for executing swaps. A list of cryptocurrencies that have smart contract support created by cryptoslate \cite{smart_contract_coins} shows that it needs a lot more research on this topic to reach full interoperability of these blockchains. Before even adding support for other cryptocurrencies to the prototype further development of ethereum's clients and libraries has to be done to make internal transactions visible to the end user by instrumenting the EVM \cite{instrumenting_evm}. Also the prototype does not support two-way swaps of assets between two chains at this time. Solving the previous mentioned tasks and the problems that come up during further evaluation of these, the next logical step is to support more cryptocurrencies to create a framework that supports any kind blockchain teechnologies.
+The atomic cross-chain prototype discussed in chapter \ref{ch:chapter04} shows that swapping assets across different is possible with the use of smart contracts. To reach full decentralized blockhain interoperability more needs to be done though. For simplicity the prototype handles delegation of the trade and generation of the hashlocks and timelocks off-chain. By adding these features as smart contract implementations the prototype can be further decentralized. It remains an open question if bitcoin can implement swaps with the current scripting language it supports, because the lack of turing-completeness is a problem. To implement and generate the timelocks on-chain there needs to be evaluation on how time can be measured in block generation times, because the \ac{EVM} only knows time by the current world state and past blocks that have been added. Hyperledger implements their approach with Hashed-Timelock Agreements \cite{HTLAs}, which are based on the timelock \cite{timelock} principle of bitcoin. After successful decentralization of delegation and generation of timelocks and hashlocks on-chain next step is supporting other cryptocurrencies that support smart contracts. Further evaluation is needed to see if different consensus algorithms bring up more problems to be solved for executing swaps. A list of cryptocurrencies that have smart contract support created by cryptoslate \cite{smart_contract_coins} shows that it needs a lot more research on this topic to reach full interoperability of these blockchains. Before even adding support for other cryptocurrencies to the prototype further development of ethereum's clients and libraries has to be done to make internal transactions visible to the end user by instrumenting the \ac{EVM} \cite{instrumenting_evm}. Also the prototype does not support two-way swaps of assets between two chains at this time. Solving the previous mentioned tasks and the problems that come up during further evaluation of these, the next logical step is to support more cryptocurrencies to create a framework that supports any kind blockchain technologies.
 
 %TODO: MB add two more sentences!!
 
